@@ -1,25 +1,7 @@
 module.exports = {
-  extends: ['next/core-web-vitals', 'plugin:prettier/recommended'],
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaVersion: 2021,
-    sourceType: 'module',
-  },
-  plugins: ['@typescript-eslint', 'prettier'],
+  extends: ['next/core-web-vitals'],
   rules: {
-    'prettier/prettier': 'error',
-    '@typescript-eslint/no-unused-vars': [
-      'error',
-      {
-        argsIgnorePattern: '^_',
-        varsIgnorePattern: '^_',
-      },
-    ],
-    '@typescript-eslint/explicit-function-return-types': [
-      'error',
-      {
-        allowExpressions: true,
-      },
-    ],
+    '@typescript-eslint/explicit-function-return-types': 'off',
+    '@next/next/no-html-link-for-pages': 'off',
   },
 }

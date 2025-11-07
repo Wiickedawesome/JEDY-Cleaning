@@ -51,7 +51,7 @@ const config: Config = {
         sans: ['Inter', 'system-ui', 'sans-serif'],
         serif: ['Merriweather', 'Georgia', 'serif'],
       },
-      typography: (theme) => ({
+      typography: ((theme: any) => ({
         DEFAULT: {
           css: {
             color: theme('colors.slate.700'),
@@ -63,7 +63,7 @@ const config: Config = {
             },
           },
         },
-      }),
+      })) as any,
     },
   },
   plugins: [

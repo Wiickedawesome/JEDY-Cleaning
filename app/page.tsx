@@ -1,4 +1,4 @@
-export default function Home(): JSX.Element {
+export default function Home() {
   return (
     <main className="flex-1">
       {/* Hero Section */}

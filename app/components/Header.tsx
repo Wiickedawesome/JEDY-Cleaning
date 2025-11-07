@@ -1,4 +1,6 @@
-export default function Header(): JSX.Element {
+import Link from 'next/link';
+
+export default function Header() {
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <nav className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
@@ -7,24 +9,24 @@ export default function Header(): JSX.Element {
         </div>
         <ul className="hidden md:flex gap-8 text-sage-700">
           <li>
-            <a href="/" className="hover:text-terracotta-600 transition-colors">
+            <Link href="/" className="hover:text-terracotta-600 transition-colors">
               Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/services" className="hover:text-terracotta-600 transition-colors">
+            <Link href="/services" className="hover:text-terracotta-600 transition-colors">
               Services
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/about" className="hover:text-terracotta-600 transition-colors">
+            <Link href="/about" className="hover:text-terracotta-600 transition-colors">
               About
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/contact" className="hover:text-terracotta-600 transition-colors">
+            <Link href="/contact" className="hover:text-terracotta-600 transition-colors">
               Contact
-            </a>
+            </Link>
           </li>
         </ul>
         <button className="bg-terracotta-600 hover:bg-terracotta-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors">
