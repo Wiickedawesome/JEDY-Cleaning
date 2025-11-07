@@ -1,0 +1,34 @@
+# Learn more about Next.js configuration
+# https://nextjs.org/docs/api-reference/next.config.js/introduction
+
+node_modules/
+.next/
+out/
+build/
+dist/
+*.log
+*.pem
+.env
+.env.local
+.env.*.local
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.sublime-project
+.sublime-workspace
+
+# Testing
+coverage/
+.nyc_output/
+
+# Production
+build/
+out/
+
+# Misc
+.cache/
