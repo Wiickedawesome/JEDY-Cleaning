@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -16,19 +18,19 @@ export default function Footer() {
             <h4 className="font-bold mb-4">Services</h4>
             <ul className="space-y-2 text-cream-200">
               <li>
-                <a href="/services" className="hover:text-cream-50 transition-colors">
+                <Link href="/services" className="hover:text-cream-50 transition-colors">
                   Weekly Cleaning
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/services" className="hover:text-cream-50 transition-colors">
+                <Link href="/services" className="hover:text-cream-50 transition-colors">
                   Deep Cleaning
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/services" className="hover:text-cream-50 transition-colors">
+                <Link href="/services" className="hover:text-cream-50 transition-colors">
                   Moving Services
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -36,14 +38,19 @@ export default function Footer() {
             <h4 className="font-bold mb-4">Company</h4>
             <ul className="space-y-2 text-cream-200">
               <li>
-                <a href="/about" className="hover:text-cream-50 transition-colors">
+                <Link href="/about" className="hover:text-cream-50 transition-colors">
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/contact" className="hover:text-cream-50 transition-colors">
+                <Link href="/blog" className="hover:text-cream-50 transition-colors">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-cream-50 transition-colors">
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
