@@ -6,25 +6,28 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
-            <h3 className="text-xl font-bold mb-4">JEDY Cleaning</h3>
-            <p className="text-cream-200">Professional cleaning services for homes and offices.</p>
+            <h3 className="text-xl font-bold mb-4">JEDY Cleaning Services</h3>
+            <p className="text-cream-200">
+              Professional cleaning services for the Greater Knoxville area. 
+              Making your space sparkle with care and attention.
+            </p>
           </div>
           <div>
             <h4 className="font-bold mb-4">Services</h4>
             <ul className="space-y-2 text-cream-200">
               <li>
                 <a href="/services" className="hover:text-cream-50 transition-colors">
-                  Home Cleaning
-                </a>
-              </li>
-              <li>
-                <a href="/services" className="hover:text-cream-50 transition-colors">
-                  Office Cleaning
+                  Weekly Cleaning
                 </a>
               </li>
               <li>
                 <a href="/services" className="hover:text-cream-50 transition-colors">
                   Deep Cleaning
+                </a>
+              </li>
+              <li>
+                <a href="/services" className="hover:text-cream-50 transition-colors">
+                  Moving Services
                 </a>
               </li>
             </ul>
@@ -46,12 +49,20 @@ export default function Footer() {
           </div>
           <div>
             <h4 className="font-bold mb-4">Contact</h4>
-            <p className="text-cream-200">Email: info@jedycleaning.com</p>
-            <p className="text-cream-200">Phone: (555) 123-4567</p>
+            <p className="text-cream-200">
+              <a href="mailto:jedycleaning@gmail.com" className="hover:text-cream-50 transition-colors">
+                jedycleaning@gmail.com
+              </a>
+            </p>
+            <p className="text-cream-200">
+              <a href="tel:8653332637" className="hover:text-cream-50 transition-colors">
+                (865) 333-2637
+              </a>
+            </p>
           </div>
         </div>
         <div className="border-t border-sage-700 pt-8 text-center text-cream-200">
-          <p>&copy; {currentYear} JEDY Cleaning. All rights reserved.</p>
+          <p>&copy; {currentYear} JEDY Cleaning Services. All rights reserved.</p>
         </div>
       </div>
     </footer>
