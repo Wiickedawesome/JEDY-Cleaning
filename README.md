@@ -22,8 +22,14 @@ The website combines modern development practices with a warm, charming aestheti
 - **GitHub Actions** - CI/CD pipeline
 
 ### Deployment
+- **Azure Static Web Apps** - Fast, secure, serverless hosting ⭐
 - **GitHub Actions** - Automated CI/CD pipeline
-- **Ready for deployment** - Can be deployed to various hosting platforms
+
+## 🌐 Live Site
+
+**Production:** https://red-beach-058c8411e.3.azurestaticapps.net
+
+The JEDY Cleaning website is live and automatically deploys when you push to the `Website` branch!
 
 ## 📁 Project Structure
 
@@ -126,13 +132,19 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
 ## 🚢 Deployment
 
-The website is ready to be deployed to various hosting platforms including:
-- Azure Static Web Apps
-- Vercel
-- Netlify
-- AWS Amplify
+### Azure Static Web Apps (Active ⭐)
 
-After deployment is configured, changes pushed to the `Website` branch will automatically deploy.
+The website is deployed to Azure Static Web Apps with automatic CI/CD via GitHub Actions.
+
+**Live URL:** https://red-beach-058c8411e.3.azurestaticapps.net
+
+**How it works:**
+1. Push code to the `Website` branch
+2. GitHub Actions automatically builds the Next.js app with React 19 support
+3. Deploys to Azure Static Web Apps
+4. Site updates within 3-5 minutes
+
+**Deployment Status:** Check [GitHub Actions](https://github.com/Wiickedawesome/JEDY-Cleaning/actions)
 
 ## 📝 License
 
