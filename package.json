@@ -13,8 +13,7 @@
     "type-check": "tsc --noEmit",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "test:coverage": "vitest --coverage",
-    "azure:build": "npm run build && npm run type-check"
+    "test:coverage": "vitest --coverage"
   },
   "dependencies": {
     "react": "^19.0.0",

@@ -22,15 +22,8 @@ The website combines modern development practices with a warm, charming aestheti
 - **GitHub Actions** - CI/CD pipeline
 
 ### Deployment
-- **Azure Static Web Apps** - Fast, secure, serverless hosting ⭐
 - **GitHub Actions** - Automated CI/CD pipeline
-- **Cloudflare** - CDN and performance optimization
-
-## 🌐 Live Site
-
-**Production:** https://icy-forest-0159f671e.3.azurestaticapps.net
-
-Your mom's cleaning business website is live on Azure Static Web Apps!
+- **Ready for deployment** - Can be deployed to various hosting platforms
 
 ## 📁 Project Structure
 
@@ -133,28 +126,13 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
 ## 🚢 Deployment
 
-### Azure Static Web Apps (Current ⭐)
+The website is ready to be deployed to various hosting platforms including:
+- Azure Static Web Apps
+- Vercel
+- Netlify
+- AWS Amplify
 
-The website is deployed to Azure Static Web Apps with automatic CI/CD.
-
-**Deployment URL:** https://icy-forest-0159f671e.3.azurestaticapps.net
-
-**How it works:**
-1. Push changes to `Website` branch
-2. GitHub Actions automatically tests your code
-3. If tests pass, automatically deploys to Azure
-4. Site updates within 3-5 minutes
-
-**Setup (One-time):**
-1. Get deployment token from Azure Portal
-2. Add to GitHub secrets as `AZURE_STATIC_WEB_APPS_API_TOKEN`
-3. Done! Future pushes auto-deploy
-
-See [AZURE_DEPLOYMENT_GUIDE.md](./AZURE_DEPLOYMENT_GUIDE.md) for detailed instructions.
-
-**Deployment Status:**
-- GitHub Actions: https://github.com/Wiickedawesome/JEDY-Cleaning/actions
-- Azure Portal: Search for "Static Web Apps" → icy-forest-0159f671e
+After deployment is configured, changes pushed to the `Website` branch will automatically deploy.
 
 ## 📝 License
 
