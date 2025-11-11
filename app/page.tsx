@@ -42,7 +42,7 @@ export default function Home() {
             </div>
           </div>
           <div className="relative hidden md:flex justify-center items-center h-[480px]">
-            <Image src="/graphics/cleaning-lady.png" alt="JEDY Cleaning Mascot" width={400} height={480} className="object-contain drop-shadow-2xl" priority />
+            <Image src="/graphics/JEDY-1.png" alt="JEDY Cleaning Mascot" width={400} height={480} className="object-contain drop-shadow-2xl" priority />
           </div>
         </div>
       </section>
