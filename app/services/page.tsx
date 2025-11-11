@@ -10,8 +10,8 @@ export default function ServicesPage() {
         'Trash removal'
       ],
       icon: '🏠',
-      color: 'from-sage-50 to-cream-50',
-      border: 'border-sage-200'
+      color: 'from-pink-50 to-cream-50',
+      border: 'border-pink-200'
     },
     {
       title: 'Semi-Weekly Cleaning',
@@ -23,8 +23,8 @@ export default function ServicesPage() {
         'Consistent quality'
       ],
       icon: '✨',
-      color: 'from-terracotta-50 to-cream-50',
-      border: 'border-terracotta-200'
+      color: 'from-cream-50 to-pink-50',
+      border: 'border-pink-200'
     },
     {
       title: 'Monthly Cleaning',
@@ -36,8 +36,8 @@ export default function ServicesPage() {
         'Professional results'
       ],
       icon: '📅',
-      color: 'from-cream-100 to-sage-50',
-      border: 'border-sage-200'
+      color: 'from-cream-100 to-pink-50',
+      border: 'border-pink-200'
     },
     {
       title: 'Deep Cleaning',
@@ -49,8 +49,8 @@ export default function ServicesPage() {
         'Detailed grout and tile work'
       ],
       icon: '🧽',
-      color: 'from-terracotta-50 to-cream-50',
-      border: 'border-terracotta-200'
+      color: 'from-pink-50 to-cream-50',
+      border: 'border-pink-200'
     },
     {
       title: 'Moving Services',
@@ -62,8 +62,8 @@ export default function ServicesPage() {
         'Flexible scheduling around your move'
       ],
       icon: '📦',
-      color: 'from-sage-50 to-cream-50',
-      border: 'border-sage-200'
+      color: 'from-pink-50 to-cream-50',
+      border: 'border-pink-200'
     },
     {
       title: 'Custom Cleaning',
@@ -75,17 +75,17 @@ export default function ServicesPage() {
         'Flexible service options'
       ],
       icon: '⭐',
-      color: 'from-cream-100 to-terracotta-50',
-      border: 'border-terracotta-200'
+      color: 'from-cream-100 to-pink-50',
+      border: 'border-pink-200'
     }
   ];
 
   return (
     <main className="min-h-screen bg-cream-50">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-sage-900 via-sage-800 to-terracotta-700 text-cream-50 py-24 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-pink-600 via-pink-700 to-brown-700 text-white py-24 overflow-hidden">
         <div className="absolute inset-0 pattern-dots opacity-20"></div>
-        <div className="absolute top-0 right-0 w-96 h-96 bg-terracotta-600 opacity-10 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-pink-400 opacity-10 rounded-full blur-3xl"></div>
         <div className="relative max-w-6xl mx-auto px-4 text-center z-10">
           <span className="inline-block px-6 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-sm font-semibold tracking-wide mb-6">
             COMPREHENSIVE CLEANING SOLUTIONS
@@ -112,16 +112,16 @@ export default function ServicesPage() {
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-white to-transparent opacity-50 rounded-full -mr-16 -mt-16"></div>
                 <div className="relative z-10">
                   <div className="text-6xl mb-5 transform group-hover:scale-110 transition-transform duration-300">{service.icon}</div>
-                  <h3 className="text-2xl font-serif font-bold text-sage-900 mb-4">
+                  <h3 className="text-2xl font-serif font-bold text-brown-900 mb-4">
                     {service.title}
                   </h3>
-                  <p className="text-sage-700 mb-6 leading-relaxed">
+                  <p className="text-brown-700 mb-6 leading-relaxed">
                     {service.description}
                   </p>
                   <ul className="space-y-2">
                     {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start text-sage-700">
-                        <span className="text-terracotta-600 mr-2 font-bold text-lg">✓</span>
+                      <li key={idx} className="flex items-start text-brown-700">
+                        <span className="text-pink-600 mr-2 font-bold text-lg">✓</span>
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -134,7 +134,7 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative bg-gradient-to-br from-terracotta-600 via-terracotta-700 to-sage-900 text-white py-20 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-pink-600 via-pink-700 to-brown-800 text-white py-20 overflow-hidden">
         <div className="absolute inset-0 pattern-dots opacity-20"></div>
         <div className="absolute top-0 left-0 w-96 h-96 bg-white opacity-5 rounded-full blur-3xl"></div>
         <div className="relative max-w-4xl mx-auto px-4 text-center z-10">
@@ -147,13 +147,13 @@ export default function ServicesPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="tel:8653332637"
-              className="bg-white text-terracotta-600 px-10 py-5 rounded-xl font-semibold text-lg hover:bg-cream-50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 border-2 border-white"
+              className="bg-white text-pink-600 px-10 py-5 rounded-xl font-semibold text-lg hover:bg-cream-50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 border-2 border-white"
             >
               📞 Call (865) 333-2637
             </a>
             <a
               href="/contact"
-              className="bg-sage-900 text-white px-10 py-5 rounded-xl font-semibold text-lg hover:bg-sage-800 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 border-2 border-sage-700"
+              className="bg-brown-800 text-white px-10 py-5 rounded-xl font-semibold text-lg hover:bg-brown-700 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 border-2 border-brown-700"
             >
               Get a Quote →
             </a>

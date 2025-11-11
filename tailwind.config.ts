@@ -9,42 +9,42 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Warm, charming color palette
+        // Pink & Cream color palette inspired by our cleaning mascot
         cream: {
-          50: '#FFFBF5',
-          100: '#FFF8F0',
-          200: '#FFE8D6',
-          300: '#FFD9BB',
-          400: '#FFC199',
-          500: '#FFAA77',
-          600: '#E68955',
-          700: '#CC6633',
-          800: '#B34D22',
-          900: '#8B3A15',
+          50: '#FFFEF9',
+          100: '#FFF8E8',
+          200: '#FFF1D4',
+          300: '#FFE8B8',
+          400: '#FFDF9C',
+          500: '#FFD680',
+          600: '#F5C563',
+          700: '#E6B14A',
+          800: '#D19A35',
+          900: '#B88020',
         },
-        sage: {
-          50: '#F8FAF6',
-          100: '#ECEEE8',
-          200: '#DCDDD5',
-          300: '#C8CBBD',
-          400: '#B4B8AA',
-          500: '#9FA497',
-          600: '#7F8775',
-          700: '#5F6A53',
-          800: '#4A5242',
-          900: '#353B31',
+        pink: {
+          50: '#FFF5F7',
+          100: '#FFE8ED',
+          200: '#FFD1DB',
+          300: '#FFB4C8',
+          400: '#FF8FAB',
+          500: '#FF6B8E',
+          600: '#E85577',
+          700: '#D14165',
+          800: '#B83354',
+          900: '#9E2845',
         },
-        terracotta: {
-          50: '#FEF4F0',
-          100: '#FDE5DB',
-          200: '#F9CDB3',
-          300: '#F5B08B',
-          400: '#EE8B63',
-          500: '#E26D3F',
-          600: '#D55A2F',
-          700: '#B84725',
-          800: '#963921',
-          900: '#7A2E1A',
+        brown: {
+          50: '#F9F6F4',
+          100: '#EBE3DD',
+          200: '#D4C4B8',
+          300: '#BDA593',
+          400: '#A6866E',
+          500: '#8F6749',
+          600: '#6D4E37',
+          700: '#5A3F2D',
+          800: '#473223',
+          900: '#34251A',
         },
       },
       fontFamily: {
@@ -54,11 +54,11 @@ const config: Config = {
       typography: ((theme: any) => ({
         DEFAULT: {
           css: {
-            color: theme('colors.slate.700'),
+            color: theme('colors.brown.800'),
             a: {
-              color: theme('colors.terracotta.600'),
+              color: theme('colors.pink.600'),
               '&:hover': {
-                color: theme('colors.terracotta.700'),
+                color: theme('colors.pink.700'),
               },
             },
           },

@@ -42,7 +42,7 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen bg-cream-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-sage-900 to-sage-800 text-cream-50 py-20">
+      <section className="bg-gradient-to-br from-pink-600 to-pink-700 text-white py-20">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-6xl font-serif font-bold mb-6">
             Get In Touch
@@ -58,7 +58,7 @@ export default function ContactPage() {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Information */}
             <div>
-              <h2 className="text-3xl font-serif font-bold text-sage-900 mb-8">
+              <h2 className="text-3xl font-serif font-bold text-brown-900 mb-8">
                 Contact Information
               </h2>
               
@@ -66,37 +66,37 @@ export default function ContactPage() {
                 <div className="flex items-start gap-4">
                   <div className="text-3xl">📞</div>
                   <div>
-                    <h3 className="text-xl font-bold text-sage-900 mb-2">Phone</h3>
+                    <h3 className="text-xl font-bold text-brown-900 mb-2">Phone</h3>
                     <a 
                       href="tel:8653332637" 
-                      className="text-lg text-terracotta-600 hover:text-terracotta-700 transition-colors"
+                      className="text-lg text-pink-600 hover:text-pink-700 transition-colors"
                     >
                       (865) 333-2637
                     </a>
-                    <p className="text-sage-600 mt-1">Call us anytime for a free quote!</p>
+                    <p className="text-brown-600 mt-1">Call us anytime for a free quote!</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
                   <div className="text-3xl">✉️</div>
                   <div>
-                    <h3 className="text-xl font-bold text-sage-900 mb-2">Email</h3>
+                    <h3 className="text-xl font-bold text-brown-900 mb-2">Email</h3>
                     <a 
                       href="mailto:jedycleaning@gmail.com" 
-                      className="text-lg text-terracotta-600 hover:text-terracotta-700 transition-colors"
+                      className="text-lg text-pink-600 hover:text-pink-700 transition-colors"
                     >
                       jedycleaning@gmail.com
                     </a>
-                    <p className="text-sage-600 mt-1">We'll respond within 24 hours</p>
+                    <p className="text-brown-600 mt-1">We'll respond within 24 hours</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
                   <div className="text-3xl">📍</div>
                   <div>
-                    <h3 className="text-xl font-bold text-sage-900 mb-2">Service Area</h3>
-                    <p className="text-lg text-sage-700">Greater Knoxville Area</p>
-                    <p className="text-sage-600 mt-1">Proudly serving our local community</p>
+                    <h3 className="text-xl font-bold text-brown-900 mb-2">Service Area</h3>
+                    <p className="text-lg text-brown-700">Greater Knoxville Area</p>
+                    <p className="text-brown-600 mt-1">Proudly serving our local community</p>
                   </div>
                 </div>
               </div>
@@ -118,7 +118,7 @@ export default function ContactPage() {
 
             {/* Contact Form */}
             <div>
-              <h2 className="text-3xl font-serif font-bold text-sage-900 mb-8">
+              <h2 className="text-3xl font-serif font-bold text-brown-900 mb-8">
                 Request a Quote
               </h2>
 
@@ -131,7 +131,7 @@ export default function ContactPage() {
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-sage-900 font-semibold mb-2">
+                  <label htmlFor="name" className="block text-brown-900 font-semibold mb-2">
                     Full Name *
                   </label>
                   <input
@@ -141,13 +141,13 @@ export default function ContactPage() {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-sage-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-terracotta-600 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600 focus:border-transparent"
                     placeholder="John Doe"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sage-900 font-semibold mb-2">
+                  <label htmlFor="email" className="block text-brown-900 font-semibold mb-2">
                     Email Address *
                   </label>
                   <input
@@ -157,13 +157,13 @@ export default function ContactPage() {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-sage-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-terracotta-600 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600 focus:border-transparent"
                     placeholder="john@example.com"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="phone" className="block text-sage-900 font-semibold mb-2">
+                  <label htmlFor="phone" className="block text-brown-900 font-semibold mb-2">
                     Phone Number *
                   </label>
                   <input
@@ -173,13 +173,13 @@ export default function ContactPage() {
                     required
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-sage-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-terracotta-600 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600 focus:border-transparent"
                     placeholder="(865) 123-4567"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="service" className="block text-sage-900 font-semibold mb-2">
+                  <label htmlFor="service" className="block text-brown-900 font-semibold mb-2">
                     Service Needed *
                   </label>
                   <select
@@ -188,7 +188,7 @@ export default function ContactPage() {
                     required
                     value={formData.service}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-sage-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-terracotta-600 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600 focus:border-transparent"
                   >
                     <option value="weekly">Weekly Cleaning</option>
                     <option value="semi-weekly">Semi-Weekly Cleaning</option>
@@ -200,7 +200,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sage-900 font-semibold mb-2">
+                  <label htmlFor="message" className="block text-brown-900 font-semibold mb-2">
                     Additional Details
                   </label>
                   <textarea
@@ -209,7 +209,7 @@ export default function ContactPage() {
                     rows={5}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-sage-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-terracotta-600 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600 focus:border-transparent"
                     placeholder="Tell us about your cleaning needs, preferred schedule, home size, or any special requirements..."
                   />
                 </div>
@@ -217,12 +217,12 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
-                  className="w-full bg-terracotta-600 hover:bg-terracotta-700 text-white py-4 rounded-lg font-semibold text-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-pink-600 hover:bg-pink-700 text-white py-4 rounded-lg font-semibold text-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {status === 'submitting' ? 'Sending...' : 'Send Message'}
                 </button>
 
-                <p className="text-sm text-sage-600 text-center">
+                <p className="text-sm text-brown-600 text-center">
                   By submitting this form, you agree to be contacted by JEDY Cleaning Services 
                   regarding your inquiry.
                 </p>
