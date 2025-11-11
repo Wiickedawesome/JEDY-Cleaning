@@ -1,12 +1,11 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import TestimonialCarousel from './components/TestimonialCarousel';
 
 export default function Home() {
   return (
     <main className="flex-1">
       <section className="relative min-h-[70vh] md:min-h-[80vh] bg-gradient-to-br from-pink-50 via-cream-50 to-pink-100 flex items-center px-4 overflow-hidden">
-        <div className="absolute inset-0 pattern-dots opacity-20"></div>
+        <div className="absolute inset-0 pattern-dots opacity-10"></div>
 
         <div className="relative max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-10 items-center py-16 z-10">
           <div>
@@ -42,7 +41,7 @@ export default function Home() {
             </div>
           </div>
           <div className="relative hidden md:flex justify-center items-center h-[480px]">
-            <Image src="/graphics/JEDY-1.png" alt="JEDY Cleaning Mascot" width={400} height={480} className="object-contain drop-shadow-2xl" priority />
+            <img src="/graphics/JEDY-1.png" alt="JEDY Cleaning Mascot" className="max-w-full max-h-full object-contain drop-shadow-2xl" />
           </div>
         </div>
       </section>
@@ -156,18 +155,18 @@ export default function Home() {
             {/* Testimonials */}
       <TestimonialCarousel />
 
-      <section className="relative bg-gradient-to-br from-pink-600 via-pink-700 to-brown-700 text-white py-16 overflow-hidden">
-        <div className="absolute inset-0 pattern-dots opacity-20" />
+      <section className="relative bg-gradient-to-br from-pink-100 via-pink-200 to-cream-200 text-brown-900 py-16 overflow-hidden">
+        <div className="absolute inset-0 pattern-dots opacity-10" />
         <div className="relative max-w-4xl mx-auto px-4 text-center z-10">
           <h2 className="font-serif text-4xl md:text-5xl font-bold mb-6">
             Ready for a Cleaner Home?
           </h2>
-          <p className="text-xl mb-8 opacity-90">
+          <p className="text-xl mb-8 text-brown-700">
             Contact us today for a free quote and experience the JEDY difference.
           </p>
           <Link
             href="/contact"
-            className="inline-block bg-white hover:bg-cream-50 text-pink-700 px-10 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-2 border-transparent hover:border-white"
+            className="inline-block bg-pink-500 hover:bg-pink-600 text-white px-10 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
           >
             Get Started Today →
           </Link>

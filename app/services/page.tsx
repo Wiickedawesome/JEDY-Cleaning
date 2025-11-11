@@ -83,17 +83,17 @@ export default function ServicesPage() {
   return (
     <main className="min-h-screen bg-cream-50">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-pink-600 via-pink-700 to-brown-700 text-white py-24 overflow-hidden">
-        <div className="absolute inset-0 pattern-dots opacity-20"></div>
-        <div className="absolute top-0 right-0 w-96 h-96 bg-pink-400 opacity-10 rounded-full blur-3xl"></div>
+      <section className="relative bg-gradient-to-br from-pink-100 via-pink-50 to-cream-100 text-brown-900 py-24 overflow-hidden">
+        <div className="absolute inset-0 pattern-dots opacity-10"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-pink-200 opacity-20 rounded-full blur-3xl"></div>
         <div className="relative max-w-6xl mx-auto px-4 text-center z-10">
-          <span className="inline-block px-6 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-sm font-semibold tracking-wide mb-6">
+          <span className="inline-block px-6 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-pink-200 text-sm font-semibold tracking-wide mb-6 text-pink-700">
             COMPREHENSIVE CLEANING SOLUTIONS
           </span>
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6">
             Our Services
           </h1>
-          <p className="text-xl md:text-2xl text-cream-100 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-brown-700 max-w-3xl mx-auto">
             Professional cleaning solutions tailored to your needs in the Greater Knoxville area
           </p>
         </div>
@@ -134,26 +134,26 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative bg-gradient-to-br from-pink-600 via-pink-700 to-brown-800 text-white py-20 overflow-hidden">
-        <div className="absolute inset-0 pattern-dots opacity-20"></div>
-        <div className="absolute top-0 left-0 w-96 h-96 bg-white opacity-5 rounded-full blur-3xl"></div>
+      <section className="relative bg-gradient-to-br from-pink-100 via-pink-200 to-cream-200 text-brown-900 py-20 overflow-hidden">
+        <div className="absolute inset-0 pattern-dots opacity-10"></div>
+        <div className="absolute top-0 left-0 w-96 h-96 bg-white opacity-30 rounded-full blur-3xl"></div>
         <div className="relative max-w-4xl mx-auto px-4 text-center z-10">
           <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
             Ready to Experience a Spotless Home?
           </h2>
-          <p className="text-xl mb-10 text-cream-100 max-w-2xl mx-auto">
+          <p className="text-xl mb-10 text-brown-700 max-w-2xl mx-auto">
             Contact us today for a free consultation and let us create a cleaning plan perfect for you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="tel:8653332637"
-              className="bg-white text-pink-600 px-10 py-5 rounded-xl font-semibold text-lg hover:bg-cream-50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 border-2 border-white"
+              className="bg-pink-500 hover:bg-pink-600 text-white px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 border-2 border-pink-400"
             >
               📞 Call (865) 333-2637
             </a>
             <a
               href="/contact"
-              className="bg-brown-800 text-white px-10 py-5 rounded-xl font-semibold text-lg hover:bg-brown-700 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 border-2 border-brown-700"
+              className="bg-white hover:bg-cream-50 text-pink-700 px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 border-2 border-pink-300"
             >
               Get a Quote →
             </a>

@@ -42,14 +42,14 @@ export default function BlogPage() {
   return (
     <main className="min-h-screen bg-cream-50">
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-pink-600 via-pink-700 to-brown-700 text-white py-20 overflow-hidden">
-        <div className="absolute inset-0 pattern-dots opacity-20" />
+      <section className="relative bg-gradient-to-br from-pink-100 via-pink-50 to-cream-100 text-brown-900 py-20 overflow-hidden">
+        <div className="absolute inset-0 pattern-dots opacity-10" />
         <div className="relative max-w-6xl mx-auto px-4 text-center z-10">
-          <span className="inline-block px-6 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-sm font-semibold tracking-wide mb-6">
+          <span className="inline-block px-6 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-pink-200 text-sm font-semibold tracking-wide mb-6 text-pink-700">
             TIPS • GUIDES • CHECKLISTS
           </span>
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6">Blog</h1>
-          <p className="text-xl md:text-2xl text-cream-100 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-brown-700 max-w-3xl mx-auto">
             Practical advice and local insights from the JEDY Cleaning team in Knoxville
           </p>
         </div>
@@ -91,23 +91,23 @@ export default function BlogPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative bg-gradient-to-br from-pink-600 via-pink-700 to-brown-800 text-white py-16 overflow-hidden">
-        <div className="absolute inset-0 pattern-dots opacity-20" />
+      <section className="relative bg-gradient-to-br from-pink-100 via-pink-200 to-cream-200 text-brown-900 py-16 overflow-hidden">
+        <div className="absolute inset-0 pattern-dots opacity-10" />
         <div className="relative max-w-4xl mx-auto px-4 text-center z-10">
           <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">Have a topic you want us to cover?</h2>
-          <p className="text-xl mb-10 text-cream-100 max-w-2xl mx-auto">
+          <p className="text-xl mb-10 text-brown-700 max-w-2xl mx-auto">
             Tell us what cleaning challenges you're dealing with—we'll write a guide and send it to you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/contact"
-              className="bg-white text-pink-600 px-10 py-5 rounded-xl font-semibold text-lg hover:bg-cream-50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 border-2 border-white"
+              className="bg-pink-500 hover:bg-pink-600 text-white px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 border-2 border-pink-400"
             >
               Request a topic →
             </a>
             <a
               href="tel:8653332637"
-              className="bg-brown-800 text-white px-10 py-5 rounded-xl font-semibold text-lg hover:bg-brown-700 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 border-2 border-brown-700"
+              className="bg-white hover:bg-cream-50 text-pink-700 px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 border-2 border-pink-300"
             >
               📞 Call (865) 333-2637
             </a>

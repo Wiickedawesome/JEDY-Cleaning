@@ -42,12 +42,12 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen bg-cream-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-pink-600 to-pink-700 text-white py-20">
+      <section className="bg-gradient-to-br from-pink-100 to-pink-200 text-brown-900 py-20">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-6xl font-serif font-bold mb-6">
             Get In Touch
           </h1>
-          <p className="text-xl md:text-2xl text-cream-100 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-brown-700 max-w-3xl mx-auto">
             Ready to experience a cleaner, fresher space? We'd love to hear from you!
           </p>
         </div>
@@ -217,7 +217,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
-                  className="w-full bg-pink-600 hover:bg-pink-700 text-white py-4 rounded-lg font-semibold text-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-pink-500 hover:bg-pink-600 text-white py-4 rounded-lg font-semibold text-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {status === 'submitting' ? 'Sending...' : 'Send Message'}
                 </button>
