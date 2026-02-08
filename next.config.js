@@ -1,16 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
   reactStrictMode: true,
   typescript: {
     tsconfigPath: './tsconfig.json',
   },
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
-    ],
+    unoptimized: true,
   },
 }
 
