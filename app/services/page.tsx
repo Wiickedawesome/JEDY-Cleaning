@@ -117,13 +117,11 @@ export default function ServicesPage() {
               </p>
             </div>
             <div className="relative hidden md:flex justify-center items-center">
-              <div className="mascot-frame p-6 border-2 border-teal-100/50 shadow-xl">
-                <img 
-                  src="/graphics/jedycleaning.png" 
-                  alt="JEDY Cleaning Services" 
-                  className="max-w-full max-h-[400px] object-contain drop-shadow-lg"
-                />
-              </div>
+              <img 
+                src="/graphics/jedycleaning.png" 
+                alt="JEDY Cleaning Services" 
+                className="max-w-full max-h-[400px] object-contain drop-shadow-lg"
+              />
             </div>
           </div>
         </div>
@@ -137,11 +135,10 @@ export default function ServicesPage() {
             {services.map((service, index) => (
               <div
                 key={index}
-                className={`relative bg-gradient-to-br ${service.color} rounded-2xl border-2 ${service.border} shadow-warm p-8 hover:shadow-warm-lg transition-all duration-300 hover:-translate-y-2 group overflow-hidden`}
+                className="bg-white rounded-2xl border border-gray-100 shadow-md hover:shadow-lg p-8 transition-all duration-300 hover:-translate-y-1 group"
               >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-white to-transparent opacity-50 rounded-full -mr-16 -mt-16"></div>
                 <div className="relative z-10">
-                  <div className={`icon-container-lg ${service.iconColor} mb-5 group-hover:scale-110`}>
+                  <div className={`icon-container-lg ${service.iconColor} mb-5 group-hover:scale-105 transition-transform duration-300`}>
                     {iconMap[service.icon]}
                   </div>
                   <h3 className="text-2xl font-serif font-bold text-gray-800 mb-4">

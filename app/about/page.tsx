@@ -39,13 +39,11 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="flex justify-center">
-              <div className="mascot-frame p-8 border-2 border-teal-100 shadow-xl">
-                <img 
-                  src="/graphics/Jedy.png" 
-                  alt="JEDY - Your Trusted Cleaning Partner" 
-                  className="max-w-full h-auto max-h-[420px] object-contain drop-shadow-lg mx-auto"
-                />
-              </div>
+              <img 
+                src="/graphics/Jedy.png" 
+                alt="JEDY - Your Trusted Cleaning Partner" 
+                className="max-w-full h-auto max-h-[420px] object-contain drop-shadow-lg mx-auto"
+              />
             </div>
           </div>
         </div>

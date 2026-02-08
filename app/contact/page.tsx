@@ -18,19 +18,35 @@ export default function ContactPage() {
     e.preventDefault();
     setStatus('submitting');
 
-    // For now, we'll simulate form submission
-    // In production, this would send to your backend or email service
-    setTimeout(() => {
-      setStatus('success');
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        service: 'weekly',
-        message: ''
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/jedycleaning@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          service: formData.service,
+          message: formData.message || 'No additional details provided.',
+          _subject: `New JEDY Cleaning Inquiry - ${formData.service}`,
+          _template: 'table',
+        }),
       });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus('success');
+        setFormData({ name: '', email: '', phone: '', service: 'weekly', message: '' });
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 5000);
+      }
+    } catch {
+      setStatus('error');
       setTimeout(() => setStatus('idle'), 5000);
-    }, 1000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -133,6 +149,13 @@ export default function ContactPage() {
                 <div className="bg-teal-50 border border-teal-200 text-teal-800 px-6 py-4 rounded-lg mb-6">
                   <p className="font-semibold">Thank you for your message!</p>
                   <p className="text-sm">We'll get back to you as soon as possible.</p>
+                </div>
+              )}
+
+              {status === 'error' && (
+                <div className="bg-red-50 border border-red-200 text-red-800 px-6 py-4 rounded-lg mb-6">
+                  <p className="font-semibold">Something went wrong.</p>
+                  <p className="text-sm">Please try again or call us at (865) 333-2637.</p>
                 </div>
               )}
 

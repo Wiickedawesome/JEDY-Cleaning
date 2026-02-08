@@ -63,10 +63,9 @@ export default function Home() {
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="relative bg-gradient-to-br from-teal-50 to-cream-50 p-8 rounded-2xl border-2 border-teal-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-white to-transparent opacity-60 rounded-full -mr-16 -mt-16"></div>
+            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
               <div className="relative z-10">
-                <div className="icon-container-lg bg-teal-100 text-teal-600 mb-5 group-hover:scale-110">
+                <div className="icon-container-lg bg-teal-50 text-teal-600 mb-5 group-hover:scale-105 transition-transform duration-300">
                   <HomeIcon size={36} />
                 </div>
                 <h3 className="text-2xl font-serif font-bold text-gray-800 mb-4">Regular Cleaning</h3>
@@ -74,10 +73,9 @@ export default function Home() {
               </div>
             </div>
             
-            <div className="relative bg-gradient-to-br from-cream-100 to-teal-50 p-8 rounded-2xl border-2 border-cream-300 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-white to-transparent opacity-60 rounded-full -mr-16 -mt-16"></div>
+            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
               <div className="relative z-10">
-                <div className="icon-container-lg bg-pink-50 text-pink-400 mb-5 group-hover:scale-110">
+                <div className="icon-container-lg bg-pink-50 text-pink-400 mb-5 group-hover:scale-105 transition-transform duration-300">
                   <SparklesIcon size={36} />
                 </div>
                 <h3 className="text-2xl font-serif font-bold text-gray-800 mb-4">Deep Cleaning</h3>
@@ -85,10 +83,9 @@ export default function Home() {
               </div>
             </div>
             
-            <div className="relative bg-gradient-to-br from-teal-50 to-cream-100 p-8 rounded-2xl border-2 border-teal-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-white to-transparent opacity-60 rounded-full -mr-16 -mt-16"></div>
+            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
               <div className="relative z-10">
-                <div className="icon-container-lg bg-teal-100 text-teal-600 mb-5 group-hover:scale-110">
+                <div className="icon-container-lg bg-teal-50 text-teal-600 mb-5 group-hover:scale-105 transition-transform duration-300">
                   <BoxIcon size={36} />
                 </div>
                 <h3 className="text-2xl font-serif font-bold text-gray-800 mb-4">Move In/Out</h3>
@@ -119,29 +116,29 @@ export default function Home() {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-white p-8 rounded-2xl border-2 border-teal-100 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center group">
-              <div className="icon-container bg-yellow-50 text-yellow-500 mx-auto mb-4 group-hover:scale-110 group-hover:rotate-6">
+            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 text-center group">
+              <div className="icon-container bg-yellow-50 text-yellow-500 mx-auto mb-4 group-hover:scale-105 transition-transform duration-300">
                 <StarIcon size={32} />
               </div>
               <h3 className="text-xl font-serif font-bold text-gray-800 mb-3">Trusted</h3>
               <p className="text-gray-600 leading-relaxed">Highly rated on Google with satisfied clients across Knoxville</p>
             </div>
-            <div className="bg-white p-8 rounded-2xl border-2 border-teal-100 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center group">
-              <div className="icon-container bg-teal-50 text-teal-600 mx-auto mb-4 group-hover:scale-110 group-hover:rotate-6">
+            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 text-center group">
+              <div className="icon-container bg-teal-50 text-teal-600 mx-auto mb-4 group-hover:scale-105 transition-transform duration-300">
                 <DiamondIcon size={32} />
               </div>
               <h3 className="text-xl font-serif font-bold text-brown-800 mb-3">Quality</h3>
               <p className="text-gray-600 leading-relaxed">Meticulous attention to detail in every clean</p>
             </div>
-            <div className="bg-white p-8 rounded-2xl border-2 border-teal-100 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center group">
-              <div className="icon-container bg-pink-50 text-pink-400 mx-auto mb-4 group-hover:scale-110 group-hover:rotate-6">
+            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 text-center group">
+              <div className="icon-container bg-pink-50 text-pink-400 mx-auto mb-4 group-hover:scale-105 transition-transform duration-300">
                 <HandshakeIcon size={32} />
               </div>
               <h3 className="text-xl font-serif font-bold text-gray-800 mb-3">Reliable</h3>
               <p className="text-gray-600 leading-relaxed">Always on time, every time, with consistent excellence</p>
             </div>
-            <div className="bg-white p-8 rounded-2xl border-2 border-teal-100 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center group">
-              <div className="icon-container bg-green-50 text-green-600 mx-auto mb-4 group-hover:scale-110 group-hover:rotate-6">
+            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 text-center group">
+              <div className="icon-container bg-green-50 text-green-600 mx-auto mb-4 group-hover:scale-105 transition-transform duration-300">
                 <LeafIcon size={32} />
               </div>
               <h3 className="text-xl font-serif font-bold text-brown-800 mb-3">Eco-Friendly</h3>
@@ -154,7 +151,7 @@ export default function Home() {
       <section className="relative py-24 px-4 bg-white">
         <div className="absolute inset-0 pattern-grid opacity-30"></div>
         <div className="relative max-w-4xl mx-auto text-center z-10">
-          <div className="bg-gradient-to-br from-teal-50 to-cream-50 p-12 rounded-3xl border-2 border-teal-200 shadow-xl">
+          <div className="bg-white p-12 rounded-3xl border border-gray-100 shadow-lg">
             <div className="flex justify-center mb-6">
               <QuoteIcon className="text-teal-400" size={56} />
             </div>

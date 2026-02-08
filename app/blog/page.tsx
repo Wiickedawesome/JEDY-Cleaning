@@ -63,9 +63,8 @@ export default function BlogPage() {
             {posts.map((post) => (
               <article
                 key={post.slug}
-                className={`relative bg-gradient-to-br ${post.color} rounded-2xl border-2 ${post.border} shadow-warm p-8 hover:shadow-warm-lg transition-all duration-300 hover:-translate-y-2 group overflow-hidden`}
+                className="bg-white rounded-2xl border border-gray-100 shadow-md p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group"
               >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-white to-transparent opacity-50 rounded-full -mr-16 -mt-16"></div>
                 <div className="relative z-10">
                   <div className="flex items-center gap-3 text-sm text-gray-500 mb-4">
                     <span className="inline-block px-3 py-1 bg-white/70 rounded-full border border-teal-200 font-semibold tracking-wide">
