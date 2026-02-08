@@ -42,14 +42,14 @@ export default function BlogPage() {
   return (
     <main className="min-h-screen bg-cream-50">
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-teal-50 via-teal-100 to-cream-100 text-brown-900 py-20 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-teal-50 via-teal-100 to-cream-100 py-20 overflow-hidden">
         <div className="absolute inset-0 pattern-dots opacity-10" />
         <div className="relative max-w-6xl mx-auto px-4 text-center z-10">
           <span className="inline-block px-6 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-teal-200 text-sm font-semibold tracking-wide mb-6 text-teal-700">
             TIPS • GUIDES • CHECKLISTS
           </span>
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6">Blog</h1>
-          <p className="text-xl md:text-2xl text-brown-700 max-w-3xl mx-auto">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-gray-900 mb-6">Blog</h1>
+          <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
             Practical advice and local insights from the JEDY Cleaning team in Knoxville
           </p>
         </div>
@@ -67,7 +67,7 @@ export default function BlogPage() {
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-white to-transparent opacity-50 rounded-full -mr-16 -mt-16"></div>
                 <div className="relative z-10">
-                  <div className="flex items-center gap-3 text-sm text-brown-700 mb-4">
+                  <div className="flex items-center gap-3 text-sm text-gray-500 mb-4">
                     <span className="inline-block px-3 py-1 bg-white/70 rounded-full border border-teal-200 font-semibold tracking-wide">
                       {post.tag}
                     </span>
@@ -75,8 +75,8 @@ export default function BlogPage() {
                       {new Date(post.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
                     </time>
                   </div>
-                  <h2 className="text-2xl font-serif font-bold text-brown-900 mb-3">{post.title}</h2>
-                  <p className="text-brown-700 mb-6 leading-relaxed">{post.excerpt}</p>
+                  <h2 className="text-2xl font-serif font-bold text-gray-800 mb-3">{post.title}</h2>
+                  <p className="text-gray-600 mb-6 leading-relaxed">{post.excerpt}</p>
                   <Link
                     href={`/blog/${post.slug}`}
                     className="inline-block text-teal-600 font-semibold hover:text-teal-700 transition-colors"

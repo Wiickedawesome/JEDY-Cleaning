@@ -68,7 +68,7 @@ export default function Footer() {
             </p>
           </div>
         </div>
-        <div className="border-t border-brown-700 pt-8 text-center text-cream-100">
+        <div className="border-t border-gray-700 pt-8 text-center text-cream-100">
           <p>&copy; {currentYear} JEDY Cleaning Services. All rights reserved.</p>
         </div>
       </div>

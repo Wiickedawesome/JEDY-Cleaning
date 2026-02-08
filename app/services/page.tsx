@@ -35,7 +35,7 @@ export default function ServicesPage() {
         'Consistent quality'
       ],
       icon: 'sparkles',
-      iconColor: 'bg-pink-100 text-pink-600',
+      iconColor: 'bg-pink-50 text-pink-400',
       color: 'from-cream-50 to-teal-50',
       border: 'border-teal-200'
     },
@@ -63,7 +63,7 @@ export default function ServicesPage() {
         'Detailed grout and tile work'
       ],
       icon: 'sponge',
-      iconColor: 'bg-pink-100 text-pink-600',
+      iconColor: 'bg-pink-50 text-pink-400',
       color: 'from-teal-50 to-cream-50',
       border: 'border-teal-200'
     },
@@ -100,19 +100,32 @@ export default function ServicesPage() {
   return (
     <main className="min-h-screen bg-cream-50">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-teal-50 via-teal-100 to-cream-100 text-brown-900 py-24 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-teal-50 via-teal-100 to-cream-100 py-24 overflow-hidden">
         <div className="absolute inset-0 pattern-dots opacity-10"></div>
         <div className="absolute top-0 right-0 w-96 h-96 bg-teal-200 opacity-20 rounded-full blur-3xl"></div>
-        <div className="relative max-w-6xl mx-auto px-4 text-center z-10">
-          <span className="inline-block px-6 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-teal-200 text-sm font-semibold tracking-wide mb-6 text-teal-700">
-            COMPREHENSIVE CLEANING SOLUTIONS
-          </span>
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6">
-            Our Services
-          </h1>
-          <p className="text-xl md:text-2xl text-brown-700 max-w-3xl mx-auto">
-            Professional cleaning solutions tailored to your needs in the Greater Knoxville area
-          </p>
+        <div className="relative max-w-6xl mx-auto px-4 z-10">
+          <div className="grid md:grid-cols-2 gap-10 items-center">
+            <div className="text-center md:text-left">
+              <span className="inline-block px-6 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-teal-200 text-sm font-semibold tracking-wide mb-6 text-teal-700">
+                COMPREHENSIVE CLEANING SOLUTIONS
+              </span>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-gray-900 mb-6">
+                Our Services
+              </h1>
+              <p className="text-xl md:text-2xl text-gray-600 max-w-xl">
+                Professional cleaning solutions tailored to your needs in the Greater Knoxville area
+              </p>
+            </div>
+            <div className="relative hidden md:flex justify-center items-center">
+              <div className="mascot-frame p-6 border-2 border-teal-100/50 shadow-xl">
+                <img 
+                  src="/graphics/jedycleaning.png" 
+                  alt="JEDY Cleaning Services" 
+                  className="max-w-full max-h-[400px] object-contain drop-shadow-lg"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -131,15 +144,15 @@ export default function ServicesPage() {
                   <div className={`icon-container-lg ${service.iconColor} mb-5 group-hover:scale-110`}>
                     {iconMap[service.icon]}
                   </div>
-                  <h3 className="text-2xl font-serif font-bold text-brown-900 mb-4">
+                  <h3 className="text-2xl font-serif font-bold text-gray-800 mb-4">
                     {service.title}
                   </h3>
-                  <p className="text-brown-700 mb-6 leading-relaxed">
+                  <p className="text-gray-600 mb-6 leading-relaxed">
                     {service.description}
                   </p>
                   <ul className="space-y-2">
                     {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start text-brown-700 gap-2">
+                      <li key={idx} className="flex items-start text-gray-600 gap-2">
                         <CheckIcon className="text-teal-600 mt-0.5 flex-shrink-0" size={18} />
                         <span>{feature}</span>
                       </li>

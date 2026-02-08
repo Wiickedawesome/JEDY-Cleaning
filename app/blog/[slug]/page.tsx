@@ -39,7 +39,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <main className="min-h-screen bg-cream-50">
-      <section className="bg-gradient-to-br from-brown-800 to-brown-900 text-cream-50 py-16">
+      <section className="bg-gradient-to-br from-teal-700 to-teal-800 text-cream-50 py-16">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex items-center gap-3 text-sm text-cream-200/80 mb-4">
             <Link href="/blog" className="hover:text-white transition-colors">← Back to Blog</Link>
@@ -54,7 +54,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4">
-          <article className="prose prose-lg max-w-none text-brown-800">
+          <article className="prose prose-lg max-w-none text-gray-700">
             {post.content.split('\n').map((para, i) => (
               <p key={i}>{para}</p>
             ))}

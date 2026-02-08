@@ -66,7 +66,7 @@ export default function TestimonialCarousel() {
           <span className="inline-block text-teal-600 font-semibold text-sm tracking-widest uppercase mb-3">
             Testimonials
           </span>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-brown-900 mb-4">
+          <h2 className="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             What Our Clients Say
           </h2>
         </div>
@@ -87,10 +87,10 @@ export default function TestimonialCarousel() {
                     <StarIcon key={i} className="text-yellow-400" size={24} />
                   ))}
                 </div>
-                <blockquote className="text-xl md:text-2xl text-brown-900 mb-6 font-serif italic">
+                <blockquote className="text-xl md:text-2xl text-gray-800 mb-6 font-serif italic">
                   "{testimonials[current].quote}"
                 </blockquote>
-                <div className="text-brown-700">
+                <div className="text-gray-600">
                   <p className="font-semibold">{testimonials[current].name}</p>
                   <p className="text-sm">
                     {testimonials[current].role} • {testimonials[current].location}
@@ -110,7 +110,7 @@ export default function TestimonialCarousel() {
                 setAutoplay(false);
               }}
               className={`w-3 h-3 rounded-full transition-colors ${
-                index === current ? 'bg-teal-600' : 'bg-brown-200 hover:bg-brown-300'
+                index === current ? 'bg-teal-600' : 'bg-gray-300 hover:bg-gray-400'
               }`}
               aria-label={`Go to testimonial ${index + 1}`}
             />
