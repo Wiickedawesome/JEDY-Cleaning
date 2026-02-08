@@ -1,8 +1,10 @@
+import { HeartIcon, HandshakeIcon, SparklesIcon } from '../components/Icons';
+
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-cream-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-pink-100 to-pink-200 text-brown-900 py-20">
+      <section className="bg-gradient-to-br from-teal-50 via-teal-100 to-cream-100 text-brown-900 py-20">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-6xl font-serif font-bold mb-6">
             About JEDY Cleaning
@@ -46,24 +48,30 @@ export default function AboutPage() {
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="text-5xl mb-4">💖</div>
-              <h3 className="text-2xl font-bold text-pink-600 mb-4">Care & Attention</h3>
+              <div className="icon-container-lg bg-pink-50 text-pink-500 mx-auto mb-4">
+                <HeartIcon size={36} />
+              </div>
+              <h3 className="text-2xl font-bold text-teal-700 mb-4">Care & Attention</h3>
               <p className="text-brown-700">
                 We treat every home with the same care and respect we'd give our own. 
                 Your satisfaction is our priority.
               </p>
             </div>
             <div className="text-center">
-              <div className="text-5xl mb-4">🤝</div>
-              <h3 className="text-2xl font-bold text-pink-600 mb-4">Trust & Reliability</h3>
+              <div className="icon-container-lg bg-teal-50 text-teal-600 mx-auto mb-4">
+                <HandshakeIcon size={36} />
+              </div>
+              <h3 className="text-2xl font-bold text-teal-700 mb-4">Trust & Reliability</h3>
               <p className="text-brown-700">
                 Count on us to show up on time, every time, with consistent, high-quality 
                 service you can depend on.
               </p>
             </div>
             <div className="text-center">
-              <div className="text-5xl mb-4">✨</div>
-              <h3 className="text-2xl font-bold text-pink-600 mb-4">Excellence</h3>
+              <div className="icon-container-lg bg-yellow-50 text-yellow-500 mx-auto mb-4">
+                <SparklesIcon size={36} />
+              </div>
+              <h3 className="text-2xl font-bold text-teal-700 mb-4">Excellence</h3>
               <p className="text-brown-700">
                 We go beyond basic cleaning to deliver exceptional results that make your 
                 space truly shine.
@@ -80,8 +88,8 @@ export default function AboutPage() {
             Why Choose JEDY Cleaning?
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-xl shadow-lg p-8">
-              <h3 className="text-2xl font-bold text-pink-600 mb-4">
+            <div className="bg-white rounded-xl shadow-lg p-8 border border-teal-100">
+              <h3 className="text-2xl font-bold text-teal-700 mb-4">
                 Professional & Experienced
               </h3>
               <p className="text-brown-700">
@@ -89,8 +97,8 @@ export default function AboutPage() {
                 We know the right techniques and products to use for every surface and situation.
               </p>
             </div>
-            <div className="bg-white rounded-xl shadow-lg p-8">
-              <h3 className="text-2xl font-bold text-pink-600 mb-4">
+            <div className="bg-white rounded-xl shadow-lg p-8 border border-teal-100">
+              <h3 className="text-2xl font-bold text-teal-700 mb-4">
                 Flexible & Personalized
               </h3>
               <p className="text-brown-700">
@@ -98,8 +106,8 @@ export default function AboutPage() {
                 needs, whether it's weekly maintenance or a one-time deep clean.
               </p>
             </div>
-            <div className="bg-white rounded-xl shadow-lg p-8">
-              <h3 className="text-2xl font-bold text-pink-600 mb-4">
+            <div className="bg-white rounded-xl shadow-lg p-8 border border-teal-100">
+              <h3 className="text-2xl font-bold text-teal-700 mb-4">
                 Local & Community-Focused
               </h3>
               <p className="text-brown-700">
@@ -107,8 +115,8 @@ export default function AboutPage() {
                 relationships with our clients based on trust and mutual respect.
               </p>
             </div>
-            <div className="bg-white rounded-xl shadow-lg p-8">
-              <h3 className="text-2xl font-bold text-pink-600 mb-4">
+            <div className="bg-white rounded-xl shadow-lg p-8 border border-teal-100">
+              <h3 className="text-2xl font-bold text-teal-700 mb-4">
                 Quality Guaranteed
               </h3>
               <p className="text-brown-700">
@@ -121,24 +129,24 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-r from-pink-100 to-pink-200 text-brown-900 py-16">
+      <section className="bg-gradient-to-r from-teal-600 to-teal-700 text-white py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-4xl font-serif font-bold mb-6">
             Experience the JEDY Difference
           </h2>
-          <p className="text-xl mb-8 text-brown-700">
+          <p className="text-xl mb-8 text-teal-100">
             Join our growing family of satisfied clients in the Greater Knoxville area.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="tel:8653332637"
-              className="bg-pink-500 hover:bg-pink-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors"
+              className="bg-white hover:bg-cream-50 text-teal-700 px-8 py-4 rounded-lg font-semibold text-lg transition-colors"
             >
               Call (865) 333-2637
             </a>
             <a
               href="/contact"
-              className="bg-white hover:bg-cream-50 text-pink-700 px-8 py-4 rounded-lg font-semibold text-lg transition-colors border-2 border-pink-300"
+              className="bg-teal-500 hover:bg-teal-400 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors border-2 border-teal-400"
             >
               Contact Us Today
             </a>

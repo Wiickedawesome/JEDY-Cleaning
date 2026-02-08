@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { PhoneIcon, MailIcon, MapPinIcon } from '../components/Icons';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -42,7 +43,7 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen bg-cream-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-pink-100 to-pink-200 text-brown-900 py-20">
+      <section className="bg-gradient-to-br from-teal-50 via-teal-100 to-cream-100 text-brown-900 py-20">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-6xl font-serif font-bold mb-6">
             Get In Touch
@@ -64,12 +65,14 @@ export default function ContactPage() {
               
               <div className="space-y-6 mb-8">
                 <div className="flex items-start gap-4">
-                  <div className="text-3xl">📞</div>
+                  <div className="icon-container bg-teal-100 text-teal-600 flex-shrink-0">
+                    <PhoneIcon size={24} />
+                  </div>
                   <div>
                     <h3 className="text-xl font-bold text-brown-900 mb-2">Phone</h3>
                     <a 
                       href="tel:8653332637" 
-                      className="text-lg text-pink-600 hover:text-pink-700 transition-colors"
+                      className="text-lg text-teal-600 hover:text-teal-700 transition-colors"
                     >
                       (865) 333-2637
                     </a>
@@ -78,12 +81,14 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="text-3xl">✉️</div>
+                  <div className="icon-container bg-pink-100 text-pink-600 flex-shrink-0">
+                    <MailIcon size={24} />
+                  </div>
                   <div>
                     <h3 className="text-xl font-bold text-brown-900 mb-2">Email</h3>
                     <a 
                       href="mailto:jedycleaning@gmail.com" 
-                      className="text-lg text-pink-600 hover:text-pink-700 transition-colors"
+                      className="text-lg text-teal-600 hover:text-teal-700 transition-colors"
                     >
                       jedycleaning@gmail.com
                     </a>
@@ -92,7 +97,9 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="text-3xl">📍</div>
+                  <div className="icon-container bg-teal-100 text-teal-600 flex-shrink-0">
+                    <MapPinIcon size={24} />
+                  </div>
                   <div>
                     <h3 className="text-xl font-bold text-brown-900 mb-2">Service Area</h3>
                     <p className="text-lg text-brown-700">Greater Knoxville Area</p>
@@ -123,7 +130,7 @@ export default function ContactPage() {
               </h2>
 
               {status === 'success' && (
-                <div className="bg-green-50 border border-green-200 text-green-800 px-6 py-4 rounded-lg mb-6">
+                <div className="bg-teal-50 border border-teal-200 text-teal-800 px-6 py-4 rounded-lg mb-6">
                   <p className="font-semibold">Thank you for your message!</p>
                   <p className="text-sm">We'll get back to you as soon as possible.</p>
                 </div>
@@ -141,7 +148,7 @@ export default function ContactPage() {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-brown-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     placeholder="John Doe"
                   />
                 </div>
@@ -157,7 +164,7 @@ export default function ContactPage() {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-brown-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -173,7 +180,7 @@ export default function ContactPage() {
                     required
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-brown-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     placeholder="(865) 123-4567"
                   />
                 </div>
@@ -188,7 +195,7 @@ export default function ContactPage() {
                     required
                     value={formData.service}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-brown-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                   >
                     <option value="weekly">Weekly Cleaning</option>
                     <option value="semi-weekly">Semi-Weekly Cleaning</option>
@@ -209,7 +216,7 @@ export default function ContactPage() {
                     rows={5}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-brown-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                     placeholder="Tell us about your cleaning needs, preferred schedule, home size, or any special requirements..."
                   />
                 </div>
@@ -217,7 +224,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
-                  className="w-full bg-pink-500 hover:bg-pink-600 text-white py-4 rounded-lg font-semibold text-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-teal-600 hover:bg-teal-700 text-white py-4 rounded-lg font-semibold text-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {status === 'submitting' ? 'Sending...' : 'Send Message'}
                 </button>

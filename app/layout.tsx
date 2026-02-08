@@ -38,7 +38,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
-        <meta name="theme-color" content="#FFFBF5" />
+        <meta name="theme-color" content="#FAFBFA" />
       </head>
       <body className={`bg-cream-50 text-sage-900 ${inter.variable} ${merri.variable} font-sans`}>
         <div className="flex flex-col min-h-screen">

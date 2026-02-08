@@ -39,7 +39,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <main className="min-h-screen bg-cream-50">
-      <section className="bg-gradient-to-br from-sage-900 to-sage-800 text-cream-50 py-16">
+      <section className="bg-gradient-to-br from-brown-800 to-brown-900 text-cream-50 py-16">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex items-center gap-3 text-sm text-cream-200/80 mb-4">
             <Link href="/blog" className="hover:text-white transition-colors">← Back to Blog</Link>
@@ -54,7 +54,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4">
-          <article className="prose prose-lg max-w-none text-sage-800">
+          <article className="prose prose-lg max-w-none text-brown-800">
             {post.content.split('\n').map((para, i) => (
               <p key={i}>{para}</p>
             ))}
@@ -63,15 +63,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <div className="mt-12 flex flex-col sm:flex-row gap-4">
             <a
               href="/contact"
-              className="bg-terracotta-600 hover:bg-terracotta-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+              className="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
             >
               Get a Free Quote
             </a>
             <a
               href="tel:8653332637"
-              className="bg-white text-terracotta-600 hover:bg-cream-50 border-2 border-terracotta-600 px-6 py-3 rounded-lg font-semibold transition-colors"
+              className="bg-white text-teal-700 hover:bg-cream-50 border-2 border-teal-600 px-6 py-3 rounded-lg font-semibold transition-colors"
             >
-              📞 (865) 333-2637
+              (865) 333-2637
             </a>
           </div>
         </div>

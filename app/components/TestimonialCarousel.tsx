@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { StarIcon } from './Icons';
 
 const testimonials = [
   {
@@ -54,7 +55,7 @@ export default function TestimonialCarousel() {
 
   return (
     <div 
-      className="relative w-full bg-gradient-to-br from-cream-50 via-sage-50 to-cream-100 py-20"
+      className="relative w-full bg-gradient-to-br from-cream-50 via-teal-50 to-cream-100 py-20"
       onMouseEnter={() => setAutoplay(false)}
       onMouseLeave={() => setAutoplay(true)}
     >
@@ -62,10 +63,10 @@ export default function TestimonialCarousel() {
       
       <div className="relative max-w-6xl mx-auto px-4">
         <div className="text-center mb-12">
-          <span className="inline-block text-terracotta-600 font-semibold text-sm tracking-widest uppercase mb-3">
+          <span className="inline-block text-teal-600 font-semibold text-sm tracking-widest uppercase mb-3">
             Testimonials
           </span>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-sage-900 mb-4">
+          <h2 className="font-serif text-4xl md:text-5xl font-bold text-brown-900 mb-4">
             What Our Clients Say
           </h2>
         </div>
@@ -81,13 +82,15 @@ export default function TestimonialCarousel() {
               className="absolute inset-0"
             >
               <div className="bg-white rounded-2xl shadow-warm p-8 md:p-10 text-center max-w-4xl mx-auto">
-                <div className="flex justify-center mb-6 text-2xl">
-                  {'⭐'.repeat(testimonials[current].rating)}
+                <div className="flex justify-center gap-1 mb-6">
+                  {[...Array(testimonials[current].rating)].map((_, i) => (
+                    <StarIcon key={i} className="text-yellow-400" size={24} />
+                  ))}
                 </div>
-                <blockquote className="text-xl md:text-2xl text-sage-900 mb-6 font-serif italic">
+                <blockquote className="text-xl md:text-2xl text-brown-900 mb-6 font-serif italic">
                   "{testimonials[current].quote}"
                 </blockquote>
-                <div className="text-sage-700">
+                <div className="text-brown-700">
                   <p className="font-semibold">{testimonials[current].name}</p>
                   <p className="text-sm">
                     {testimonials[current].role} • {testimonials[current].location}
@@ -107,7 +110,7 @@ export default function TestimonialCarousel() {
                 setAutoplay(false);
               }}
               className={`w-3 h-3 rounded-full transition-colors ${
-                index === current ? 'bg-terracotta-600' : 'bg-sage-200 hover:bg-sage-300'
+                index === current ? 'bg-teal-600' : 'bg-brown-200 hover:bg-brown-300'
               }`}
               aria-label={`Go to testimonial ${index + 1}`}
             />

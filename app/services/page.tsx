@@ -1,3 +1,14 @@
+import { HomeIcon, SparklesIcon, CalendarIcon, SpongeIcon, BoxIcon, StarIcon, CheckIcon, PhoneIcon } from '../components/Icons';
+
+const iconMap: Record<string, React.ReactNode> = {
+  home: <HomeIcon size={32} />,
+  sparkles: <SparklesIcon size={32} />,
+  calendar: <CalendarIcon size={32} />,
+  sponge: <SpongeIcon size={32} />,
+  box: <BoxIcon size={32} />,
+  star: <StarIcon size={32} />,
+};
+
 export default function ServicesPage() {
   const services = [
     {
@@ -9,9 +20,10 @@ export default function ServicesPage() {
         'Floor cleaning and mopping',
         'Trash removal'
       ],
-      icon: '🏠',
-      color: 'from-pink-50 to-cream-50',
-      border: 'border-pink-200'
+      icon: 'home',
+      iconColor: 'bg-teal-100 text-teal-600',
+      color: 'from-teal-50 to-cream-50',
+      border: 'border-teal-200'
     },
     {
       title: 'Semi-Weekly Cleaning',
@@ -22,9 +34,10 @@ export default function ServicesPage() {
         'Cost-effective solution',
         'Consistent quality'
       ],
-      icon: '✨',
-      color: 'from-cream-50 to-pink-50',
-      border: 'border-pink-200'
+      icon: 'sparkles',
+      iconColor: 'bg-pink-100 text-pink-600',
+      color: 'from-cream-50 to-teal-50',
+      border: 'border-teal-200'
     },
     {
       title: 'Monthly Cleaning',
@@ -35,9 +48,10 @@ export default function ServicesPage() {
         'Budget-friendly option',
         'Professional results'
       ],
-      icon: '📅',
-      color: 'from-cream-100 to-pink-50',
-      border: 'border-pink-200'
+      icon: 'calendar',
+      iconColor: 'bg-teal-100 text-teal-600',
+      color: 'from-cream-100 to-teal-50',
+      border: 'border-teal-200'
     },
     {
       title: 'Deep Cleaning',
@@ -48,9 +62,10 @@ export default function ServicesPage() {
         'Window and blind cleaning',
         'Detailed grout and tile work'
       ],
-      icon: '🧽',
-      color: 'from-pink-50 to-cream-50',
-      border: 'border-pink-200'
+      icon: 'sponge',
+      iconColor: 'bg-pink-100 text-pink-600',
+      color: 'from-teal-50 to-cream-50',
+      border: 'border-teal-200'
     },
     {
       title: 'Moving Services',
@@ -61,9 +76,10 @@ export default function ServicesPage() {
         'Empty home deep cleaning',
         'Flexible scheduling around your move'
       ],
-      icon: '📦',
-      color: 'from-pink-50 to-cream-50',
-      border: 'border-pink-200'
+      icon: 'box',
+      iconColor: 'bg-teal-100 text-teal-600',
+      color: 'from-teal-50 to-cream-50',
+      border: 'border-teal-200'
     },
     {
       title: 'Custom Cleaning',
@@ -74,20 +90,21 @@ export default function ServicesPage() {
         'One-time or recurring services',
         'Flexible service options'
       ],
-      icon: '⭐',
-      color: 'from-cream-100 to-pink-50',
-      border: 'border-pink-200'
+      icon: 'star',
+      iconColor: 'bg-yellow-50 text-yellow-500',
+      color: 'from-cream-100 to-teal-50',
+      border: 'border-teal-200'
     }
   ];
 
   return (
     <main className="min-h-screen bg-cream-50">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-pink-100 via-pink-50 to-cream-100 text-brown-900 py-24 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-teal-50 via-teal-100 to-cream-100 text-brown-900 py-24 overflow-hidden">
         <div className="absolute inset-0 pattern-dots opacity-10"></div>
-        <div className="absolute top-0 right-0 w-96 h-96 bg-pink-200 opacity-20 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-teal-200 opacity-20 rounded-full blur-3xl"></div>
         <div className="relative max-w-6xl mx-auto px-4 text-center z-10">
-          <span className="inline-block px-6 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-pink-200 text-sm font-semibold tracking-wide mb-6 text-pink-700">
+          <span className="inline-block px-6 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-teal-200 text-sm font-semibold tracking-wide mb-6 text-teal-700">
             COMPREHENSIVE CLEANING SOLUTIONS
           </span>
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6">
@@ -111,7 +128,9 @@ export default function ServicesPage() {
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-white to-transparent opacity-50 rounded-full -mr-16 -mt-16"></div>
                 <div className="relative z-10">
-                  <div className="text-6xl mb-5 transform group-hover:scale-110 transition-transform duration-300">{service.icon}</div>
+                  <div className={`icon-container-lg ${service.iconColor} mb-5 group-hover:scale-110`}>
+                    {iconMap[service.icon]}
+                  </div>
                   <h3 className="text-2xl font-serif font-bold text-brown-900 mb-4">
                     {service.title}
                   </h3>
@@ -120,8 +139,8 @@ export default function ServicesPage() {
                   </p>
                   <ul className="space-y-2">
                     {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start text-brown-700">
-                        <span className="text-pink-600 mr-2 font-bold text-lg">✓</span>
+                      <li key={idx} className="flex items-start text-brown-700 gap-2">
+                        <CheckIcon className="text-teal-600 mt-0.5 flex-shrink-0" size={18} />
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -134,26 +153,27 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative bg-gradient-to-br from-pink-100 via-pink-200 to-cream-200 text-brown-900 py-20 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-teal-600 via-teal-700 to-teal-800 text-white py-20 overflow-hidden">
         <div className="absolute inset-0 pattern-dots opacity-10"></div>
-        <div className="absolute top-0 left-0 w-96 h-96 bg-white opacity-30 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 left-0 w-96 h-96 bg-white opacity-10 rounded-full blur-3xl"></div>
         <div className="relative max-w-4xl mx-auto px-4 text-center z-10">
           <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
             Ready to Experience a Spotless Home?
           </h2>
-          <p className="text-xl mb-10 text-brown-700 max-w-2xl mx-auto">
+          <p className="text-xl mb-10 text-teal-100 max-w-2xl mx-auto">
             Contact us today for a free consultation and let us create a cleaning plan perfect for you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="tel:8653332637"
-              className="bg-pink-500 hover:bg-pink-600 text-white px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 border-2 border-pink-400"
+              className="inline-flex items-center justify-center gap-2 bg-white hover:bg-cream-50 text-teal-700 px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
             >
-              📞 Call (865) 333-2637
+              <PhoneIcon size={20} />
+              Call (865) 333-2637
             </a>
             <a
               href="/contact"
-              className="bg-white hover:bg-cream-50 text-pink-700 px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 border-2 border-pink-300"
+              className="bg-teal-500 hover:bg-teal-400 text-white px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 border-2 border-teal-400"
             >
               Get a Quote →
             </a>

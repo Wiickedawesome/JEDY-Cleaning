@@ -68,22 +68,22 @@ h3 {
 
 /* Decorative patterns and textures */
 .pattern-dots {
-  background-image: radial-gradient(circle, rgba(53, 59, 49, 0.1) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(13, 148, 136, 0.08) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
 .pattern-grid {
   background-image: 
-    linear-gradient(to right, rgba(53, 59, 49, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(53, 59, 49, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(13, 148, 136, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(13, 148, 136, 0.04) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
 .texture-paper {
-  background-color: #FFFBF5;
+  background-color: #FAFBFA;
   background-image: 
-    repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(53, 59, 49, 0.02) 2px, rgba(53, 59, 49, 0.02) 4px),
-    repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(53, 59, 49, 0.01) 2px, rgba(53, 59, 49, 0.01) 4px);
+    repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(13, 148, 136, 0.02) 2px, rgba(13, 148, 136, 0.02) 4px),
+    repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(13, 148, 136, 0.01) 2px, rgba(13, 148, 136, 0.01) 4px);
 }
 
 .sparkle-effect {
@@ -112,19 +112,28 @@ h3 {
   border: 2px solid transparent;
   background: 
     linear-gradient(white, white) padding-box,
-    linear-gradient(135deg, #D55A2F, #353B31) border-box;
+    linear-gradient(135deg, #0D9488, #14B8A6) border-box;
   border-radius: 1rem;
 }
 
 .shadow-warm {
   box-shadow: 
-    0 4px 6px -1px rgba(213, 90, 47, 0.1),
-    0 2px 4px -1px rgba(213, 90, 47, 0.06);
+    0 4px 6px -1px rgba(13, 148, 136, 0.1),
+    0 2px 4px -1px rgba(13, 148, 136, 0.06);
 }
 
 .shadow-warm-lg {
   box-shadow: 
-    0 10px 15px -3px rgba(213, 90, 47, 0.1),
-    0 4px 6px -2px rgba(213, 90, 47, 0.05);
+    0 10px 15px -3px rgba(13, 148, 136, 0.15),
+    0 4px 6px -2px rgba(13, 148, 136, 0.08);
+}
+
+/* Icon containers */
+.icon-container {
+  @apply w-16 h-16 rounded-2xl flex items-center justify-center transition-transform duration-300;
+}
+
+.icon-container-lg {
+  @apply w-20 h-20 rounded-2xl flex items-center justify-center transition-transform duration-300;
 }
 
