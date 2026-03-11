@@ -3,10 +3,10 @@ import { ReactNode } from 'react';
 import './globals.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import { Inter, Merriweather } from 'next/font/google';
+import { Plus_Jakarta_Sans, Space_Grotesk } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const merri = Merriweather({ subsets: ['latin'], weight: ['300','400','700','900'], variable: '--font-merri' });
+const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], weight: ['300','400','500','600','700'], variable: '--font-jakarta' });
+const grotesk = Space_Grotesk({ subsets: ['latin'], weight: ['500','600','700'], variable: '--font-grotesk' });
 
 export const metadata: Metadata = {
   title: {
@@ -40,7 +40,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <meta name="theme-color" content="#FAFBFA" />
       </head>
-      <body className={`bg-cream-50 text-sage-900 ${inter.variable} ${merri.variable} font-sans`}>
+      <body className={`bg-cream-50 text-brown-800 ${jakarta.variable} ${grotesk.variable} font-sans`}>
         <div className="flex flex-col min-h-screen">
           <Header />
           <div className="flex-1">{children}</div>

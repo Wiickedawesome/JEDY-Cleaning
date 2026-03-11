@@ -11,8 +11,8 @@ html {
 }
 
 body {
-  @apply bg-cream-50 text-gray-800;
-  font-family: 'Inter', system-ui, sans-serif;
+  @apply bg-cream-50 text-brown-800;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
 }
 
 /* Typography */
@@ -68,22 +68,22 @@ h3 {
 
 /* Decorative patterns and textures */
 .pattern-dots {
-  background-image: radial-gradient(circle, rgba(232, 96, 125, 0.08) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(226, 141, 176, 0.08) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
 .pattern-grid {
   background-image: 
-    linear-gradient(to right, rgba(232, 96, 125, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(232, 96, 125, 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgba(195, 182, 201, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(195, 182, 201, 0.06) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
 .texture-paper {
   background-color: #FAFBFA;
   background-image: 
-    repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(232, 96, 125, 0.02) 2px, rgba(232, 96, 125, 0.02) 4px),
-    repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(232, 96, 125, 0.01) 2px, rgba(232, 96, 125, 0.01) 4px);
+    repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(238, 210, 222, 0.12) 2px, rgba(238, 210, 222, 0.12) 4px),
+    repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(238, 210, 222, 0.06) 2px, rgba(238, 210, 222, 0.06) 4px);
 }
 
 .sparkle-effect {
@@ -112,20 +112,20 @@ h3 {
   border: 2px solid transparent;
   background: 
     linear-gradient(white, white) padding-box,
-    linear-gradient(135deg, #E8607D, #F9748F) border-box;
+    linear-gradient(135deg, #E28DB0, #C3B6C9) border-box;
   border-radius: 1rem;
 }
 
 .shadow-warm {
   box-shadow: 
-    0 4px 6px -1px rgba(232, 96, 125, 0.1),
-    0 2px 4px -1px rgba(232, 96, 125, 0.06);
+    0 4px 6px -1px rgba(174, 164, 179, 0.15),
+    0 2px 4px -1px rgba(174, 164, 179, 0.08);
 }
 
 .shadow-warm-lg {
   box-shadow: 
-    0 10px 15px -3px rgba(232, 96, 125, 0.15),
-    0 4px 6px -2px rgba(232, 96, 125, 0.08);
+    0 10px 15px -3px rgba(174, 164, 179, 0.2),
+    0 4px 6px -2px rgba(174, 164, 179, 0.1);
 }
 
 /* Icon containers */

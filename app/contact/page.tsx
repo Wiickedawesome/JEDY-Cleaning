@@ -59,7 +59,7 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen bg-cream-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-teal-50 via-teal-100 to-cream-100 py-20">
+      <section className="bg-gradient-to-br from-brand-pink-light/20 via-brand-lavender/20 to-cream-100 py-20">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-6xl font-serif font-bold text-gray-900 mb-6">
             Get In Touch
@@ -81,14 +81,14 @@ export default function ContactPage() {
               
               <div className="space-y-6 mb-8">
                 <div className="flex items-start gap-4">
-                  <div className="icon-container bg-teal-100 text-teal-600 flex-shrink-0">
+                  <div className="icon-container bg-brand-lavender/20 text-brand-mauve flex-shrink-0">
                     <PhoneIcon size={24} />
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-gray-800 mb-2">Phone</h3>
                     <a 
                       href="tel:8653332637" 
-                      className="text-lg text-teal-600 hover:text-teal-700 transition-colors"
+                      className="text-lg text-brand-pink hover:text-brand-mauve transition-colors"
                     >
                       (865) 333-2637
                     </a>
@@ -97,14 +97,14 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="icon-container bg-pink-50 text-pink-400 flex-shrink-0">
+                  <div className="icon-container bg-brand-pink-light/30 text-brand-pink flex-shrink-0">
                     <MailIcon size={24} />
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-gray-800 mb-2">Email</h3>
                     <a 
                       href="mailto:jedycleaning@gmail.com" 
-                      className="text-lg text-teal-600 hover:text-teal-700 transition-colors"
+                      className="text-lg text-brand-mauve hover:text-brand-pink transition-colors"
                     >
                       jedycleaning@gmail.com
                     </a>
@@ -113,7 +113,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="icon-container bg-teal-100 text-teal-600 flex-shrink-0">
+                  <div className="icon-container bg-brand-lavender/20 text-brand-mauve flex-shrink-0">
                     <MapPinIcon size={24} />
                   </div>
                   <div>
@@ -146,7 +146,7 @@ export default function ContactPage() {
               </h2>
 
               {status === 'success' && (
-                <div className="bg-teal-50 border border-teal-200 text-teal-800 px-6 py-4 rounded-lg mb-6">
+                <div className="bg-brand-lavender/20 border border-brand-lavender text-brown-800 px-6 py-4 rounded-lg mb-6">
                   <p className="font-semibold">Thank you for your message!</p>
                   <p className="text-sm">We'll get back to you as soon as possible.</p>
                 </div>
@@ -171,7 +171,7 @@ export default function ContactPage() {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-mauve focus:border-transparent"
                     placeholder="John Doe"
                   />
                 </div>
@@ -187,7 +187,7 @@ export default function ContactPage() {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-mauve focus:border-transparent"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -203,7 +203,7 @@ export default function ContactPage() {
                     required
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-mauve focus:border-transparent"
                     placeholder="(865) 123-4567"
                   />
                 </div>
@@ -218,7 +218,7 @@ export default function ContactPage() {
                     required
                     value={formData.service}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-mauve focus:border-transparent"
                   >
                     <option value="weekly">Weekly Cleaning</option>
                     <option value="semi-weekly">Semi-Weekly Cleaning</option>
@@ -239,7 +239,7 @@ export default function ContactPage() {
                     rows={5}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-mauve focus:border-transparent"
                     placeholder="Tell us about your cleaning needs, preferred schedule, home size, or any special requirements..."
                   />
                 </div>
@@ -247,7 +247,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
-                  className="w-full bg-teal-600 hover:bg-teal-700 text-white py-4 rounded-lg font-semibold text-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-brand-pink hover:bg-brand-mauve text-white py-4 rounded-lg font-semibold text-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {status === 'submitting' ? 'Sending...' : 'Send Message'}
                 </button>

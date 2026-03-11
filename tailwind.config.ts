@@ -9,7 +9,6 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Modern teal + warm coral palette — fresh, clean, professional
         cream: {
           50: '#FAFBFA',
           100: '#F3F5F3',
@@ -21,18 +20,6 @@ const config: Config = {
           700: '#637A63',
           800: '#4A5E4A',
           900: '#364436',
-        },
-        pink: {
-          50: '#FDF8F7',
-          100: '#FBF1EF',
-          200: '#F7E2DE',
-          300: '#F0CEC8',
-          400: '#E8B8B0',
-          500: '#D9A198',
-          600: '#C48B83',
-          700: '#A87068',
-          800: '#8A5A53',
-          900: '#6E4740',
         },
         brown: {
           50: '#F8F9FA',
@@ -46,31 +33,26 @@ const config: Config = {
           800: '#2D3748',
           900: '#1A202C',
         },
-        teal: {
-          50: '#FFF0F3',
-          100: '#FFE0E8',
-          200: '#FFC2D1',
-          300: '#FFA3B8',
-          400: '#FF85A1',
-          500: '#F9748F',
-          600: '#E8607D',
-          700: '#D14D6A',
-          800: '#B33A57',
-          900: '#8C2845',
+        brand: {
+          'pink-light': '#EED2DE',
+          'rose': '#DB9EB8',
+          'pink': '#E28DB0',
+          'lavender': '#C3B6C9',
+          'mauve': '#AEA4B3',
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        serif: ['Merriweather', 'Georgia', 'serif'],
+        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        serif: ['Space Grotesk', 'system-ui', 'sans-serif'],
       },
       typography: ((theme: any) => ({
         DEFAULT: {
           css: {
             color: theme('colors.brown.800'),
             a: {
-              color: theme('colors.teal.600'),
+              color: theme('colors.brand.mauve'),
               '&:hover': {
-                color: theme('colors.teal.700'),
+                color: theme('colors.brand.pink'),
               },
             },
           },

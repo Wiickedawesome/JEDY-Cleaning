@@ -1,43 +1,43 @@
 import Link from 'next/link';
 import TestimonialCarousel from './components/TestimonialCarousel';
-import { HomeIcon, SparklesIcon, BoxIcon, StarIcon, DiamondIcon, HandshakeIcon, LeafIcon, QuoteIcon, PhoneIcon } from './components/Icons';
+import { HomeIcon, SparklesIcon, BoxIcon, StarIcon, DiamondIcon, HandshakeIcon, LeafIcon, PhoneIcon, CheckIcon } from './components/Icons';
 
 export default function Home() {
   return (
     <main className="flex-1">
-      <section className="relative min-h-[70vh] md:min-h-[80vh] bg-gradient-to-br from-teal-50 via-cream-50 to-teal-50 flex items-center px-4 overflow-hidden">
+      <section className="relative min-h-[70vh] md:min-h-[80vh] bg-gradient-to-br from-brand-pink-light/20 via-cream-50 to-brand-pink-light/20 flex items-center px-4 overflow-hidden">
         <div className="absolute inset-0 pattern-dots opacity-10"></div>
 
         <div className="relative max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-10 items-center py-16 z-10">
           <div>
-            <div className="inline-flex items-center gap-2 mb-6 px-6 py-2 bg-white/90 backdrop-blur-sm rounded-full border-2 border-teal-200 shadow-lg">
-              <SparklesIcon className="text-teal-600" size={18} />
-              <span className="text-teal-700 font-semibold text-sm tracking-wide">TRUSTED KNOXVILLE CLEANING SERVICE</span>
+            <div className="inline-flex items-center gap-2 mb-6 px-6 py-2 bg-white/90 backdrop-blur-sm rounded-full border-2 border-brand-lavender shadow-lg">
+              <SparklesIcon className="text-brand-mauve" size={18} />
+              <span className="text-brand-mauve font-semibold text-sm tracking-wide">TRUSTED KNOXVILLE CLEANING SERVICE</span>
             </div>
             <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-gray-800 mb-6 leading-tight">
-              Professional Cleaning <span className="text-teal-600">in Knoxville</span>
+              Professional Cleaning <span className="text-brand-mauve">in Knoxville</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 mb-4 font-light max-w-2xl">
               Serving Greater Knoxville with care, excellence, and attention to every detail
             </p>
             <p className="text-lg text-gray-500 mb-10 flex flex-wrap gap-3">
-              <span className="bg-white px-4 py-2 rounded-lg shadow-sm border border-teal-200">Weekly</span>
-              <span className="bg-white px-4 py-2 rounded-lg shadow-sm border border-teal-200">Semi-Weekly</span>
-              <span className="bg-white px-4 py-2 rounded-lg shadow-sm border border-teal-200">Monthly</span>
-              <span className="bg-white px-4 py-2 rounded-lg shadow-sm border border-teal-200">Deep Cleaning</span>
-              <span className="bg-white px-4 py-2 rounded-lg shadow-sm border border-teal-200">Move In/Out</span>
+              <span className="bg-white px-4 py-2 rounded-lg shadow-sm border border-brand-lavender">Weekly</span>
+              <span className="bg-white px-4 py-2 rounded-lg shadow-sm border border-brand-lavender">Semi-Weekly</span>
+              <span className="bg-white px-4 py-2 rounded-lg shadow-sm border border-brand-lavender">Monthly</span>
+              <span className="bg-white px-4 py-2 rounded-lg shadow-sm border border-brand-lavender">Deep Cleaning</span>
+              <span className="bg-white px-4 py-2 rounded-lg shadow-sm border border-brand-lavender">Move In/Out</span>
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="tel:8653332637"
-                className="inline-flex items-center justify-center gap-2 bg-teal-600 hover:bg-teal-700 text-white px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-2 border-teal-700"
+                className="inline-flex items-center justify-center gap-2 bg-brand-pink hover:bg-brand-mauve text-white px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-2 border-brand-pink"
               >
                 <PhoneIcon size={20} />
                 Call (865) 333-2637
               </a>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-white hover:bg-cream-50 text-teal-700 px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-2 border-teal-300"
+                className="inline-flex items-center justify-center gap-2 bg-white hover:bg-cream-50 text-brand-mauve px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-2 border-brand-lavender"
               >
                 Get a Free Quote →
               </Link>
@@ -53,7 +53,7 @@ export default function Home() {
         <div className="absolute inset-0 pattern-grid opacity-30"></div>
         <div className="relative max-w-6xl mx-auto z-10">
           <div className="text-center mb-16">
-            <span className="inline-block text-teal-600 font-semibold text-sm tracking-widest uppercase mb-3">What We Offer</span>
+            <span className="inline-block text-brand-mauve font-semibold text-sm tracking-widest uppercase mb-3">What We Offer</span>
             <h2 className="font-serif text-5xl md:text-6xl font-bold text-gray-800 mb-4">
               Our Cleaning Services
             </h2>
@@ -65,7 +65,7 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
               <div className="relative z-10">
-                <div className="icon-container-lg bg-teal-50 text-teal-600 mb-5 group-hover:scale-105 transition-transform duration-300">
+                <div className="icon-container-lg bg-brand-lavender/20 text-brand-mauve mb-5 group-hover:scale-105 transition-transform duration-300">
                   <HomeIcon size={36} />
                 </div>
                 <h3 className="text-2xl font-serif font-bold text-gray-800 mb-4">Regular Cleaning</h3>
@@ -75,7 +75,7 @@ export default function Home() {
             
             <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
               <div className="relative z-10">
-                <div className="icon-container-lg bg-pink-50 text-pink-400 mb-5 group-hover:scale-105 transition-transform duration-300">
+                <div className="icon-container-lg bg-brand-pink-light/30 text-brand-pink mb-5 group-hover:scale-105 transition-transform duration-300">
                   <SparklesIcon size={36} />
                 </div>
                 <h3 className="text-2xl font-serif font-bold text-gray-800 mb-4">Deep Cleaning</h3>
@@ -85,7 +85,7 @@ export default function Home() {
             
             <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
               <div className="relative z-10">
-                <div className="icon-container-lg bg-teal-50 text-teal-600 mb-5 group-hover:scale-105 transition-transform duration-300">
+                <div className="icon-container-lg bg-brand-lavender/20 text-brand-mauve mb-5 group-hover:scale-105 transition-transform duration-300">
                   <BoxIcon size={36} />
                 </div>
                 <h3 className="text-2xl font-serif font-bold text-gray-800 mb-4">Move In/Out</h3>
@@ -97,7 +97,7 @@ export default function Home() {
           <div className="text-center mt-14">
             <Link
               href="/services"
-              className="inline-block bg-teal-600 hover:bg-teal-700 text-white px-10 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-2 border-teal-700"
+              className="inline-block bg-brand-pink hover:bg-brand-mauve text-white px-10 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-2 border-brand-pink"
             >
               View All Services →
             </Link>
@@ -105,11 +105,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative py-24 px-4 bg-gradient-to-b from-cream-50 to-teal-50 overflow-hidden">
+      <section className="relative py-24 px-4 bg-gradient-to-b from-cream-50 to-brand-pink-light/20 overflow-hidden">
         <div className="absolute inset-0 pattern-dots opacity-20"></div>
         <div className="relative max-w-6xl mx-auto z-10">
           <div className="text-center mb-16">
-            <span className="inline-block text-teal-600 font-semibold text-sm tracking-widest uppercase mb-3">The JEDY Difference</span>
+            <span className="inline-block text-brand-mauve font-semibold text-sm tracking-widest uppercase mb-3">The JEDY Difference</span>
             <h2 className="font-serif text-5xl md:text-6xl font-bold text-gray-800 mb-4">
               Why Choose JEDY Cleaning?
             </h2>
@@ -124,21 +124,21 @@ export default function Home() {
               <p className="text-gray-600 leading-relaxed">Highly rated on Google with satisfied clients across Knoxville</p>
             </div>
             <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 text-center group">
-              <div className="icon-container bg-teal-50 text-teal-600 mx-auto mb-4 group-hover:scale-105 transition-transform duration-300">
+              <div className="icon-container bg-brand-lavender/20 text-brand-mauve mx-auto mb-4 group-hover:scale-105 transition-transform duration-300">
                 <DiamondIcon size={32} />
               </div>
               <h3 className="text-xl font-serif font-bold text-brown-800 mb-3">Quality</h3>
               <p className="text-gray-600 leading-relaxed">Meticulous attention to detail in every clean</p>
             </div>
             <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 text-center group">
-              <div className="icon-container bg-pink-50 text-pink-400 mx-auto mb-4 group-hover:scale-105 transition-transform duration-300">
+              <div className="icon-container bg-brand-pink-light/30 text-brand-pink mx-auto mb-4 group-hover:scale-105 transition-transform duration-300">
                 <HandshakeIcon size={32} />
               </div>
               <h3 className="text-xl font-serif font-bold text-gray-800 mb-3">Reliable</h3>
               <p className="text-gray-600 leading-relaxed">Always on time, every time, with consistent excellence</p>
             </div>
             <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 text-center group">
-              <div className="icon-container bg-teal-50 text-teal-600 mx-auto mb-4 group-hover:scale-105 transition-transform duration-300">
+              <div className="icon-container bg-brand-lavender/20 text-brand-mauve mx-auto mb-4 group-hover:scale-105 transition-transform duration-300">
                 <LeafIcon size={32} />
               </div>
               <h3 className="text-xl font-serif font-bold text-brown-800 mb-3">Eco-Friendly</h3>
@@ -148,46 +148,54 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative py-24 px-4 bg-white">
-        <div className="absolute inset-0 pattern-grid opacity-30"></div>
-        <div className="relative max-w-4xl mx-auto text-center z-10">
-          <div className="bg-white p-12 rounded-3xl border border-gray-100 shadow-lg">
-            <div className="flex justify-center mb-6">
-              <QuoteIcon className="text-teal-400" size={56} />
-            </div>
-            <blockquote className="text-2xl md:text-3xl font-serif text-gray-800 mb-6 italic">
-              "Ready to experience the cleanest home you have ever had?"
-            </blockquote>
-            <p className="text-lg text-gray-600 mb-2">
-              Join hundreds of satisfied customers in the Greater Knoxville area who trust JEDY Cleaning Services
-            </p>
-            <div className="flex justify-center gap-1 mt-4">
-              {[...Array(5)].map((_, i) => (
-                <StarIcon key={i} className="text-yellow-400" size={28} />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
             {/* Testimonials */}
       <TestimonialCarousel />
 
-      <section className="relative bg-gradient-to-br from-teal-600 via-teal-700 to-teal-800 text-white py-16 overflow-hidden">
-        <div className="absolute inset-0 pattern-dots opacity-10" />
-        <div className="relative max-w-4xl mx-auto px-4 text-center z-10">
-          <h2 className="font-serif text-4xl md:text-5xl font-bold mb-6">
-            Ready for a Cleaner Home?
-          </h2>
-          <p className="text-xl mb-8 text-teal-100">
-            Contact us today for a free quote and experience the JEDY difference.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-block bg-white hover:bg-cream-50 text-teal-700 px-10 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-          >
-            Get Started Today →
-          </Link>
+      <section className="py-20 bg-cream-50">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="font-serif text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                Ready for a <span className="text-brand-mauve">Cleaner Home?</span>
+              </h2>
+              <p className="text-xl text-gray-600 mb-8">
+                Contact us today for a free quote and experience the JEDY difference.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="tel:8653332637"
+                  className="inline-flex items-center justify-center gap-2 bg-brand-pink hover:bg-brand-mauve text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                >
+                  <PhoneIcon size={20} />
+                  Call (865) 333-2637
+                </a>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center gap-2 bg-white hover:bg-white/80 text-brand-mauve px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-2 border-brand-lavender"
+                >
+                  Get a Free Quote →
+                </Link>
+              </div>
+            </div>
+            <div className="bg-white rounded-2xl shadow-warm p-8 border border-brand-lavender">
+              <ul className="space-y-5">
+                {[
+                  'Free, no-obligation quote',
+                  'Fully insured & bonded',
+                  '100% satisfaction guaranteed',
+                  'Locally owned & operated in Knoxville',
+                  'Eco-friendly cleaning products available',
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-gray-700 text-lg">
+                    <span className="flex-shrink-0 w-7 h-7 rounded-full bg-brand-pink-light/40 flex items-center justify-center">
+                      <CheckIcon className="text-brand-mauve" size={16} />
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
     </main>

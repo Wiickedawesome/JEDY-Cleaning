@@ -21,9 +21,9 @@ export default function ServicesPage() {
         'Trash removal'
       ],
       icon: 'home',
-      iconColor: 'bg-teal-100 text-teal-600',
-      color: 'from-teal-50 to-cream-50',
-      border: 'border-teal-200'
+      iconColor: 'bg-brand-lavender/20 text-brand-mauve',
+      color: 'from-brand-pink-light/20 to-cream-50',
+      border: 'border-brand-lavender'
     },
     {
       title: 'Semi-Weekly Cleaning',
@@ -35,9 +35,9 @@ export default function ServicesPage() {
         'Consistent quality'
       ],
       icon: 'sparkles',
-      iconColor: 'bg-pink-50 text-pink-400',
-      color: 'from-cream-50 to-teal-50',
-      border: 'border-teal-200'
+      iconColor: 'bg-brand-pink-light/30 text-brand-pink',
+      color: 'from-cream-50 to-brand-pink-light/20',
+      border: 'border-brand-lavender'
     },
     {
       title: 'Monthly Cleaning',
@@ -49,9 +49,9 @@ export default function ServicesPage() {
         'Professional results'
       ],
       icon: 'calendar',
-      iconColor: 'bg-teal-100 text-teal-600',
-      color: 'from-cream-100 to-teal-50',
-      border: 'border-teal-200'
+      iconColor: 'bg-brand-lavender/20 text-brand-mauve',
+      color: 'from-cream-100 to-brand-pink-light/20',
+      border: 'border-brand-lavender'
     },
     {
       title: 'Deep Cleaning',
@@ -63,9 +63,9 @@ export default function ServicesPage() {
         'Detailed grout and tile work'
       ],
       icon: 'sponge',
-      iconColor: 'bg-pink-50 text-pink-400',
-      color: 'from-teal-50 to-cream-50',
-      border: 'border-teal-200'
+      iconColor: 'bg-brand-pink-light/30 text-brand-pink',
+      color: 'from-brand-pink-light/20 to-cream-50',
+      border: 'border-brand-lavender'
     },
     {
       title: 'Moving Services',
@@ -77,9 +77,9 @@ export default function ServicesPage() {
         'Flexible scheduling around your move'
       ],
       icon: 'box',
-      iconColor: 'bg-teal-100 text-teal-600',
-      color: 'from-teal-50 to-cream-50',
-      border: 'border-teal-200'
+      iconColor: 'bg-brand-lavender/20 text-brand-mauve',
+      color: 'from-brand-pink-light/20 to-cream-50',
+      border: 'border-brand-lavender'
     },
     {
       title: 'Custom Cleaning',
@@ -92,21 +92,21 @@ export default function ServicesPage() {
       ],
       icon: 'star',
       iconColor: 'bg-yellow-50 text-yellow-500',
-      color: 'from-cream-100 to-teal-50',
-      border: 'border-teal-200'
+      color: 'from-cream-100 to-brand-pink-light/20',
+      border: 'border-brand-lavender'
     }
   ];
 
   return (
     <main className="min-h-screen bg-cream-50">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-teal-50 via-teal-100 to-cream-100 py-24 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-brand-pink-light/20 via-brand-lavender/20 to-cream-100 py-24 overflow-hidden">
         <div className="absolute inset-0 pattern-dots opacity-10"></div>
-        <div className="absolute top-0 right-0 w-96 h-96 bg-teal-200 opacity-20 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-brand-lavender opacity-20 rounded-full blur-3xl"></div>
         <div className="relative max-w-6xl mx-auto px-4 z-10">
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div className="text-center md:text-left">
-              <span className="inline-block px-6 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-teal-200 text-sm font-semibold tracking-wide mb-6 text-teal-700">
+              <span className="inline-block px-6 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-brand-lavender text-sm font-semibold tracking-wide mb-6 text-brand-mauve">
                 COMPREHENSIVE CLEANING SOLUTIONS
               </span>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-gray-900 mb-6">
@@ -150,7 +150,7 @@ export default function ServicesPage() {
                   <ul className="space-y-2">
                     {service.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start text-gray-600 gap-2">
-                        <CheckIcon className="text-teal-600 mt-0.5 flex-shrink-0" size={18} />
+                        <CheckIcon className="text-brand-mauve mt-0.5 flex-shrink-0" size={18} />
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -163,30 +163,50 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative bg-gradient-to-br from-teal-600 via-teal-700 to-teal-800 text-white py-20 overflow-hidden">
-        <div className="absolute inset-0 pattern-dots opacity-10"></div>
-        <div className="absolute top-0 left-0 w-96 h-96 bg-white opacity-10 rounded-full blur-3xl"></div>
-        <div className="relative max-w-4xl mx-auto px-4 text-center z-10">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
-            Ready to Experience a Spotless Home?
-          </h2>
-          <p className="text-xl mb-10 text-teal-100 max-w-2xl mx-auto">
-            Contact us today for a free consultation and let us create a cleaning plan perfect for you.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="tel:8653332637"
-              className="inline-flex items-center justify-center gap-2 bg-white hover:bg-cream-50 text-teal-700 px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
-            >
-              <PhoneIcon size={20} />
-              Call (865) 333-2637
-            </a>
-            <a
-              href="/contact"
-              className="bg-teal-500 hover:bg-teal-400 text-white px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 border-2 border-teal-400"
-            >
-              Get a Quote →
-            </a>
+      <section className="py-20 bg-cream-50">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="font-serif text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                Ready for a <span className="text-brand-mauve">Spotless Home?</span>
+              </h2>
+              <p className="text-xl text-gray-600 mb-8">
+                Contact us today for a free consultation and let us create a cleaning plan perfect for you.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="tel:8653332637"
+                  className="inline-flex items-center justify-center gap-2 bg-brand-pink hover:bg-brand-mauve text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                >
+                  <PhoneIcon size={20} />
+                  Call (865) 333-2637
+                </a>
+                <a
+                  href="/contact"
+                  className="inline-flex items-center justify-center gap-2 bg-white hover:bg-white/80 text-brand-mauve px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-2 border-brand-lavender"
+                >
+                  Get a Free Quote →
+                </a>
+              </div>
+            </div>
+            <div className="bg-white rounded-2xl shadow-warm p-8 border border-brand-lavender">
+              <ul className="space-y-5">
+                {[
+                  'Free, no-obligation consultation',
+                  'Custom cleaning plans for your home',
+                  'Fully insured & bonded team',
+                  '100% satisfaction guaranteed',
+                  'Flexible scheduling to fit your life',
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-gray-700 text-lg">
+                    <span className="flex-shrink-0 w-7 h-7 rounded-full bg-brand-pink-light/40 flex items-center justify-center">
+                      <CheckIcon className="text-brand-mauve" size={16} />
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>

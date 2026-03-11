@@ -55,7 +55,7 @@ export default function TestimonialCarousel() {
 
   return (
     <div 
-      className="relative w-full bg-gradient-to-br from-cream-50 via-teal-50 to-cream-100 py-20"
+      className="relative w-full bg-gradient-to-br from-cream-50 via-brand-pink-light/20 to-cream-100 py-20 pb-16"
       onMouseEnter={() => setAutoplay(false)}
       onMouseLeave={() => setAutoplay(true)}
     >
@@ -63,7 +63,7 @@ export default function TestimonialCarousel() {
       
       <div className="relative max-w-6xl mx-auto px-4">
         <div className="text-center mb-12">
-          <span className="inline-block text-teal-600 font-semibold text-sm tracking-widest uppercase mb-3">
+          <span className="inline-block text-brand-mauve font-semibold text-sm tracking-widest uppercase mb-3">
             Testimonials
           </span>
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -71,7 +71,7 @@ export default function TestimonialCarousel() {
           </h2>
         </div>
 
-        <div className="relative h-[280px] md:h-[220px]">
+        <div className="relative min-h-[200px]">
           <AnimatePresence mode="wait">
             <motion.div
               key={current}
@@ -79,7 +79,7 @@ export default function TestimonialCarousel() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
-              className="absolute inset-0"
+              className="w-full"
             >
               <div className="bg-white rounded-2xl shadow-warm p-8 md:p-10 text-center max-w-4xl mx-auto">
                 <div className="flex justify-center gap-1 mb-6">
@@ -101,7 +101,7 @@ export default function TestimonialCarousel() {
           </AnimatePresence>
         </div>
 
-        <div className="flex justify-center gap-2 mt-8">
+        <div className="flex justify-center gap-2 mt-10">
           {testimonials.map((_, index) => (
             <button
               key={index}
@@ -110,7 +110,7 @@ export default function TestimonialCarousel() {
                 setAutoplay(false);
               }}
               className={`w-3 h-3 rounded-full transition-colors ${
-                index === current ? 'bg-teal-600' : 'bg-gray-300 hover:bg-gray-400'
+                index === current ? 'bg-brand-mauve' : 'bg-gray-300 hover:bg-gray-400'
               }`}
               aria-label={`Go to testimonial ${index + 1}`}
             />

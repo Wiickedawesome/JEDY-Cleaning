@@ -1,10 +1,10 @@
-import { HeartIcon, HandshakeIcon, SparklesIcon } from '../components/Icons';
+import { HeartIcon, HandshakeIcon, SparklesIcon, PhoneIcon, CheckIcon } from '../components/Icons';
 
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-cream-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-teal-50 via-teal-100 to-cream-100 py-20">
+      <section className="bg-gradient-to-br from-brand-pink-light/20 via-brand-lavender/20 to-cream-100 py-20">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-6xl font-serif font-bold text-gray-900 mb-6">
             About JEDY Cleaning
@@ -57,20 +57,20 @@ export default function AboutPage() {
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="icon-container-lg bg-pink-50 text-pink-400 mx-auto mb-4">
+              <div className="icon-container-lg bg-brand-pink-light/30 text-brand-pink mx-auto mb-4">
                 <HeartIcon size={36} />
               </div>
-              <h3 className="text-2xl font-bold text-teal-700 mb-4">Care & Attention</h3>
+              <h3 className="text-2xl font-bold text-brand-mauve mb-4">Care & Attention</h3>
               <p className="text-gray-600">
                 We treat every home with the same care and respect we'd give our own. 
                 Your satisfaction is our priority.
               </p>
             </div>
             <div className="text-center">
-              <div className="icon-container-lg bg-teal-50 text-teal-600 mx-auto mb-4">
+              <div className="icon-container-lg bg-brand-lavender/20 text-brand-mauve mx-auto mb-4">
                 <HandshakeIcon size={36} />
               </div>
-              <h3 className="text-2xl font-bold text-teal-700 mb-4">Trust & Reliability</h3>
+              <h3 className="text-2xl font-bold text-brand-mauve mb-4">Trust & Reliability</h3>
               <p className="text-gray-600">
                 Count on us to show up on time, every time, with consistent, high-quality 
                 service you can depend on.
@@ -80,7 +80,7 @@ export default function AboutPage() {
               <div className="icon-container-lg bg-yellow-50 text-yellow-500 mx-auto mb-4">
                 <SparklesIcon size={36} />
               </div>
-              <h3 className="text-2xl font-bold text-teal-700 mb-4">Excellence</h3>
+              <h3 className="text-2xl font-bold text-brand-mauve mb-4">Excellence</h3>
               <p className="text-gray-600">
                 We go beyond basic cleaning to deliver exceptional results that make your 
                 space truly shine.
@@ -97,8 +97,8 @@ export default function AboutPage() {
             Why Choose JEDY Cleaning?
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-xl shadow-lg p-8 border border-teal-100">
-              <h3 className="text-2xl font-bold text-teal-700 mb-4">
+            <div className="bg-white rounded-xl shadow-lg p-8 border border-brand-lavender/50">
+              <h3 className="text-2xl font-bold text-brand-mauve mb-4">
                 Professional & Experienced
               </h3>
               <p className="text-gray-600">
@@ -106,8 +106,8 @@ export default function AboutPage() {
                 We know the right techniques and products to use for every surface and situation.
               </p>
             </div>
-            <div className="bg-white rounded-xl shadow-lg p-8 border border-teal-100">
-              <h3 className="text-2xl font-bold text-teal-700 mb-4">
+            <div className="bg-white rounded-xl shadow-lg p-8 border border-brand-lavender/50">
+              <h3 className="text-2xl font-bold text-brand-mauve mb-4">
                 Flexible & Personalized
               </h3>
               <p className="text-gray-600">
@@ -115,8 +115,8 @@ export default function AboutPage() {
                 needs, whether it's weekly maintenance or a one-time deep clean.
               </p>
             </div>
-            <div className="bg-white rounded-xl shadow-lg p-8 border border-teal-100">
-              <h3 className="text-2xl font-bold text-teal-700 mb-4">
+            <div className="bg-white rounded-xl shadow-lg p-8 border border-brand-lavender/50">
+              <h3 className="text-2xl font-bold text-brand-mauve mb-4">
                 Local & Community-Focused
               </h3>
               <p className="text-gray-600">
@@ -124,8 +124,8 @@ export default function AboutPage() {
                 relationships with our clients based on trust and mutual respect.
               </p>
             </div>
-            <div className="bg-white rounded-xl shadow-lg p-8 border border-teal-100">
-              <h3 className="text-2xl font-bold text-teal-700 mb-4">
+            <div className="bg-white rounded-xl shadow-lg p-8 border border-brand-lavender/50">
+              <h3 className="text-2xl font-bold text-brand-mauve mb-4">
                 Quality Guaranteed
               </h3>
               <p className="text-gray-600">
@@ -138,27 +138,50 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-r from-teal-600 to-teal-700 text-white py-16">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl font-serif font-bold mb-6">
-            Experience the JEDY Difference
-          </h2>
-          <p className="text-xl mb-8 text-teal-100">
-            Join our growing family of satisfied clients in the Greater Knoxville area.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="tel:8653332637"
-              className="bg-white hover:bg-cream-50 text-teal-700 px-8 py-4 rounded-lg font-semibold text-lg transition-colors"
-            >
-              Call (865) 333-2637
-            </a>
-            <a
-              href="/contact"
-              className="bg-teal-500 hover:bg-teal-400 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors border-2 border-teal-400"
-            >
-              Contact Us Today
-            </a>
+      <section className="py-20 bg-cream-50">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="font-serif text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                Experience the <span className="text-brand-mauve">JEDY Difference</span>
+              </h2>
+              <p className="text-xl text-gray-600 mb-8">
+                Join our growing family of satisfied clients in the Greater Knoxville area.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="tel:8653332637"
+                  className="inline-flex items-center justify-center gap-2 bg-brand-pink hover:bg-brand-mauve text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                >
+                  <PhoneIcon size={20} />
+                  Call (865) 333-2637
+                </a>
+                <a
+                  href="/contact"
+                  className="inline-flex items-center justify-center gap-2 bg-white hover:bg-white/80 text-brand-mauve px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-2 border-brand-lavender"
+                >
+                  Contact Us Today →
+                </a>
+              </div>
+            </div>
+            <div className="bg-white rounded-2xl shadow-warm p-8 border border-brand-lavender">
+              <ul className="space-y-5">
+                {[
+                  'Trusted by hundreds of Knoxville families',
+                  'Consistent, reliable scheduling',
+                  'Trained & background-checked staff',
+                  'Personalized cleaning plans',
+                  'Eco-friendly products available',
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-gray-700 text-lg">
+                    <span className="flex-shrink-0 w-7 h-7 rounded-full bg-brand-pink-light/40 flex items-center justify-center">
+                      <CheckIcon className="text-brand-mauve" size={16} />
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
