@@ -2,6 +2,7 @@
 const nextConfig = {
   output: 'export',
   reactStrictMode: true,
+  transpilePackages: ['framer-motion'],
   typescript: {
     tsconfigPath: './tsconfig.json',
   },
