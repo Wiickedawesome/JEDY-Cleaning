@@ -1,0 +1,17 @@
+{
+  "name": "JEDY Cleaning",
+  "short_name": "JEDY",
+  "description": "Professional cleaning services in Knoxville, TN — house cleaning, deep cleaning, and move-in/out cleaning.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAFBFA",
+  "theme_color": "#E28DB0",
+  "icons": [
+    {
+      "src": "/graphics/jedycleaning.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

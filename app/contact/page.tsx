@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { PhoneIcon, MailIcon, MapPinIcon } from '../components/Icons';
+import FAQSection from '../components/FAQSection';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -261,6 +262,8 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      <FAQSection />
     </main>
   );
 }

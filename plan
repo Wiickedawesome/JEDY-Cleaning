@@ -1,0 +1,328 @@
+import { useState, useEffect } from "react";
+
+const CATEGORIES = [
+  { id: "seo", label: "SEO", icon: "🔍" },
+  { id: "safety", label: "Safety & Trust", icon: "🔒" },
+  { id: "browser", label: "Browser Compat", icon: "🌐" },
+  { id: "robots", label: "Google / Robots", icon: "🤖" },
+  { id: "content", label: "Content & Copy", icon: "✍️" },
+];
+
+const ScoreRing = ({ score, size = 80 }) => {
+  const r = size / 2 - 8;
+  const circ = 2 * Math.PI * r;
+  const fill = (score / 100) * circ;
+  const color = score >= 80 ? "#22c55e" : score >= 50 ? "#f59e0b" : "#ef4444";
+  return (
+    <svg width={size} height={size} style={{ transform: "rotate(-90deg)" }}>
+      <circle cx={size/2} cy={size/2} r={r} fill="none" stroke="#1e293b" strokeWidth="7" />
+      <circle cx={size/2} cy={size/2} r={r} fill="none" stroke={color} strokeWidth="7"
+        strokeDasharray={`${fill} ${circ}`} strokeLinecap="round"
+        style={{ transition: "stroke-dasharray 1s cubic-bezier(.4,0,.2,1)" }} />
+      <text x={size/2} y={size/2} textAnchor="middle" dominantBaseline="central"
+        style={{ transform: "rotate(90deg)", transformOrigin: `${size/2}px ${size/2}px`, fill: color, fontSize: size * 0.22, fontWeight: 800, fontFamily: "'DM Mono', monospace" }}>
+        {score}
+      </text>
+    </svg>
+  );
+};
+
+const Badge = ({ label, type }) => {
+  const colors = { good: "bg-emerald-900/60 text-emerald-300 border-emerald-700", warn: "bg-amber-900/60 text-amber-300 border-amber-700", bad: "bg-red-900/60 text-red-300 border-red-700", info: "bg-blue-900/60 text-blue-300 border-blue-700" };
+  return <span className={`inline-block px-2 py-0.5 rounded text-xs border font-mono ${colors[type] || colors.info}`}>{label}</span>;
+};
+
+const IssueCard = ({ issue }) => {
+  const icons = { critical: "🚨", warning: "⚠️", good: "✅", info: "ℹ️" };
+  const borders = { critical: "border-red-800", warning: "border-amber-800", good: "border-emerald-800", info: "border-blue-800" };
+  return (
+    <div className={`rounded-lg border ${borders[issue.severity] || "border-slate-700"} bg-slate-800/50 p-4 mb-3`}>
+      <div className="flex items-start gap-3">
+        <span className="text-lg mt-0.5">{icons[issue.severity]}</span>
+        <div className="flex-1">
+          <div className="flex items-center gap-2 flex-wrap mb-1">
+            <span className="font-semibold text-slate-100 text-sm">{issue.title}</span>
+            <Badge label={issue.category} type={issue.severity === "good" ? "good" : issue.severity === "critical" ? "bad" : issue.severity === "warning" ? "warn" : "info"} />
+          </div>
+          <p className="text-slate-400 text-sm leading-relaxed">{issue.detail}</p>
+          {issue.fix && <p className="text-slate-300 text-sm mt-2 bg-slate-700/40 rounded px-3 py-2 border-l-2 border-blue-500"><span className="text-blue-400 font-semibold">Fix: </span>{issue.fix}</p>}
+          {issue.improved_text && (
+            <div className="mt-2">
+              <p className="text-xs text-slate-500 mb-1 font-mono uppercase tracking-wider">Suggested rewrite</p>
+              <p className="text-slate-300 text-sm bg-emerald-900/20 border border-emerald-800 rounded px-3 py-2 italic">{issue.improved_text}</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default function App() {
+  const [url, setUrl] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState("");
+  const [results, setResults] = useState(null);
+  const [activeTab, setActiveTab] = useState("seo");
+  const [error, setError] = useState("");
+
+  const runAudit = async () => {
+    if (!url.trim()) return;
+    setLoading(true);
+    setError("");
+    setResults(null);
+    setProgress("Fetching your website…");
+
+    let siteContent = "";
+    let robotsContent = "";
+    let sitemapContent = "";
+
+    const cleanUrl = url.startsWith("http") ? url : `https://${url}`;
+    const domain = new URL(cleanUrl).origin;
+
+    try {
+      setProgress("Reading page content…");
+      const fetchRes = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-20250514",
+          max_tokens: 1000,
+          tools: [{ type: "web_search_20250305", name: "web_search" }],
+          messages: [{
+            role: "user",
+            content: `Fetch the HTML content of ${cleanUrl} and also check ${domain}/robots.txt and ${domain}/sitemap.xml. 
+Return a JSON object (no markdown, no backticks) with these fields:
+- html: first 4000 chars of the homepage HTML
+- robots: content of robots.txt (or "not found")
+- sitemap: content of sitemap.xml (or "not found")
+- page_title: the <title> tag content
+- meta_description: the meta description content
+- h1_tags: array of all h1 tag contents
+- body_text: first 2000 chars of visible body text`
+          }]
+        })
+      });
+      const fetchData = await fetchRes.json();
+      const fetchText = fetchData.content?.map(b => b.text || "").join("") || "";
+      try {
+        const jsonMatch = fetchText.match(/\{[\s\S]*\}/);
+        if (jsonMatch) {
+          const parsed = JSON.parse(jsonMatch[0]);
+          siteContent = JSON.stringify(parsed);
+          robotsContent = parsed.robots || "";
+          sitemapContent = parsed.sitemap || "";
+        }
+      } catch { siteContent = fetchText; }
+    } catch (e) {
+      siteContent = `Could not fetch site directly. URL: ${cleanUrl}`;
+    }
+
+    setProgress("Running full SEO analysis…");
+
+    const prompt = `You are an expert website auditor. Analyse this website data for ${cleanUrl}:
+
+SITE DATA:
+${siteContent}
+
+ROBOTS.TXT:
+${robotsContent}
+
+SITEMAP:
+${sitemapContent}
+
+Perform a comprehensive audit across these 5 categories and return ONLY a valid JSON object with no markdown backticks:
+
+{
+  "overall_score": <0-100 integer>,
+  "summary": "<2-3 sentence friendly executive summary>",
+  "scores": {
+    "seo": <0-100>,
+    "safety": <0-100>,
+    "browser": <0-100>,
+    "robots": <0-100>,
+    "content": <0-100>
+  },
+  "issues": [
+    {
+      "category": "seo|safety|browser|robots|content",
+      "severity": "critical|warning|good|info",
+      "title": "<short title>",
+      "detail": "<explanation>",
+      "fix": "<actionable fix or null>",
+      "improved_text": "<rewritten version of any text if content issue, else null>"
+    }
+  ],
+  "quick_wins": ["<short actionable tip>", ...],
+  "positive_highlights": ["<thing done well>", ...]
+}
+
+For EACH category produce at least 3 issues. Cover:
+SEO: title tag, meta description, h1 tags, keywords, structured data, Open Graph tags, canonical URL, image alt text, page speed hints, internal linking
+SAFETY: HTTPS, SSL, security headers (CSP, HSTS, X-Frame-Options), mixed content, contact info visibility, trust signals, privacy policy
+BROWSER: viewport meta tag, responsive design indicators, CSS compatibility, font loading, legacy browser fallbacks, favicon
+ROBOTS: robots.txt validity, sitemap existence + validity, crawl directives, noindex/nofollow issues, Google Search Console hints, structured data for Google
+CONTENT: title/headline quality, call-to-action clarity, tone/friendliness, keyword density, readability, any weak or generic text (provide rewrites)
+
+Be thorough, specific to the actual site data, and genuinely helpful.`;
+
+    setProgress("Analysing SEO, safety, content & more…");
+
+    try {
+      const auditRes = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-20250514",
+          max_tokens: 4000,
+          messages: [{ role: "user", content: prompt }]
+        })
+      });
+      const auditData = await auditRes.json();
+      const raw = auditData.content?.map(b => b.text || "").join("") || "";
+      const jsonMatch = raw.match(/\{[\s\S]*\}/);
+      if (!jsonMatch) throw new Error("No JSON in response");
+      const parsed = JSON.parse(jsonMatch[0]);
+      setResults(parsed);
+      setActiveTab("seo");
+    } catch (e) {
+      setError("Could not parse audit results. Please try again.");
+    }
+    setLoading(false);
+    setProgress("");
+  };
+
+  const filteredIssues = results?.issues?.filter(i => i.category === activeTab) || [];
+  const allCounts = results ? CATEGORIES.map(c => ({
+    ...c,
+    critical: results.issues.filter(i => i.category === c.id && i.severity === "critical").length,
+    warnings: results.issues.filter(i => i.category === c.id && i.severity === "warning").length,
+  })) : [];
+
+  return (
+    <div style={{ fontFamily: "'DM Sans', 'Segoe UI', sans-serif", background: "#080f1a", minHeight: "100vh", color: "#e2e8f0" }}>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+        * { box-sizing: border-box; }
+        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #0f172a; } ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+        .glow-btn { background: linear-gradient(135deg, #3b82f6, #6366f1); border: none; color: white; padding: 12px 28px; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s; box-shadow: 0 0 20px rgba(99,102,241,0.4); }
+        .glow-btn:hover { transform: translateY(-1px); box-shadow: 0 0 32px rgba(99,102,241,0.6); }
+        .glow-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .tab { padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600; transition: all 0.15s; border: 1px solid transparent; white-space: nowrap; }
+        .tab.active { background: #1e40af; border-color: #3b82f6; color: #93c5fd; }
+        .tab:not(.active) { color: #64748b; }
+        .tab:not(.active):hover { background: #1e293b; color: #94a3b8; }
+        .pulse { animation: pulse 1.5s ease-in-out infinite; }
+        @keyframes pulse { 0%,100% { opacity:1 } 50% { opacity:0.4 } }
+        .slide-in { animation: slideIn 0.4s ease; }
+        @keyframes slideIn { from { opacity:0; transform:translateY(16px) } to { opacity:1; transform:translateY(0) } }
+        input { background: #0f172a; border: 1.5px solid #1e293b; color: #e2e8f0; padding: 12px 16px; border-radius: 10px; font-size: 15px; outline: none; transition: border-color 0.2s; width: 100%; }
+        input:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.15); }
+        input::placeholder { color: #334155; }
+      `}</style>
+
+      {/* Header */}
+      <div style={{ background: "linear-gradient(180deg, #0c1628 0%, #080f1a 100%)", borderBottom: "1px solid #1e293b", padding: "24px 32px", display: "flex", alignItems: "center", gap: 16 }}>
+        <div style={{ width: 40, height: 40, background: "linear-gradient(135deg,#3b82f6,#6366f1)", borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>🔬</div>
+        <div>
+          <h1 style={{ margin: 0, fontSize: 22, fontWeight: 800, letterSpacing: "-0.5px" }}>Site Audit Pro</h1>
+          <p style={{ margin: 0, color: "#475569", fontSize: 13 }}>SEO · Safety · Browser Compatibility · Google · Content</p>
+        </div>
+      </div>
+
+      <div style={{ maxWidth: 960, margin: "0 auto", padding: "32px 24px" }}>
+
+        {/* URL Input */}
+        <div style={{ background: "#0f172a", border: "1px solid #1e293b", borderRadius: 16, padding: 24, marginBottom: 28 }}>
+          <p style={{ margin: "0 0 12px", color: "#94a3b8", fontSize: 14, fontWeight: 600 }}>Enter your website URL to begin</p>
+          <div style={{ display: "flex", gap: 12 }}>
+            <input value={url} onChange={e => setUrl(e.target.value)} placeholder="https://yourwebsite.com"
+              onKeyDown={e => e.key === "Enter" && !loading && runAudit()} />
+            <button className="glow-btn" onClick={runAudit} disabled={loading || !url.trim()} style={{ whiteSpace: "nowrap" }}>
+              {loading ? "Auditing…" : "Run Audit"}
+            </button>
+          </div>
+          {loading && (
+            <div style={{ marginTop: 16, display: "flex", alignItems: "center", gap: 10 }}>
+              <div className="pulse" style={{ width: 8, height: 8, borderRadius: "50%", background: "#3b82f6" }} />
+              <span style={{ color: "#64748b", fontSize: 13, fontFamily: "'DM Mono', monospace" }}>{progress}</span>
+            </div>
+          )}
+          {error && <p style={{ margin: "12px 0 0", color: "#f87171", fontSize: 13 }}>{error}</p>}
+        </div>
+
+        {results && (
+          <div className="slide-in">
+            {/* Overall score + summary */}
+            <div style={{ background: "#0f172a", border: "1px solid #1e293b", borderRadius: 16, padding: 28, marginBottom: 24, display: "flex", gap: 28, alignItems: "center", flexWrap: "wrap" }}>
+              <div style={{ textAlign: "center" }}>
+                <ScoreRing score={results.overall_score} size={96} />
+                <p style={{ margin: "6px 0 0", fontSize: 12, color: "#475569", fontFamily: "'DM Mono', monospace", textTransform: "uppercase", letterSpacing: "1px" }}>Overall</p>
+              </div>
+              <div style={{ flex: 1, minWidth: 220 }}>
+                <h2 style={{ margin: "0 0 8px", fontSize: 18, fontWeight: 700 }}>Audit Complete</h2>
+                <p style={{ margin: "0 0 16px", color: "#94a3b8", fontSize: 14, lineHeight: 1.6 }}>{results.summary}</p>
+                <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+                  {results.positive_highlights?.slice(0, 3).map((h, i) => (
+                    <Badge key={i} label={"✓ " + h} type="good" />
+                  ))}
+                </div>
+              </div>
+              <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+                {CATEGORIES.map(c => (
+                  <div key={c.id} style={{ textAlign: "center" }}>
+                    <ScoreRing score={results.scores?.[c.id] || 0} size={60} />
+                    <p style={{ margin: "4px 0 0", fontSize: 11, color: "#475569", fontFamily: "'DM Mono', monospace" }}>{c.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Quick wins */}
+            {results.quick_wins?.length > 0 && (
+              <div style={{ background: "#0c1a2e", border: "1px solid #1e3a5f", borderRadius: 12, padding: 20, marginBottom: 24 }}>
+                <p style={{ margin: "0 0 12px", fontSize: 13, fontWeight: 700, color: "#60a5fa", textTransform: "uppercase", letterSpacing: "1px" }}>⚡ Quick Wins</p>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                  {results.quick_wins.map((w, i) => (
+                    <div key={i} style={{ background: "#0f172a", border: "1px solid #1e3a5f", borderRadius: 8, padding: "8px 14px", fontSize: 13, color: "#94a3b8" }}>
+                      <span style={{ color: "#3b82f6", marginRight: 6 }}>{i + 1}.</span>{w}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Tabs */}
+            <div style={{ display: "flex", gap: 8, marginBottom: 20, flexWrap: "wrap" }}>
+              {allCounts.map(c => (
+                <button key={c.id} className={`tab ${activeTab === c.id ? "active" : ""}`} onClick={() => setActiveTab(c.id)}>
+                  {c.icon} {c.label}
+                  {c.critical > 0 && <span style={{ marginLeft: 6, background: "#7f1d1d", color: "#fca5a5", borderRadius: 10, padding: "1px 7px", fontSize: 11 }}>{c.critical}</span>}
+                  {c.warnings > 0 && <span style={{ marginLeft: 4, background: "#451a03", color: "#fcd34d", borderRadius: 10, padding: "1px 7px", fontSize: 11 }}>{c.warnings}</span>}
+                </button>
+              ))}
+            </div>
+
+            {/* Issues list */}
+            <div>
+              {filteredIssues.length === 0
+                ? <p style={{ color: "#475569", textAlign: "center", padding: 40 }}>No issues found in this category.</p>
+                : filteredIssues.map((issue, i) => <IssueCard key={i} issue={issue} />)
+              }
+            </div>
+          </div>
+        )}
+
+        {!results && !loading && (
+          <div style={{ textAlign: "center", padding: "60px 0", color: "#1e293b" }}>
+            <div style={{ fontSize: 64, marginBottom: 16 }}>🔬</div>
+            <p style={{ fontSize: 15, color: "#334155" }}>Enter a URL above and click <strong style={{ color: "#3b82f6" }}>Run Audit</strong> to get started</p>
+            <div style={{ display: "flex", justifyContent: "center", gap: 24, marginTop: 24, flexWrap: "wrap" }}>
+              {CATEGORIES.map(c => <span key={c.id} style={{ fontSize: 13, color: "#1e293b" }}>{c.icon} {c.label}</span>)}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}

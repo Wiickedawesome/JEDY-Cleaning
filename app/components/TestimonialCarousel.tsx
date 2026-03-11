@@ -39,6 +39,16 @@ const testimonials = [
   },
 ];
 
+const aggregateRatingSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'AggregateRating',
+  itemReviewed: { '@type': 'CleaningService', name: 'JEDY Cleaning', url: 'https://jedycleaning.com' },
+  ratingValue: '5.0',
+  bestRating: '5',
+  worstRating: '1',
+  reviewCount: '4',
+});
+
 export default function TestimonialCarousel() {
   const [current, setCurrent] = useState(0);
   const [autoplay, setAutoplay] = useState(true);
@@ -59,6 +69,7 @@ export default function TestimonialCarousel() {
       onMouseEnter={() => setAutoplay(false)}
       onMouseLeave={() => setAutoplay(true)}
     >
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: aggregateRatingSchema }} />
       <div className="absolute inset-0 pattern-dots opacity-30"></div>
       
       <div className="relative max-w-6xl mx-auto px-4">
@@ -72,7 +83,7 @@ export default function TestimonialCarousel() {
         </div>
 
         <div className="relative min-h-[200px]">
-          <AnimatePresence mode="wait">
+          <AnimatePresence initial={false} mode="wait">
             <motion.div
               key={current}
               initial={{ opacity: 0, y: 20 }}

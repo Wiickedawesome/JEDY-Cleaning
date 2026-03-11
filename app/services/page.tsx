@@ -1,4 +1,5 @@
 import { HomeIcon, SparklesIcon, CalendarIcon, SpongeIcon, BoxIcon, StarIcon, CheckIcon, PhoneIcon } from '../components/Icons';
+import type { Metadata } from 'next';
 
 const iconMap: Record<string, React.ReactNode> = {
   home: <HomeIcon size={32} />,
@@ -7,6 +8,13 @@ const iconMap: Record<string, React.ReactNode> = {
   sponge: <SpongeIcon size={32} />,
   box: <BoxIcon size={32} />,
   star: <StarIcon size={32} />,
+};
+
+export const metadata: Metadata = {
+  title: 'Cleaning Services in Knoxville, TN | JEDY Cleaning',
+  description:
+    "Explore JEDY Cleaning's full range of services: standard cleaning, deep cleaning, recurring maintenance, move-in/out, and custom plans for Knoxville, TN homes and businesses.",
+  alternates: { canonical: 'https://jedycleaning.com/services' },
 };
 
 export default function ServicesPage() {
@@ -118,8 +126,8 @@ export default function ServicesPage() {
             </div>
             <div className="relative hidden md:flex justify-center items-center">
               <img 
-                src="/graphics/jedycleaning.png" 
-                alt="JEDY Cleaning Services" 
+                src="/graphics/jedycleaning.webp" 
+                alt="Professional Cleaning Services in Knoxville, TN — JEDY" 
                 className="max-w-full max-h-[400px] object-contain drop-shadow-lg"
               />
             </div>

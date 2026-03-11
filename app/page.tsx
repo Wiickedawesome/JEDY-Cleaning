@@ -1,6 +1,20 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import TestimonialCarousel from './components/TestimonialCarousel';
 import { HomeIcon, SparklesIcon, BoxIcon, StarIcon, DiamondIcon, HandshakeIcon, LeafIcon, PhoneIcon, CheckIcon } from './components/Icons';
+
+export const metadata: Metadata = {
+  title: 'Professional House Cleaning in Knoxville, TN | JEDY Cleaning',
+  description:
+    'JEDY Cleaning offers professional residential and commercial cleaning services in Knoxville, TN and surrounding areas. Trusted, eco-friendly, and satisfaction guaranteed. Call (865) 333-2637 for a free quote.',
+  alternates: { canonical: 'https://jedycleaning.com' },
+  openGraph: {
+    title: 'Professional House Cleaning in Knoxville, TN | JEDY Cleaning',
+    description:
+      'Trusted residential and commercial cleaning services in Knoxville, TN. Eco-friendly products. Call for a free quote.',
+    url: 'https://jedycleaning.com',
+  },
+};
 
 export default function Home() {
   return (
@@ -44,7 +58,7 @@ export default function Home() {
             </div>
           </div>
           <div className="relative hidden md:flex justify-center items-center h-[480px]">
-            <img src="/graphics/JEDY-1.png" alt="JEDY Cleaning Mascot" className="max-w-full max-h-full object-contain drop-shadow-2xl" />
+            <img src="/graphics/JEDY-1.webp" alt="Professional House Cleaning in Knoxville, TN — JEDY" className="max-w-full max-h-full object-contain drop-shadow-2xl" />
           </div>
         </div>
       </section>

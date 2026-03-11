@@ -1,4 +1,12 @@
 import { HeartIcon, HandshakeIcon, SparklesIcon, PhoneIcon, CheckIcon } from '../components/Icons';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About JEDY Cleaning — Knoxville, TN',
+  description:
+    'Learn about JEDY Cleaning, a locally owned and operated cleaning service in Knoxville, TN. We serve West Knoxville, North Knoxville, Farragut, and surrounding areas with reliable, eco-friendly cleaning.',
+  alternates: { canonical: 'https://jedycleaning.com/about' },
+};
 
 export default function AboutPage() {
   return (
@@ -40,8 +48,8 @@ export default function AboutPage() {
             </div>
             <div className="flex justify-center">
               <img 
-                src="/graphics/Jedy.png" 
-                alt="JEDY - Your Trusted Cleaning Partner" 
+                src="/graphics/Jedy.webp" 
+                alt="JEDY — Your Trusted House Cleaning Partner in Knoxville, TN" 
                 className="max-w-full h-auto max-h-[420px] object-contain drop-shadow-lg mx-auto"
               />
             </div>
