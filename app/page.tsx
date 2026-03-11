@@ -138,7 +138,7 @@ export default function Home() {
               <p className="text-gray-600 leading-relaxed">Always on time, every time, with consistent excellence</p>
             </div>
             <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 text-center group">
-              <div className="icon-container bg-green-50 text-green-600 mx-auto mb-4 group-hover:scale-105 transition-transform duration-300">
+              <div className="icon-container bg-teal-50 text-teal-600 mx-auto mb-4 group-hover:scale-105 transition-transform duration-300">
                 <LeafIcon size={32} />
               </div>
               <h3 className="text-xl font-serif font-bold text-brown-800 mb-3">Eco-Friendly</h3>
