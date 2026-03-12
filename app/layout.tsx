@@ -67,8 +67,8 @@ export const metadata: Metadata = {
     images: ['/graphics/jedycleaning.webp'],
   },
   icons: {
-    icon: '/graphics/jedycleaning.png',
-    apple: '/graphics/jedycleaning.png',
+    icon: '/graphics/favicon-32x32.png',
+    apple: '/graphics/apple-touch-icon.png',
   },
   manifest: '/site.webmanifest',
   robots: { index: true, follow: true, googleBot: { index: true, follow: true } },

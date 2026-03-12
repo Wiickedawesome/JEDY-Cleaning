@@ -7,7 +7,7 @@ export default function LocalBusinessSchema() {
     '@context': 'https://schema.org',
     '@type': 'CleaningService',
     name: 'JEDY Cleaning',
-    image: 'https://jedycleaning.us/graphics/jedycleaning.png',
+    image: 'https://jedycleaning.us/graphics/jedycleaning.webp',
     url: 'https://jedycleaning.us',
     telephone: '+1-865-333-2637',
     email: 'jedycleaning@gmail.com',
