@@ -1,25 +1,26 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
+import { CONTACT, SITE } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
   description:
     'Privacy Policy for JEDY Cleaning — learn how we collect, use, and protect your personal information when you use our cleaning services in Knoxville, TN.',
   robots: { index: true, follow: true },
-  alternates: { canonical: 'https://jedycleaning.us/privacy' },
+  alternates: { canonical: `${SITE.url}/privacy` },
   openGraph: {
     title: 'Privacy Policy | JEDY Cleaning',
     description: 'Learn how JEDY Cleaning protects your personal information.',
-    url: 'https://jedycleaning.us/privacy',
+    url: `${SITE.url}/privacy`,
     images: [{ url: '/graphics/JEDY-1.webp', width: 1200, height: 900, alt: 'JEDY Cleaning' }],
   },
 };
 
 export default function PrivacyPage() {
   const breadcrumbs = [
-    { name: 'Home', url: 'https://jedycleaning.us/' },
-    { name: 'Privacy Policy', url: 'https://jedycleaning.us/privacy' }
+    { name: 'Home', url: `${SITE.url}/` },
+    { name: 'Privacy Policy', url: `${SITE.url}/privacy` }
   ];
 
   return (
@@ -107,14 +108,14 @@ export default function PrivacyPage() {
             <p>
               If you have any questions about this Privacy Policy, please contact us at{' '}
               <a
-                href="mailto:jedycleaning@gmail.com"
+                href={`mailto:${CONTACT.email}`}
                 className="text-brand-mauve underline hover:text-brand-pink"
               >
-                jedycleaning@gmail.com
+                {CONTACT.email}
               </a>{' '}
               or call{' '}
-              <a href="tel:8653332637" className="text-brand-mauve underline hover:text-brand-pink">
-                (865) 333-2637
+              <a href={CONTACT.phoneHref} className="text-brand-mauve underline hover:text-brand-pink">
+                {CONTACT.phone}
               </a>
               .
             </p>

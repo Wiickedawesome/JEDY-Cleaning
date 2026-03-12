@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { CONTACT, SITE } from '@/lib/constants';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -8,7 +9,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
-            <h3 className="text-xl font-bold mb-4 text-brand-pink-light">JEDY Cleaning Services</h3>
+            <h3 className="text-xl font-bold mb-4 text-brand-pink-light">{SITE.nameFull}</h3>
             <p className="text-cream-100">
               Professional cleaning services for the Greater Knoxville area. 
               Making your space sparkle with care and attention.
@@ -57,19 +58,19 @@ export default function Footer() {
           <div>
             <h4 className="font-bold mb-4 text-brand-pink-light">Contact</h4>
             <p className="text-cream-100 mb-2">
-              <a href="mailto:jedycleaning@gmail.com" data-track-event="email_click" data-track-label="footer_email" data-track-category="contact" className="hover:text-brand-pink-light transition-colors">
-                jedycleaning@gmail.com
+              <a href={`mailto:${CONTACT.email}`} data-track-event="email_click" data-track-label="footer_email" data-track-category="contact" className="hover:text-brand-pink-light transition-colors">
+                {CONTACT.email}
               </a>
             </p>
             <p className="text-cream-100">
-              <a href="tel:8653332637" data-track-event="phone_click" data-track-label="footer_phone" data-track-category="contact" className="hover:text-brand-pink-light transition-colors">
-                (865) 333-2637
+              <a href={CONTACT.phoneHref} data-track-event="phone_click" data-track-label="footer_phone" data-track-category="contact" className="hover:text-brand-pink-light transition-colors">
+                {CONTACT.phone}
               </a>
             </p>
           </div>
         </div>
         <div className="border-t border-gray-700 pt-8 text-center text-cream-100">
-          <p>&copy; {currentYear} JEDY Cleaning Services. All rights reserved.</p>
+          <p>&copy; {currentYear} {SITE.nameFull}. All rights reserved.</p>
         </div>
       </div>
     </footer>

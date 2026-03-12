@@ -1,3 +1,5 @@
+import { CONTACT, SITE } from '@/lib/constants';
+
 const faqs = [
   {
     question: 'What areas do you serve?',
@@ -17,7 +19,7 @@ const faqs = [
   {
     question: 'How do I get a free quote?',
     answer:
-      'Call us at (865) 333-2637 or fill out our online contact form. We will provide a free, no-obligation quote based on your home size and specific cleaning needs.',
+      `Call us at ${CONTACT.phone} or fill out our online contact form. We will provide a free, no-obligation quote based on your home size and specific cleaning needs.`,
   },
   {
     question: 'Are you insured and bonded?',
@@ -41,7 +43,7 @@ const faqSchema = {
 
 export default function FAQSection() {
   return (
-    <section className="py-20 px-4 bg-white" aria-labelledby="faq-heading">
+    <section className="py-20 px-4 bg-white" role="region" aria-labelledby="faq-heading">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
@@ -58,7 +60,7 @@ export default function FAQSection() {
             Frequently Asked Questions
           </h2>
           <p className="text-gray-600 text-lg">
-            Everything you need to know about JEDY Cleaning services in Knoxville, TN.
+            Everything you need to know about {SITE.nameFull} in Knoxville, TN.
           </p>
         </div>
 

@@ -4,6 +4,7 @@ import { useState, useCallback } from 'react';
 import { PhoneIcon, MailIcon, MapPinIcon } from '../components/Icons';
 import FAQSection from '../components/FAQSection';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
+import { CONTACT, SITE } from '@/lib/constants';
 
 declare global {
   interface WindowEventMap {
@@ -72,7 +73,7 @@ export default function ContactPage() {
     setStatus('submitting');
 
     try {
-      const response = await fetch('https://formsubmit.co/ajax/jedycleaning@gmail.com', {
+      const response = await fetch(`https://formsubmit.co/ajax/${CONTACT.email}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
@@ -131,8 +132,8 @@ export default function ContactPage() {
   };
 
   const breadcrumbs = [
-    { name: 'Home', url: 'https://jedycleaning.us/' },
-    { name: 'Contact', url: 'https://jedycleaning.us/contact' }
+    { name: 'Home', url: `${SITE.url}/` },
+    { name: 'Contact', url: `${SITE.url}/contact` }
   ];
 
   return (
@@ -167,13 +168,13 @@ export default function ContactPage() {
                   <div>
                     <h3 className="text-xl font-bold text-gray-800 mb-2">Phone</h3>
                     <a 
-                      href="tel:8653332637" 
+                      href={CONTACT.phoneHref} 
                       data-track-event="phone_click"
                       data-track-label="contact_phone"
                       data-track-category="contact"
                       className="text-lg text-brand-pink hover:text-brand-mauve transition-colors"
                     >
-                      (865) 333-2637
+                      {CONTACT.phone}
                     </a>
                     <p className="text-gray-500 mt-1">Call us anytime for a free quote!</p>
                   </div>
@@ -186,13 +187,13 @@ export default function ContactPage() {
                   <div>
                     <h3 className="text-xl font-bold text-gray-800 mb-2">Email</h3>
                     <a 
-                      href="mailto:jedycleaning@gmail.com" 
+                      href={`mailto:${CONTACT.email}`} 
                       data-track-event="email_click"
                       data-track-label="contact_email"
                       data-track-category="contact"
                       className="text-lg text-brand-mauve hover:text-brand-pink transition-colors"
                     >
-                      jedycleaning@gmail.com
+                      {CONTACT.email}
                     </a>
                     <p className="text-gray-500 mt-1">We'll respond within 24 hours</p>
                   </div>
@@ -241,7 +242,7 @@ export default function ContactPage() {
               {status === 'error' && (
                 <div className="bg-red-50 border border-red-200 text-red-800 px-6 py-4 rounded-lg mb-6">
                   <p className="font-semibold">Something went wrong.</p>
-                  <p className="text-sm">Please try again or call us at (865) 333-2637.</p>
+                  <p className="text-sm">Please try again or call us at {CONTACT.phone}.</p>
                 </div>
               )}
 

@@ -111,8 +111,8 @@ npm test             # Run Jest tests
 
 ### Typography
 
-- **Headings**: Space Grotesk
-- **Body**: Plus Jakarta Sans
+- **Headings**: Quiche Display (self-hosted, `public/fonts/`) — CSS variable `--font-quiche`
+- **Body**: Outfit (Google Fonts via `next/font/google`) — CSS variable `--font-outfit`
 
 ## 📄 Pages
 

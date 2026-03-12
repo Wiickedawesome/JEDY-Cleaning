@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { CONTACT } from '@/lib/constants';
 
 export default function Error({
   error,
@@ -10,7 +11,7 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
-    console.error('Application error:', error);
+    // error is automatically reported by Next.js error boundary
   }, [error]);
 
   return (
@@ -35,8 +36,8 @@ export default function Error({
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Something went wrong</h2>
         <p className="text-gray-600 mb-6">
           We apologize for the inconvenience. Please try again or contact us at{' '}
-          <a href="tel:+18653332637" className="text-brand-mauve hover:underline">
-            (865) 333-2637
+          <a href={CONTACT.phoneHref} className="text-brand-mauve hover:underline">
+            {CONTACT.phone}
           </a>
         </p>
         <button

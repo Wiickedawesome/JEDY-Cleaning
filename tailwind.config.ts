@@ -42,8 +42,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
-        serif: ['Space Grotesk', 'system-ui', 'sans-serif'],
+        sans: ['Outfit', 'system-ui', 'sans-serif'],
+        serif: ['Quiche Display', 'Georgia', 'serif'],
       },
       typography: ((theme: any) => ({
         DEFAULT: {

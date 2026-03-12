@@ -2,6 +2,7 @@ import { HomeIcon, SparklesIcon, CalendarIcon, SpongeIcon, BoxIcon, StarIcon, Ch
 import type { Metadata } from 'next';
 import ServiceSchema from '../components/ServiceSchema';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
+import { CONTACT, SITE } from '@/lib/constants';
 
 const iconMap: Record<string, React.ReactNode> = {
   home: <HomeIcon size={32} />,
@@ -16,11 +17,11 @@ export const metadata: Metadata = {
   title: 'Cleaning Services in Knoxville, TN | JEDY Cleaning',
   description:
     "Explore JEDY Cleaning's full range of services: standard cleaning, deep cleaning, recurring maintenance, move-in/out, and custom plans for Knoxville, TN homes and businesses.",
-  alternates: { canonical: 'https://jedycleaning.us/services' },
+  alternates: { canonical: `${SITE.url}/services` },
   openGraph: {
     title: 'Cleaning Services in Knoxville, TN | JEDY Cleaning',
     description: 'Professional cleaning services including deep cleaning, recurring maintenance, and move-in/out cleaning.',
-    url: 'https://jedycleaning.us/services',
+    url: `${SITE.url}/services`,
     images: [{ url: '/graphics/jedycleaning.webp', width: 900, height: 700, alt: 'JEDY Professional Cleaning Services' }],
   },
 };
@@ -120,8 +121,8 @@ export default function ServicesPage() {
   }));
 
   const breadcrumbs = [
-    { name: 'Home', url: 'https://jedycleaning.us/' },
-    { name: 'Services', url: 'https://jedycleaning.us/services' }
+    { name: 'Home', url: `${SITE.url}/` },
+    { name: 'Services', url: `${SITE.url}/services` }
   ];
 
   return (
@@ -209,14 +210,14 @@ export default function ServicesPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
-                  href="tel:8653332637"
+                  href={CONTACT.phoneHref}
                   data-track-event="phone_click"
                   data-track-label="services_phone"
                   data-track-category="contact"
                   className="inline-flex items-center justify-center gap-2 bg-brand-pink hover:bg-brand-mauve text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
                 >
                   <PhoneIcon size={20} />
-                  Call (865) 333-2637
+                  Call {CONTACT.phone}
                 </a>
                 <a
                   href="/contact"

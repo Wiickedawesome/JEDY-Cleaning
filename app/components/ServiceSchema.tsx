@@ -1,3 +1,5 @@
+import { CONTACT, SITE } from '@/lib/constants';
+
 interface ServiceSchemaProps {
   services: {
     name: string;
@@ -14,9 +16,9 @@ export default function ServiceSchema({ services }: ServiceSchemaProps) {
     description: service.description,
     provider: {
       '@type': 'LocalBusiness',
-      name: 'JEDY Cleaning',
-      url: 'https://jedycleaning.us',
-      telephone: '+1-865-333-2637',
+      name: SITE.name,
+      url: SITE.url,
+      telephone: CONTACT.phoneSchema,
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Knoxville',

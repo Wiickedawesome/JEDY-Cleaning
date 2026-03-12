@@ -1,18 +1,19 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { CONTACT, SITE } from '@/lib/constants';
 import { HomeIcon, SparklesIcon, BoxIcon, StarIcon, DiamondIcon, HandshakeIcon, LeafIcon, PhoneIcon, CheckIcon } from './components/Icons';
 import TestimonialCarouselWrapper from './components/TestimonialCarouselWrapper';
 
 export const metadata: Metadata = {
   title: 'Professional House Cleaning in Knoxville, TN | JEDY Cleaning',
   description:
-    'JEDY Cleaning offers professional residential and commercial cleaning services in Knoxville, TN and surrounding areas. Trusted, eco-friendly, and satisfaction guaranteed. Call (865) 333-2637 for a free quote.',
-  alternates: { canonical: 'https://jedycleaning.us' },
+    `JEDY Cleaning offers professional residential and commercial cleaning services in Knoxville, TN and surrounding areas. Trusted, eco-friendly, and satisfaction guaranteed. Call ${CONTACT.phone} for a free quote.`,
+  alternates: { canonical: SITE.url },
   openGraph: {
     title: 'Professional House Cleaning in Knoxville, TN | JEDY Cleaning',
     description:
       'Trusted residential and commercial cleaning services in Knoxville, TN. Eco-friendly products. Call for a free quote.',
-    url: 'https://jedycleaning.us',
+    url: SITE.url,
   },
 };
 
@@ -43,14 +44,14 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="tel:8653332637"
+                href={CONTACT.phoneHref}
                 data-track-event="phone_click"
                 data-track-label="home_hero_phone"
                 data-track-category="contact"
                 className="inline-flex items-center justify-center gap-2 bg-brand-pink hover:bg-brand-mauve text-white px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-2 border-brand-pink"
               >
                 <PhoneIcon size={20} />
-                Call (865) 333-2637
+                Call {CONTACT.phone}
               </a>
               <Link
                 href="/contact"
@@ -186,14 +187,14 @@ export default function Home() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
-                  href="tel:8653332637"
+                  href={CONTACT.phoneHref}
                   data-track-event="phone_click"
                   data-track-label="home_bottom_phone"
                   data-track-category="contact"
                   className="inline-flex items-center justify-center gap-2 bg-brand-pink hover:bg-brand-mauve text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
                 >
                   <PhoneIcon size={20} />
-                  Call (865) 333-2637
+                  Call {CONTACT.phone}
                 </a>
                 <Link
                   href="/contact"

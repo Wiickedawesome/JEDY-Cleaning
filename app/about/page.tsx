@@ -1,24 +1,25 @@
 import { HeartIcon, HandshakeIcon, SparklesIcon, PhoneIcon, CheckIcon } from '../components/Icons';
 import type { Metadata } from 'next';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
+import { CONTACT, SITE } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'About JEDY Cleaning — Knoxville, TN',
   description:
     'Learn about JEDY Cleaning, a locally owned and operated cleaning service in Knoxville, TN. We serve West Knoxville, North Knoxville, Farragut, and surrounding areas with reliable, eco-friendly cleaning.',
-  alternates: { canonical: 'https://jedycleaning.us/about' },
+  alternates: { canonical: `${SITE.url}/about` },
   openGraph: {
     title: 'About JEDY Cleaning — Knoxville, TN',
     description: 'Learn about JEDY Cleaning, your trusted partner for professional cleaning in Knoxville, TN.',
-    url: 'https://jedycleaning.us/about',
+    url: `${SITE.url}/about`,
     images: [{ url: '/graphics/Jedy.webp', width: 600, height: 600, alt: 'JEDY Cleaning Mascot' }],
   },
 };
 
 export default function AboutPage() {
   const breadcrumbs = [
-    { name: 'Home', url: 'https://jedycleaning.us/' },
-    { name: 'About', url: 'https://jedycleaning.us/about' }
+    { name: 'Home', url: `${SITE.url}/` },
+    { name: 'About', url: `${SITE.url}/about` }
   ];
 
   return (
@@ -176,14 +177,14 @@ export default function AboutPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
-                  href="tel:8653332637"
+                  href={CONTACT.phoneHref}
                   data-track-event="phone_click"
                   data-track-label="about_phone"
                   data-track-category="contact"
                   className="inline-flex items-center justify-center gap-2 bg-brand-pink hover:bg-brand-mauve text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
                 >
                   <PhoneIcon size={20} />
-                  Call (865) 333-2637
+                  Call {CONTACT.phone}
                 </a>
                 <a
                   href="/contact"

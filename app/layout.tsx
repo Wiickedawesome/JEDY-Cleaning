@@ -5,24 +5,20 @@ import './globals.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import LocalBusinessSchema from './components/LocalBusinessSchema';
-import { Plus_Jakarta_Sans, Space_Grotesk } from 'next/font/google';
+import { Outfit } from 'next/font/google';
+import { CONTACT, SITE } from '@/lib/constants';
 
-const jakarta = Plus_Jakarta_Sans({
+const outfit = Outfit({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-jakarta',
-});
-const grotesk = Space_Grotesk({
-  subsets: ['latin'],
-  weight: ['500', '600', '700'],
-  variable: '--font-grotesk',
+  variable: '--font-outfit',
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://jedycleaning.us'),
+  metadataBase: new URL(SITE.url),
   title: {
-    default: 'JEDY Cleaning — House Cleaning Services in Knoxville, TN',
-    template: '%s | JEDY Cleaning',
+    default: `${SITE.name} — House Cleaning Services in Knoxville, TN`,
+    template: `%s | ${SITE.name}`,
   },
   description:
     'Professional house cleaning services in Knoxville, TN. Offering weekly, deep, and move-in/out cleaning for homes and businesses. Serving West Knoxville, Farragut, Maryville, and Oak Ridge.',
@@ -44,11 +40,11 @@ export const metadata: Metadata = {
     'JEDY Cleaning',
   ],
   openGraph: {
-    title: 'JEDY Cleaning — House Cleaning Services in Knoxville, TN',
+    title: `${SITE.name} — House Cleaning Services in Knoxville, TN`,
     description:
-      'Trusted, affordable house cleaning in Knoxville, TN. Weekly, deep, and move-in/out services. Call (865) 333-2637 for a free quote.',
-    url: 'https://jedycleaning.us',
-    siteName: 'JEDY Cleaning',
+      `Trusted, affordable house cleaning in Knoxville, TN. Weekly, deep, and move-in/out services. Call ${CONTACT.phone} for a free quote.`,
+    url: SITE.url,
+    siteName: SITE.name,
     type: 'website',
     images: [
       {
@@ -61,7 +57,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'JEDY Cleaning — House Cleaning in Knoxville, TN',
+    title: `${SITE.name} — House Cleaning in Knoxville, TN`,
     description:
       'Professional, trusted house cleaning in Knoxville, TN. Weekly, deep, and move-out cleaning. Get a free quote today.',
     images: ['/graphics/jedycleaning.webp'],
@@ -72,7 +68,7 @@ export const metadata: Metadata = {
   },
   manifest: '/site.webmanifest',
   robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
-  alternates: { canonical: 'https://jedycleaning.us' },
+  alternates: { canonical: SITE.url },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -94,7 +90,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
       </head>
       <body
-        className={`bg-cream-50 text-brown-800 ${jakarta.variable} ${grotesk.variable} font-sans`}
+        className={`bg-cream-50 text-brown-800 ${outfit.variable} font-sans`}
       >
         <a
           href="#main-content"

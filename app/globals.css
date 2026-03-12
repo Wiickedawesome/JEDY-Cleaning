@@ -2,13 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Quiche Display';
+  src: url('/fonts/QuicheDisplay-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Quiche Display';
+  src: url('/fonts/QuicheDisplay-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
   @apply bg-cream-50 text-brown-800;
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-family: 'Outfit', system-ui, sans-serif;
 }
 
 /* Typography */
@@ -34,15 +50,6 @@ h3 {
 }
 
 /* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 @keyframes slideUp {
   from {
     opacity: 0;
@@ -52,10 +59,6 @@ h3 {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.5s ease-in;
 }
 
 .animate-slideUp {
@@ -82,23 +85,6 @@ h3 {
     repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(238, 210, 222, 0.06) 2px, rgba(238, 210, 222, 0.06) 4px);
 }
 
-.sparkle-effect {
-  position: relative;
-  overflow: hidden;
-}
-
-.sparkle-effect::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
-  animation: sparkle 3s ease-in-out infinite;
-  pointer-events: none;
-}
-
 /* Accessibility: Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -121,29 +107,10 @@ h3 {
   outline: none;
 }
 
-@keyframes sparkle {
-  0%, 100% { opacity: 0; transform: rotate(0deg); }
-  50% { opacity: 0.1; transform: rotate(180deg); }
-}
-
-.decorative-border {
-  border: 2px solid transparent;
-  background: 
-    linear-gradient(white, white) padding-box,
-    linear-gradient(135deg, #E28DB0, #C3B6C9) border-box;
-  border-radius: 1rem;
-}
-
 .shadow-warm {
   box-shadow: 
     0 4px 6px -1px rgba(174, 164, 179, 0.15),
     0 2px 4px -1px rgba(174, 164, 179, 0.08);
-}
-
-.shadow-warm-lg {
-  box-shadow: 
-    0 10px 15px -3px rgba(174, 164, 179, 0.2),
-    0 4px 6px -2px rgba(174, 164, 179, 0.1);
 }
 
 /* Icon containers */
