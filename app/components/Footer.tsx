@@ -57,12 +57,12 @@ export default function Footer() {
           <div>
             <h4 className="font-bold mb-4 text-brand-pink-light">Contact</h4>
             <p className="text-cream-100 mb-2">
-              <a href="mailto:jedycleaning@gmail.com" className="hover:text-brand-pink-light transition-colors">
+              <a href="mailto:jedycleaning@gmail.com" data-track-event="email_click" data-track-label="footer_email" data-track-category="contact" className="hover:text-brand-pink-light transition-colors">
                 jedycleaning@gmail.com
               </a>
             </p>
             <p className="text-cream-100">
-              <a href="tel:8653332637" className="hover:text-brand-pink-light transition-colors">
+              <a href="tel:8653332637" data-track-event="phone_click" data-track-label="footer_phone" data-track-category="contact" className="hover:text-brand-pink-light transition-colors">
                 (865) 333-2637
               </a>
             </p>

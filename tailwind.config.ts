@@ -36,9 +36,9 @@ const config: Config = {
         brand: {
           'pink-light': '#EED2DE',
           'rose': '#DB9EB8',
-          'pink': '#E28DB0',
+          'pink': '#A85070',
           'lavender': '#C3B6C9',
-          'mauve': '#AEA4B3',
+          'mauve': '#8A7F91',
         },
       },
       fontFamily: {

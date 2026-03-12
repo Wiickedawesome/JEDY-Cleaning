@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { StarIcon } from './Icons';
 
 const testimonials = [
@@ -17,7 +16,7 @@ const testimonials = [
     id: 2,
     name: 'Michael Roberts',
     role: 'Business Owner',
-    quote: 'We\'ve been using JEDY for our office cleaning for 6 months. They\'re reliable, thorough, and our workspace has never looked better.',
+    quote: "We've been using JEDY for our office cleaning for 6 months. They're reliable, thorough, and our workspace has never looked better.",
     rating: 5,
     location: 'Downtown Knoxville',
   },
@@ -33,45 +32,43 @@ const testimonials = [
     id: 4,
     name: 'David Wilson',
     role: 'Homeowner',
-    quote: 'The deep cleaning service exceeded our expectations. They reached spots we didn\'t even know needed cleaning!',
+    quote: "The deep cleaning service exceeded our expectations. They reached spots we didn't even know needed cleaning!",
     rating: 5,
     location: 'South Knoxville',
   },
 ];
 
-const aggregateRatingSchema = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'AggregateRating',
-  itemReviewed: { '@type': 'CleaningService', name: 'JEDY Cleaning', url: 'https://jedycleaning.com' },
-  ratingValue: '5.0',
-  bestRating: '5',
-  worstRating: '1',
-  reviewCount: '4',
-});
-
 export default function TestimonialCarousel() {
   const [current, setCurrent] = useState(0);
-  const [autoplay, setAutoplay] = useState(true);
+  const [visible, setVisible] = useState(true);
+  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
-    if (!autoplay) return;
-    
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % testimonials.length);
+    if (paused) return;
+    let cancelled = false;
+    const id = setInterval(() => {
+      setVisible(false);
+      setTimeout(() => {
+        if (!cancelled) {
+          setCurrent((prev) => (prev + 1) % testimonials.length);
+          setVisible(true);
+        }
+      }, 300);
     }, 5000);
-
-    return () => clearInterval(timer);
-  }, [autoplay]);
+    return () => {
+      cancelled = true;
+      clearInterval(id);
+    };
+  }, [paused]);
 
   return (
-    <div 
+    <div
       className="relative w-full bg-gradient-to-br from-cream-50 via-brand-pink-light/20 to-cream-100 py-20 pb-16"
-      onMouseEnter={() => setAutoplay(false)}
-      onMouseLeave={() => setAutoplay(true)}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
     >
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: aggregateRatingSchema }} />
       <div className="absolute inset-0 pattern-dots opacity-30"></div>
-      
+
       <div className="relative max-w-6xl mx-auto px-4">
         <div className="text-center mb-12">
           <span className="inline-block text-brand-mauve font-semibold text-sm tracking-widest uppercase mb-3">
@@ -82,43 +79,54 @@ export default function TestimonialCarousel() {
           </h2>
         </div>
 
-        <div className="relative min-h-[200px]">
-          <AnimatePresence initial={false} mode="wait">
-            <motion.div
-              key={current}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
-              className="w-full"
-            >
-              <div className="bg-white rounded-2xl shadow-warm p-8 md:p-10 text-center max-w-4xl mx-auto">
-                <div className="flex justify-center gap-1 mb-6">
-                  {[...Array(testimonials[current].rating)].map((_, i) => (
-                    <StarIcon key={i} className="text-yellow-400" size={24} />
-                  ))}
-                </div>
-                <blockquote className="text-xl md:text-2xl text-gray-800 mb-6 font-serif italic">
-                  "{testimonials[current].quote}"
-                </blockquote>
-                <div className="text-gray-600">
-                  <p className="font-semibold">{testimonials[current].name}</p>
-                  <p className="text-sm">
-                    {testimonials[current].role} • {testimonials[current].location}
-                  </p>
-                </div>
+        <div className="relative min-h-[200px]" aria-live="polite" aria-atomic="true">
+          <div
+            className={`w-full transition-opacity duration-300 ${visible ? 'opacity-100' : 'opacity-0'}`}
+          >
+            <div className="bg-white rounded-2xl shadow-warm p-8 md:p-10 text-center max-w-4xl mx-auto">
+              <div className="flex justify-center gap-1 mb-6">
+                {[...Array(testimonials[current].rating)].map((_, i) => (
+                  <StarIcon key={i} className="text-yellow-400" size={24} />
+                ))}
               </div>
-            </motion.div>
-          </AnimatePresence>
+              <blockquote className="text-xl md:text-2xl text-gray-800 mb-6 font-serif italic">
+                &ldquo;{testimonials[current].quote}&rdquo;
+              </blockquote>
+              <div className="text-gray-600">
+                <p className="font-semibold">{testimonials[current].name}</p>
+                <p className="text-sm">
+                  {testimonials[current].role} &bull; {testimonials[current].location}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="flex justify-center gap-2 mt-10">
+        <div className="flex justify-center items-center gap-3 mt-10">
+          {/* WCAG 2.2.2 — explicit pause/play control for auto-advancing content */}
+          <button
+            onClick={() => setPaused((p) => !p)}
+            className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 hover:border-brand-mauve transition-colors text-gray-500 hover:text-brand-mauve"
+            aria-label={paused ? 'Play testimonials' : 'Pause testimonials'}
+          >
+            {paused ? (
+              <svg viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4" aria-hidden="true">
+                <polygon points="4,2 13,8 4,14" />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4" aria-hidden="true">
+                <rect x="3" y="2" width="4" height="12" rx="1" />
+                <rect x="9" y="2" width="4" height="12" rx="1" />
+              </svg>
+            )}
+          </button>
+
           {testimonials.map((_, index) => (
             <button
               key={index}
               onClick={() => {
                 setCurrent(index);
-                setAutoplay(false);
+                setPaused(true);
               }}
               className={`w-3 h-3 rounded-full transition-colors ${
                 index === current ? 'bg-brand-mauve' : 'bg-gray-300 hover:bg-gray-400'

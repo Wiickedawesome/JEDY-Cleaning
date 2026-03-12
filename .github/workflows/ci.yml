@@ -35,7 +35,7 @@ jobs:
       - name: Build
         run: npm run build
 
-  # Deploy job disabled - using Azure Static Web Apps workflow instead
+  # Deploy job handled by the dedicated GitHub Pages workflow
   # deploy:
   #   needs: test
   #   runs-on: ubuntu-latest

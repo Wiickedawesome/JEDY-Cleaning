@@ -7,11 +7,13 @@
       "DOM",
       "DOM.Iterable"
     ],
+    "types": ["@testing-library/jest-dom"],
     "module": "ESNext",
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
+    "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,

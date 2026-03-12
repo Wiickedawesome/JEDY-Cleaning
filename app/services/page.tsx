@@ -1,5 +1,7 @@
 import { HomeIcon, SparklesIcon, CalendarIcon, SpongeIcon, BoxIcon, StarIcon, CheckIcon, PhoneIcon } from '../components/Icons';
 import type { Metadata } from 'next';
+import ServiceSchema from '../components/ServiceSchema';
+import BreadcrumbSchema from '../components/BreadcrumbSchema';
 
 const iconMap: Record<string, React.ReactNode> = {
   home: <HomeIcon size={32} />,
@@ -14,7 +16,13 @@ export const metadata: Metadata = {
   title: 'Cleaning Services in Knoxville, TN | JEDY Cleaning',
   description:
     "Explore JEDY Cleaning's full range of services: standard cleaning, deep cleaning, recurring maintenance, move-in/out, and custom plans for Knoxville, TN homes and businesses.",
-  alternates: { canonical: 'https://jedycleaning.com/services' },
+  alternates: { canonical: 'https://jedycleaning.us/services' },
+  openGraph: {
+    title: 'Cleaning Services in Knoxville, TN | JEDY Cleaning',
+    description: 'Professional cleaning services including deep cleaning, recurring maintenance, and move-in/out cleaning.',
+    url: 'https://jedycleaning.us/services',
+    images: [{ url: '/graphics/jedycleaning.webp', width: 900, height: 700, alt: 'JEDY Professional Cleaning Services' }],
+  },
 };
 
 export default function ServicesPage() {
@@ -105,8 +113,21 @@ export default function ServicesPage() {
     }
   ];
 
+  // Prepare service data for schema
+  const serviceSchemaData = services.map(s => ({
+    name: s.title,
+    description: s.description
+  }));
+
+  const breadcrumbs = [
+    { name: 'Home', url: 'https://jedycleaning.us/' },
+    { name: 'Services', url: 'https://jedycleaning.us/services' }
+  ];
+
   return (
     <main className="min-h-screen bg-cream-50">
+      <ServiceSchema services={serviceSchemaData} />
+      <BreadcrumbSchema items={breadcrumbs} />
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-brand-pink-light/20 via-brand-lavender/20 to-cream-100 py-24 overflow-hidden">
         <div className="absolute inset-0 pattern-dots opacity-10"></div>
@@ -129,6 +150,11 @@ export default function ServicesPage() {
                 src="/graphics/jedycleaning.webp" 
                 alt="Professional Cleaning Services in Knoxville, TN — JEDY" 
                 className="max-w-full max-h-[400px] object-contain drop-shadow-lg"
+                width={900}
+                height={700}
+                loading="lazy"
+                decoding="async"
+                sizes="(max-width: 1024px) 100vw, 450px"
               />
             </div>
           </div>
@@ -184,6 +210,9 @@ export default function ServicesPage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
                   href="tel:8653332637"
+                  data-track-event="phone_click"
+                  data-track-label="services_phone"
+                  data-track-category="contact"
                   className="inline-flex items-center justify-center gap-2 bg-brand-pink hover:bg-brand-mauve text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
                 >
                   <PhoneIcon size={20} />
@@ -191,6 +220,9 @@ export default function ServicesPage() {
                 </a>
                 <a
                   href="/contact"
+                  data-track-event="quote_click"
+                  data-track-label="services_quote"
+                  data-track-category="lead"
                   className="inline-flex items-center justify-center gap-2 bg-white hover:bg-white/80 text-brand-mauve px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-2 border-brand-lavender"
                 >
                   Get a Free Quote →

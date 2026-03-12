@@ -1,15 +1,14 @@
 export default function LocalBusinessSchema() {
   const sameAs: string[] = [
-    // TODO: Replace with your Google Business Profile URL
-    // Example: "https://www.google.com/maps?cid=YOUR_CID"
+    'https://www.google.com/maps/place/JEDY+Cleaning+Services/@35.9974533,-83.8591188,17z/data=!4m15!1m8!3m7!1s0x4aa29b3890a0075d:0xfff1f081ea797b70!2sJEDY+Cleaning+Services!8m2!3d35.9974533!4d-83.8591188!10e1!16s%2Fg%2F11pv0nr9zw!3m5!1s0x4aa29b3890a0075d:0xfff1f081ea797b70!8m2!3d35.9974533!4d-83.8591188!16s%2Fg%2F11pv0nr9zw',
   ];
 
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'CleaningService',
     name: 'JEDY Cleaning',
-    image: 'https://jedycleaning.com/graphics/jedycleaning.png',
-    url: 'https://jedycleaning.com',
+    image: 'https://jedycleaning.us/graphics/jedycleaning.png',
+    url: 'https://jedycleaning.us',
     telephone: '+1-865-333-2637',
     email: 'jedycleaning@gmail.com',
     description:
@@ -18,12 +17,13 @@ export default function LocalBusinessSchema() {
       '@type': 'PostalAddress',
       addressLocality: 'Knoxville',
       addressRegion: 'TN',
+      postalCode: '37909',
       addressCountry: 'US',
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 35.9606,
-      longitude: -83.9207,
+      latitude: 35.9974533,
+      longitude: -83.8591188,
     },
     areaServed: [
       { '@type': 'City', name: 'Knoxville', addressRegion: 'TN' },

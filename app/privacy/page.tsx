@@ -1,17 +1,30 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import BreadcrumbSchema from '../components/BreadcrumbSchema';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
   description:
     'Privacy Policy for JEDY Cleaning — learn how we collect, use, and protect your personal information when you use our cleaning services in Knoxville, TN.',
   robots: { index: true, follow: true },
-  alternates: { canonical: 'https://jedycleaning.com/privacy' },
+  alternates: { canonical: 'https://jedycleaning.us/privacy' },
+  openGraph: {
+    title: 'Privacy Policy | JEDY Cleaning',
+    description: 'Learn how JEDY Cleaning protects your personal information.',
+    url: 'https://jedycleaning.us/privacy',
+    images: [{ url: '/graphics/JEDY-1.webp', width: 1200, height: 900, alt: 'JEDY Cleaning' }],
+  },
 };
 
 export default function PrivacyPage() {
+  const breadcrumbs = [
+    { name: 'Home', url: 'https://jedycleaning.us/' },
+    { name: 'Privacy Policy', url: 'https://jedycleaning.us/privacy' }
+  ];
+
   return (
     <main className="flex-1 py-20 px-4 bg-cream-50">
+      <BreadcrumbSchema items={breadcrumbs} />
       <div className="max-w-3xl mx-auto">
         <h1 className="font-serif text-4xl md:text-5xl font-bold text-gray-800 mb-4">
           Privacy Policy

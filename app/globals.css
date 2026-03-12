@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  @apply scroll-smooth;
-}
-
 html {
   scroll-behavior: smooth;
 }
@@ -101,6 +97,28 @@ h3 {
   background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
   animation: sparkle 3s ease-in-out infinite;
   pointer-events: none;
+}
+
+/* Accessibility: Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Accessibility: Focus visible ring for keyboard navigation */
+:focus-visible {
+  @apply outline-2 outline-offset-2 outline-brand-pink;
+}
+
+/* Remove default outline when not keyboard navigating */
+:focus:not(:focus-visible) {
+  outline: none;
 }
 
 @keyframes sparkle {

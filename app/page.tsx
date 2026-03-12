@@ -1,18 +1,18 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import TestimonialCarousel from './components/TestimonialCarousel';
 import { HomeIcon, SparklesIcon, BoxIcon, StarIcon, DiamondIcon, HandshakeIcon, LeafIcon, PhoneIcon, CheckIcon } from './components/Icons';
+import TestimonialCarouselWrapper from './components/TestimonialCarouselWrapper';
 
 export const metadata: Metadata = {
   title: 'Professional House Cleaning in Knoxville, TN | JEDY Cleaning',
   description:
     'JEDY Cleaning offers professional residential and commercial cleaning services in Knoxville, TN and surrounding areas. Trusted, eco-friendly, and satisfaction guaranteed. Call (865) 333-2637 for a free quote.',
-  alternates: { canonical: 'https://jedycleaning.com' },
+  alternates: { canonical: 'https://jedycleaning.us' },
   openGraph: {
     title: 'Professional House Cleaning in Knoxville, TN | JEDY Cleaning',
     description:
       'Trusted residential and commercial cleaning services in Knoxville, TN. Eco-friendly products. Call for a free quote.',
-    url: 'https://jedycleaning.com',
+    url: 'https://jedycleaning.us',
   },
 };
 
@@ -44,6 +44,9 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href="tel:8653332637"
+                data-track-event="phone_click"
+                data-track-label="home_hero_phone"
+                data-track-category="contact"
                 className="inline-flex items-center justify-center gap-2 bg-brand-pink hover:bg-brand-mauve text-white px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-2 border-brand-pink"
               >
                 <PhoneIcon size={20} />
@@ -51,6 +54,9 @@ export default function Home() {
               </a>
               <Link
                 href="/contact"
+                data-track-event="quote_click"
+                data-track-label="home_hero_quote"
+                data-track-category="lead"
                 className="inline-flex items-center justify-center gap-2 bg-white hover:bg-cream-50 text-brand-mauve px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-2 border-brand-lavender"
               >
                 Get a Free Quote →
@@ -58,7 +64,7 @@ export default function Home() {
             </div>
           </div>
           <div className="relative hidden md:flex justify-center items-center h-[480px]">
-            <img src="/graphics/JEDY-1.webp" alt="Professional House Cleaning in Knoxville, TN — JEDY" className="max-w-full max-h-full object-contain drop-shadow-2xl" />
+            <img src="/graphics/JEDY-1.webp" alt="Professional House Cleaning in Knoxville, TN — JEDY" className="max-w-full max-h-full object-contain drop-shadow-2xl" width={1200} height={900} loading="eager" fetchPriority="high" decoding="async" sizes="(max-width: 768px) 100vw, 600px" />
           </div>
         </div>
       </section>
@@ -111,6 +117,9 @@ export default function Home() {
           <div className="text-center mt-14">
             <Link
               href="/services"
+              data-track-event="service_page_click"
+              data-track-label="home_services_cta"
+              data-track-category="navigation"
               className="inline-block bg-brand-pink hover:bg-brand-mauve text-white px-10 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-2 border-brand-pink"
             >
               View All Services →
@@ -163,7 +172,7 @@ export default function Home() {
       </section>
 
             {/* Testimonials */}
-      <TestimonialCarousel />
+      <TestimonialCarouselWrapper />
 
       <section className="py-20 bg-cream-50">
         <div className="max-w-6xl mx-auto px-4">
@@ -178,6 +187,9 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
                   href="tel:8653332637"
+                  data-track-event="phone_click"
+                  data-track-label="home_bottom_phone"
+                  data-track-category="contact"
                   className="inline-flex items-center justify-center gap-2 bg-brand-pink hover:bg-brand-mauve text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
                 >
                   <PhoneIcon size={20} />
@@ -185,6 +197,9 @@ export default function Home() {
                 </a>
                 <Link
                   href="/contact"
+                  data-track-event="quote_click"
+                  data-track-label="home_bottom_quote"
+                  data-track-category="lead"
                   className="inline-flex items-center justify-center gap-2 bg-white hover:bg-white/80 text-brand-mauve px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-2 border-brand-lavender"
                 >
                   Get a Free Quote →

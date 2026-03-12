@@ -11,7 +11,13 @@
       "src": "/graphics/jedycleaning.png",
       "sizes": "any",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+  },
+  {
+    "src": "/graphics/jedycleaning.png",
+    "sizes": "any",
+    "type": "image/png",
+    "purpose": "maskable"
     }
   ]
 }

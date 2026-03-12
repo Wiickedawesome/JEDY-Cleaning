@@ -1,8 +1,21 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { PhoneIcon, MailIcon, MapPinIcon } from '../components/Icons';
 import FAQSection from '../components/FAQSection';
+import BreadcrumbSchema from '../components/BreadcrumbSchema';
+
+declare global {
+  interface WindowEventMap {
+    'jedy:quote-form-submit': CustomEvent<{ eventName: string; label: string; value?: number }>;
+  }
+}
+
+type FieldErrors = {
+  name?: string;
+  email?: string;
+  phone?: string;
+};
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -14,9 +27,48 @@ export default function ContactPage() {
   });
 
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+
+  const validateField = useCallback((name: string, value: string): string | undefined => {
+    switch (name) {
+      case 'name':
+        if (value.trim().length < 2) return 'Name must be at least 2 characters';
+        break;
+      case 'email':
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Please enter a valid email address';
+        break;
+      case 'phone':
+        const digits = value.replace(/\D/g, '');
+        if (digits.length < 10) return 'Please enter a valid 10-digit phone number';
+        break;
+    }
+    return undefined;
+  }, []);
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setTouched(prev => ({ ...prev, [name]: true }));
+    const error = validateField(name, value);
+    setFieldErrors(prev => ({ ...prev, [name]: error }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate all required fields before submitting
+    const errors: FieldErrors = {};
+    (['name', 'email', 'phone'] as const).forEach(field => {
+      const error = validateField(field, formData[field]);
+      if (error) errors[field] = error;
+    });
+    
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      setTouched({ name: true, email: true, phone: true });
+      return;
+    }
+    
     setStatus('submitting');
 
     try {
@@ -37,28 +89,55 @@ export default function ContactPage() {
       const data = await response.json();
 
       if (data.success) {
+        window.dispatchEvent(
+          new CustomEvent('jedy:quote-form-submit', {
+            detail: { eventName: 'generate_lead', label: 'contact_form_success', value: 1 },
+          })
+        );
         setStatus('success');
         setFormData({ name: '', email: '', phone: '', service: 'weekly', message: '' });
         setTimeout(() => setStatus('idle'), 5000);
       } else {
+        window.dispatchEvent(
+          new CustomEvent('jedy:quote-form-submit', {
+            detail: { eventName: 'contact_form_error', label: 'contact_form_response_error' },
+          })
+        );
         setStatus('error');
         setTimeout(() => setStatus('idle'), 5000);
       }
     } catch {
+      window.dispatchEvent(
+        new CustomEvent('jedy:quote-form-submit', {
+          detail: { eventName: 'contact_form_error', label: 'contact_form_network_error' },
+        })
+      );
       setStatus('error');
       setTimeout(() => setStatus('idle'), 5000);
     }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [name]: value
     }));
+    // Clear error when user starts typing
+    if (touched[name]) {
+      const error = validateField(name, value);
+      setFieldErrors(prev => ({ ...prev, [name]: error }));
+    }
   };
+
+  const breadcrumbs = [
+    { name: 'Home', url: 'https://jedycleaning.us/' },
+    { name: 'Contact', url: 'https://jedycleaning.us/contact' }
+  ];
 
   return (
     <main className="min-h-screen bg-cream-50">
+      <BreadcrumbSchema items={breadcrumbs} />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-brand-pink-light/20 via-brand-lavender/20 to-cream-100 py-20">
         <div className="max-w-6xl mx-auto px-4 text-center">
@@ -89,6 +168,9 @@ export default function ContactPage() {
                     <h3 className="text-xl font-bold text-gray-800 mb-2">Phone</h3>
                     <a 
                       href="tel:8653332637" 
+                      data-track-event="phone_click"
+                      data-track-label="contact_phone"
+                      data-track-category="contact"
                       className="text-lg text-brand-pink hover:text-brand-mauve transition-colors"
                     >
                       (865) 333-2637
@@ -105,6 +187,9 @@ export default function ContactPage() {
                     <h3 className="text-xl font-bold text-gray-800 mb-2">Email</h3>
                     <a 
                       href="mailto:jedycleaning@gmail.com" 
+                      data-track-event="email_click"
+                      data-track-label="contact_email"
+                      data-track-category="contact"
                       className="text-lg text-brand-mauve hover:text-brand-pink transition-colors"
                     >
                       jedycleaning@gmail.com
@@ -172,9 +257,14 @@ export default function ContactPage() {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-mauve focus:border-transparent"
+                    onBlur={handleBlur}
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-mauve focus:border-transparent ${touched.name && fieldErrors.name ? 'border-red-500' : 'border-gray-300'}`}
                     placeholder="John Doe"
+                    aria-describedby={fieldErrors.name ? 'name-error' : undefined}
                   />
+                  {touched.name && fieldErrors.name && (
+                    <p id="name-error" className="text-red-600 text-sm mt-1" role="alert">{fieldErrors.name}</p>
+                  )}
                 </div>
 
                 <div>
@@ -188,9 +278,14 @@ export default function ContactPage() {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-mauve focus:border-transparent"
+                    onBlur={handleBlur}
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-mauve focus:border-transparent ${touched.email && fieldErrors.email ? 'border-red-500' : 'border-gray-300'}`}
                     placeholder="john@example.com"
+                    aria-describedby={fieldErrors.email ? 'email-error' : undefined}
                   />
+                  {touched.email && fieldErrors.email && (
+                    <p id="email-error" className="text-red-600 text-sm mt-1" role="alert">{fieldErrors.email}</p>
+                  )}
                 </div>
 
                 <div>
@@ -204,9 +299,14 @@ export default function ContactPage() {
                     required
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-mauve focus:border-transparent"
+                    onBlur={handleBlur}
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-mauve focus:border-transparent ${touched.phone && fieldErrors.phone ? 'border-red-500' : 'border-gray-300'}`}
                     placeholder="(865) 123-4567"
+                    aria-describedby={fieldErrors.phone ? 'phone-error' : undefined}
                   />
+                  {touched.phone && fieldErrors.phone && (
+                    <p id="phone-error" className="text-red-600 text-sm mt-1" role="alert">{fieldErrors.phone}</p>
+                  )}
                 </div>
 
                 <div>
@@ -248,6 +348,9 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
+                  data-track-event="quote_submit_attempt"
+                  data-track-label="contact_form_submit"
+                  data-track-category="lead"
                   className="w-full bg-brand-pink hover:bg-brand-mauve text-white py-4 rounded-lg font-semibold text-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {status === 'submitting' ? 'Sending...' : 'Send Message'}

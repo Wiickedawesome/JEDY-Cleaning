@@ -1,16 +1,29 @@
 import { HeartIcon, HandshakeIcon, SparklesIcon, PhoneIcon, CheckIcon } from '../components/Icons';
 import type { Metadata } from 'next';
+import BreadcrumbSchema from '../components/BreadcrumbSchema';
 
 export const metadata: Metadata = {
   title: 'About JEDY Cleaning — Knoxville, TN',
   description:
     'Learn about JEDY Cleaning, a locally owned and operated cleaning service in Knoxville, TN. We serve West Knoxville, North Knoxville, Farragut, and surrounding areas with reliable, eco-friendly cleaning.',
-  alternates: { canonical: 'https://jedycleaning.com/about' },
+  alternates: { canonical: 'https://jedycleaning.us/about' },
+  openGraph: {
+    title: 'About JEDY Cleaning — Knoxville, TN',
+    description: 'Learn about JEDY Cleaning, your trusted partner for professional cleaning in Knoxville, TN.',
+    url: 'https://jedycleaning.us/about',
+    images: [{ url: '/graphics/Jedy.webp', width: 600, height: 600, alt: 'JEDY Cleaning Mascot' }],
+  },
 };
 
 export default function AboutPage() {
+  const breadcrumbs = [
+    { name: 'Home', url: 'https://jedycleaning.us/' },
+    { name: 'About', url: 'https://jedycleaning.us/about' }
+  ];
+
   return (
     <main className="min-h-screen bg-cream-50">
+      <BreadcrumbSchema items={breadcrumbs} />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-brand-pink-light/20 via-brand-lavender/20 to-cream-100 py-20">
         <div className="max-w-6xl mx-auto px-4 text-center">
@@ -51,6 +64,11 @@ export default function AboutPage() {
                 src="/graphics/Jedy.webp" 
                 alt="JEDY — Your Trusted House Cleaning Partner in Knoxville, TN" 
                 className="max-w-full h-auto max-h-[420px] object-contain drop-shadow-lg mx-auto"
+                width={600}
+                height={600}
+                loading="lazy"
+                decoding="async"
+                sizes="(max-width: 768px) 100vw, 300px"
               />
             </div>
           </div>
@@ -159,6 +177,9 @@ export default function AboutPage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
                   href="tel:8653332637"
+                  data-track-event="phone_click"
+                  data-track-label="about_phone"
+                  data-track-category="contact"
                   className="inline-flex items-center justify-center gap-2 bg-brand-pink hover:bg-brand-mauve text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
                 >
                   <PhoneIcon size={20} />
@@ -166,6 +187,9 @@ export default function AboutPage() {
                 </a>
                 <a
                   href="/contact"
+                  data-track-event="quote_click"
+                  data-track-label="about_quote"
+                  data-track-category="lead"
                   className="inline-flex items-center justify-center gap-2 bg-white hover:bg-white/80 text-brand-mauve px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-2 border-brand-lavender"
                 >
                   Contact Us Today →

@@ -18,16 +18,15 @@ The website combines modern development practices with a warm, charming aestheti
 ### Development Tools
 - **ESLint** - Code quality
 - **Prettier** - Code formatting
-- **Vitest** - Unit testing
 - **GitHub Actions** - CI/CD pipeline
 
 ### Deployment
-- **Azure Static Web Apps** - Fast, secure, serverless hosting ⭐
+- **GitHub Pages** - Static hosting behind GitHub's CDN
 - **GitHub Actions** - Automated CI/CD pipeline
 
 ## 🌐 Live Site
 
-**Production:** https://red-beach-058c8411e.3.azurestaticapps.net
+**Production:** https://jedycleaning.us/
 
 The JEDY Cleaning website is live and automatically deploys when you push to the `Website` branch!
 
@@ -36,9 +35,11 @@ The JEDY Cleaning website is live and automatically deploys when you push to the
 ```
 jedy-cleaning/
 ├── app/
-│   ├── components/          # Reusable React components
-│   ├── pages/              # Page components
-│   ├── lib/                # Utility functions
+│   ├── components/         # Reusable React components
+│   ├── about/              # About page
+│   ├── contact/            # Contact page
+│   ├── privacy/            # Privacy page
+│   ├── services/           # Services page
 │   ├── globals.css         # Global styles
 │   ├── layout.tsx          # Root layout
 │   └── page.tsx            # Home page
@@ -56,7 +57,7 @@ jedy-cleaning/
 
 ### Prerequisites
 - Node.js 20+
-- npm or yarn
+- npm
 
 ### Installation
 
@@ -80,9 +81,6 @@ npm run lint         # Run ESLint
 npm run lint:fix     # Fix ESLint issues
 npm run format       # Format code with Prettier
 npm run type-check   # Run TypeScript type checking
-npm run test         # Run tests with Vitest
-npm run test:ui      # Run tests with UI
-npm run test:coverage # Generate test coverage
 ```
 
 ## 🎨 Design System
@@ -93,18 +91,15 @@ npm run test:coverage # Generate test coverage
 - cream-50: `#FFFBF5`
 - cream-100: `#FFF8F0`
 
-**Sage** - Calm, trustworthy text and accents
-- sage-900: `#353B31`
-- sage-700: `#5F6A53`
-
-**Terracotta** - Warm accent for CTAs and highlights
-- terracotta-600: `#D55A2F`
-- terracotta-700: `#B84725`
+**Brand** - Warm, approachable accents
+- brand-pink: `#A85070`
+- brand-mauve: `#AEA4B3`
+- brand-lavender: `#C3B6C9`
 
 ### Typography
 
-- **Headings**: Merriweather (serif) - classic, elegant
-- **Body**: Inter (sans-serif) - modern, clean
+- **Headings**: Space Grotesk
+- **Body**: Plus Jakarta Sans
 
 ## 📄 Pages
 
@@ -118,31 +113,32 @@ npm run test:coverage # Generate test coverage
 Create a `.env.local` file:
 
 ```env
-# Add your environment variables here
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_SITE_URL=https://jedycleaning.us
+NEXT_PUBLIC_SITE_NAME=JEDY Cleaning
 ```
 
 ## 📊 Analytics & SEO
 
-- Google Analytics ready
+- Google Analytics 4 installed
 - Meta tags optimization
 - Sitemap generation
 - Structured data (Schema.org)
 - Open Graph integration
+- Lead event tracking for phone clicks, email clicks, and form submissions
 
 ## 🚢 Deployment
 
-### Azure Static Web Apps (Active ⭐)
+### GitHub Pages
 
-The website is deployed to Azure Static Web Apps with automatic CI/CD via GitHub Actions.
+The website is deployed to GitHub Pages with automatic CI/CD via GitHub Actions.
 
-**Live URL:** https://red-beach-058c8411e.3.azurestaticapps.net
+**Live URL:** https://jedycleaning.us/
 
 **How it works:**
 1. Push code to the `Website` branch
-2. GitHub Actions automatically builds the Next.js app with React 19 support
-3. Deploys to Azure Static Web Apps
-4. Site updates within 3-5 minutes
+2. GitHub Actions builds the static export into the `out` directory
+3. The Pages workflow publishes that export to GitHub Pages
+4. DNS maps the custom domain to the published Pages site
 
 **Deployment Status:** Check [GitHub Actions](https://github.com/Wiickedawesome/JEDY-Cleaning/actions)
 

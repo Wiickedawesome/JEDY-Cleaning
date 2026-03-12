@@ -1,20 +1,34 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { MenuIcon, CloseIcon } from './Icons';
 
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/services', label: 'Services' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (href: string) => pathname === href;
+
   return (
     <header className="bg-white/95 backdrop-blur sticky top-0 z-50 border-b border-gray-200 shadow-sm">
-      <nav className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <nav aria-label="Main navigation" className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
         <Link href="/" className="text-2xl font-serif font-bold text-brand-pink hover:text-brand-mauve transition-colors">
           JEDY Cleaning
         </Link>
         <button
           className="md:hidden inline-flex items-center justify-center p-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-brand-pink-light/30"
           aria-label="Toggle menu"
+          aria-expanded={open ? "true" : "false"}
+          aria-controls="mobile-navigation"
           onClick={() => setOpen((v) => !v)}
         >
           <span className="sr-only">Menu</span>
@@ -22,29 +36,23 @@ export default function Header() {
         </button>
 
         <ul className="hidden md:flex gap-8 text-gray-700 font-medium">
-          <li>
-            <Link href="/" className="hover:text-brand-pink transition-colors">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link href="/services" className="hover:text-brand-pink transition-colors">
-              Services
-            </Link>
-          </li>
-          <li>
-            <Link href="/about" className="hover:text-brand-pink transition-colors">
-              About
-            </Link>
-          </li>
-          <li>
-            <Link href="/contact" className="hover:text-brand-pink transition-colors">
-              Contact
-            </Link>
-          </li>
+          {navLinks.map(({ href, label }) => (
+            <li key={href}>
+              <Link
+                href={href}
+                className={`hover:text-brand-pink transition-colors ${isActive(href) ? 'text-brand-pink font-semibold' : ''}`}
+                aria-current={isActive(href) ? 'page' : undefined}
+              >
+                {label}
+              </Link>
+            </li>
+          ))}
         </ul>
         <a
           href="tel:8653332637"
+          data-track-event="phone_click"
+          data-track-label="header_phone"
+          data-track-category="contact"
           className="hidden md:block bg-brand-pink hover:bg-brand-mauve text-white px-6 py-2 rounded-lg font-semibold transition-colors shadow-md hover:shadow-lg"
         >
           (865) 333-2637
@@ -52,17 +60,24 @@ export default function Header() {
       </nav>
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden border-t border-gray-200 bg-white">
+        <nav id="mobile-navigation" aria-label="Mobile navigation" className="md:hidden border-t border-gray-200 bg-white">
           <div className="max-w-6xl mx-auto px-4 py-3 grid gap-3">
-            <Link href="/" onClick={() => setOpen(false)} className="block px-2 py-2 rounded hover:bg-brand-pink-light/30 text-gray-700">Home</Link>
-            <Link href="/services" onClick={() => setOpen(false)} className="block px-2 py-2 rounded hover:bg-brand-pink-light/30 text-gray-700">Services</Link>
-            <Link href="/about" onClick={() => setOpen(false)} className="block px-2 py-2 rounded hover:bg-brand-pink-light/30 text-gray-700">About</Link>
-            <Link href="/contact" onClick={() => setOpen(false)} className="block px-2 py-2 rounded hover:bg-brand-pink-light/30 text-gray-700">Contact</Link>
-            <a href="tel:8653332637" className="block px-2 py-2 bg-brand-mauve text-white rounded text-center font-semibold">
+            {navLinks.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                onClick={() => setOpen(false)}
+                className={`block px-2 py-2 rounded hover:bg-brand-pink-light/30 ${isActive(href) ? 'bg-brand-pink-light/20 text-brand-pink font-semibold' : 'text-gray-700'}`}
+                aria-current={isActive(href) ? 'page' : undefined}
+              >
+                {label}
+              </Link>
+            ))}
+            <a href="tel:8653332637" data-track-event="phone_click" data-track-label="mobile_menu_phone" data-track-category="contact" className="block px-2 py-2 bg-brand-mauve text-white rounded text-center font-semibold">
               Call (865) 333-2637
             </a>
           </div>
-        </div>
+        </nav>
       )}
     </header>
   );
