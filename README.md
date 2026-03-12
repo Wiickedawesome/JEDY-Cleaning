@@ -36,15 +36,27 @@ The JEDY Cleaning website is live and automatically deploys when you push to the
 jedy-cleaning/
 ├── app/
 │   ├── components/         # Reusable React components
+│   │   ├── Header.tsx
+│   │   ├── Footer.tsx
+│   │   ├── FAQSection.tsx
+│   │   ├── TestimonialCarousel.tsx
+│   │   ├── LocalBusinessSchema.tsx
+│   │   ├── BreadcrumbSchema.tsx
+│   │   └── ServiceSchema.tsx
 │   ├── about/              # About page
 │   ├── contact/            # Contact page
 │   ├── privacy/            # Privacy page
 │   ├── services/           # Services page
 │   ├── globals.css         # Global styles
 │   ├── layout.tsx          # Root layout
-│   └── page.tsx            # Home page
+│   ├── page.tsx            # Home page
+│   ├── error.tsx           # Error boundary
+│   └── loading.tsx         # Loading state
+├── __tests__/              # Jest test files
 ├── public/                 # Static assets
 ├── .github/workflows/      # CI/CD pipelines
+├── jest.config.js          # Jest configuration
+├── jest.setup.js           # Jest setup
 ├── package.json
 ├── tsconfig.json
 ├── tailwind.config.ts
@@ -81,6 +93,7 @@ npm run lint         # Run ESLint
 npm run lint:fix     # Fix ESLint issues
 npm run format       # Format code with Prettier
 npm run type-check   # Run TypeScript type checking
+npm test             # Run Jest tests
 ```
 
 ## 🎨 Design System
@@ -93,7 +106,7 @@ npm run type-check   # Run TypeScript type checking
 
 **Brand** - Warm, approachable accents
 - brand-pink: `#A85070`
-- brand-mauve: `#AEA4B3`
+- brand-mauve: `#8A7F91` (WCAG 4.5:1 contrast)
 - brand-lavender: `#C3B6C9`
 
 ### Typography
@@ -116,6 +129,21 @@ Create a `.env.local` file:
 NEXT_PUBLIC_SITE_URL=https://jedycleaning.us
 NEXT_PUBLIC_SITE_NAME=JEDY Cleaning
 ```
+
+## 🧪 Testing
+
+The project uses Jest with React Testing Library for component testing.
+
+```bash
+npm test              # Run all tests
+npm test -- --watch   # Run tests in watch mode
+npm test -- --coverage # Run with coverage report
+```
+
+**Test Files:**
+- `__tests__/Header.test.tsx` - Navigation and mobile menu tests
+- `__tests__/Footer.test.tsx` - Footer links and content tests
+- `__tests__/FAQSection.test.tsx` - FAQ accordion behavior tests
 
 ## 📊 Analytics & SEO
 
