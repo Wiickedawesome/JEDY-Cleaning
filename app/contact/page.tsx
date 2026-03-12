@@ -84,6 +84,8 @@ export default function ContactPage() {
           message: formData.message || 'No additional details provided.',
           _subject: `New JEDY Cleaning Inquiry - ${formData.service}`,
           _template: 'table',
+          _captcha: 'false',
+          _replyto: formData.email,
         }),
       });
 
