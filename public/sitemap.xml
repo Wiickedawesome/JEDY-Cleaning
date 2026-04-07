@@ -2,27 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://jedycleaning.us/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-04-07</lastmod>
   </url>
   <url>
-    <loc>https://jedycleaning.us/about</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://jedycleaning.us/about/</loc>
+    <lastmod>2026-04-07</lastmod>
   </url>
   <url>
-    <loc>https://jedycleaning.us/services</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://jedycleaning.us/services/</loc>
+    <lastmod>2026-04-07</lastmod>
   </url>
   <url>
-    <loc>https://jedycleaning.us/contact</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://jedycleaning.us/contact/</loc>
+    <lastmod>2026-04-07</lastmod>
   </url>
   <url>
-    <loc>https://jedycleaning.us/privacy</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://jedycleaning.us/privacy/</loc>
+    <lastmod>2026-04-07</lastmod>
   </url>
 </urlset>

@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { CONTACT, SITE } from '@/lib/constants';
 import { HomeIcon, SparklesIcon, BoxIcon, StarIcon, DiamondIcon, HandshakeIcon, LeafIcon, PhoneIcon, CheckIcon } from './components/Icons';
 import TestimonialCarouselWrapper from './components/TestimonialCarouselWrapper';
+import BreadcrumbSchema from './components/BreadcrumbSchema';
 
 export const metadata: Metadata = {
   title: 'Professional House Cleaning in Knoxville, TN | JEDY Cleaning',
@@ -18,8 +19,13 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+  const breadcrumbs = [
+    { name: 'Home', url: `${SITE.url}/` },
+  ];
+
   return (
     <main className="flex-1">
+      <BreadcrumbSchema items={breadcrumbs} />
       <section className="relative min-h-[70vh] md:min-h-[80vh] bg-gradient-to-br from-brand-pink-light/20 via-cream-50 to-brand-pink-light/20 flex items-center px-4 overflow-hidden">
         <div className="absolute inset-0 pattern-dots opacity-10"></div>
 
