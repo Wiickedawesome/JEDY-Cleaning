@@ -1,18 +1,20 @@
+import Image from 'next/image';
 import { HeartIcon, HandshakeIcon, SparklesIcon, PhoneIcon, CheckIcon } from '../components/Icons';
 import type { Metadata } from 'next';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
-import { CONTACT, SITE } from '@/lib/constants';
+import { CONTACT, SEO, SITE } from '@/lib/constants';
+import aboutMascot from '@/public/graphics/Jedy.webp';
 
 export const metadata: Metadata = {
-  title: 'About JEDY Cleaning — Knoxville, TN',
+  title: 'About Our Cleaning Company in Knoxville, TN',
   description:
     'Learn about JEDY Cleaning, a locally owned and operated cleaning service in Knoxville, TN. We serve West Knoxville, North Knoxville, Farragut, and surrounding areas with reliable, eco-friendly cleaning.',
   alternates: { canonical: `${SITE.url}/about` },
   openGraph: {
-    title: 'About JEDY Cleaning — Knoxville, TN',
+    title: 'About Our Cleaning Company in Knoxville, TN',
     description: 'Learn about JEDY Cleaning, your trusted partner for professional cleaning in Knoxville, TN.',
     url: `${SITE.url}/about`,
-    images: [{ url: '/graphics/Jedy.webp', width: 600, height: 600, alt: 'JEDY Cleaning Mascot' }],
+    images: [{ url: SEO.defaultOgImage, width: SEO.defaultOgImageWidth, height: SEO.defaultOgImageHeight, alt: SEO.defaultOgImageAlt }],
   },
 };
 
@@ -61,16 +63,14 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="flex justify-center">
-              <img 
-                src="/graphics/Jedy.webp" 
-                alt="JEDY — Your Trusted House Cleaning Partner in Knoxville, TN" 
-                className="max-w-full h-auto max-h-[420px] object-contain drop-shadow-lg mx-auto"
-                width={600}
-                height={600}
-                loading="lazy"
-                decoding="async"
-                sizes="(max-width: 768px) 100vw, 300px"
-              />
+              <div className="rounded-[32px] bg-white/70 p-4 shadow-[0_24px_70px_rgba(138,127,145,0.18)]">
+                <Image
+                  src={aboutMascot}
+                  alt="JEDY — Your Trusted House Cleaning Partner in Knoxville, TN"
+                  className="mx-auto h-auto max-h-[420px] w-auto max-w-full object-contain"
+                  sizes="(max-width: 768px) 80vw, 320px"
+                />
+              </div>
             </div>
           </div>
         </div>

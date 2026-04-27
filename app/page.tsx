@@ -1,9 +1,11 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { CONTACT, SITE } from '@/lib/constants';
+import { CONTACT, SEO, SITE } from '@/lib/constants';
 import { HomeIcon, SparklesIcon, BoxIcon, StarIcon, DiamondIcon, HandshakeIcon, LeafIcon, PhoneIcon, CheckIcon } from './components/Icons';
 import TestimonialCarouselWrapper from './components/TestimonialCarouselWrapper';
 import BreadcrumbSchema from './components/BreadcrumbSchema';
+import heroMascot from '@/public/graphics/JEDY-1.webp';
 
 export const metadata: Metadata = {
   title: 'Professional House Cleaning in Knoxville, TN | JEDY Cleaning',
@@ -15,6 +17,7 @@ export const metadata: Metadata = {
     description:
       'Trusted residential and commercial cleaning services in Knoxville, TN. Eco-friendly products. Call for a free quote.',
     url: SITE.url,
+    images: [{ url: SEO.defaultOgImage, width: SEO.defaultOgImageWidth, height: SEO.defaultOgImageHeight, alt: SEO.defaultOgImageAlt }],
   },
 };
 
@@ -71,7 +74,15 @@ export default function Home() {
             </div>
           </div>
           <div className="relative hidden md:flex justify-center items-center h-[480px]">
-            <img src="/graphics/JEDY-1.webp" alt="Professional House Cleaning in Knoxville, TN — JEDY" className="max-w-full max-h-full object-contain drop-shadow-2xl" width={1200} height={900} loading="eager" fetchPriority="high" decoding="async" sizes="(max-width: 768px) 100vw, 600px" />
+            <div className="rounded-[40px] bg-white/70 p-6 shadow-[0_30px_90px_rgba(168,80,112,0.16)]">
+              <Image
+                src={heroMascot}
+                alt="Professional House Cleaning in Knoxville, TN — JEDY"
+                className="max-h-full w-auto max-w-full object-contain"
+                priority
+                sizes="(max-width: 1024px) 40vw, 520px"
+              />
+            </div>
           </div>
         </div>
       </section>

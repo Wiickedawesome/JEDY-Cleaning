@@ -128,6 +128,8 @@ Create a `.env.local` file:
 ```env
 NEXT_PUBLIC_SITE_URL=https://jedycleaning.us
 NEXT_PUBLIC_SITE_NAME=JEDY Cleaning
+NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=
+NEXT_PUBLIC_BING_SITE_VERIFICATION=
 ```
 
 ## 🧪 Testing

@@ -33,6 +33,7 @@ describe('Footer', () => {
     render(<Footer />);
     expect(screen.getByText('jedycleaning@gmail.com')).toBeInTheDocument();
     expect(screen.getByText('(865) 333-2637')).toBeInTheDocument();
+    expect(screen.getByText(/Mon-Sat, 8:00 AM-6:00 PM/)).toBeInTheDocument();
   });
 
   it('renders current copyright year', () => {

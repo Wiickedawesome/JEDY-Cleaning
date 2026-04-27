@@ -1,4 +1,4 @@
-import { CONTACT, SITE } from '@/lib/constants';
+import { BUSINESS_HOURS, CONTACT, SEO, SERVICE_AREAS, SERVICE_TYPES, SITE } from '@/lib/constants';
 
 export default function LocalBusinessSchema() {
   const sameAs: string[] = [
@@ -8,13 +8,15 @@ export default function LocalBusinessSchema() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'CleaningService',
+    '@id': `${SITE.url}/#organization`,
     name: SITE.name,
-    image: `${SITE.url}/graphics/jedycleaning.webp`,
+    image: `${SITE.url}${SEO.defaultOgImage}`,
+    logo: `${SITE.url}${SEO.defaultOgImage}`,
     url: SITE.url,
     telephone: CONTACT.phoneSchema,
     email: CONTACT.email,
     description:
-      'Professional house cleaning services in Knoxville, TN. Offering weekly, deep, and move-in/out cleaning. Serving West Knoxville, North Knoxville, South Knoxville, Downtown Knoxville, Farragut, Maryville, and Oak Ridge.',
+      `Professional house cleaning services in Knoxville, TN. Offering ${SERVICE_TYPES.join(', ')}. Serving ${SERVICE_AREAS.join(', ')} and surrounding communities.`,
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Knoxville',
@@ -27,19 +29,34 @@ export default function LocalBusinessSchema() {
       latitude: 35.9974533,
       longitude: -83.8591188,
     },
-    areaServed: [
-      { '@type': 'City', name: 'Knoxville', addressRegion: 'TN' },
-      { '@type': 'City', name: 'Farragut', addressRegion: 'TN' },
-      { '@type': 'City', name: 'Maryville', addressRegion: 'TN' },
-      { '@type': 'City', name: 'Oak Ridge', addressRegion: 'TN' },
-    ],
-    priceRange: '$$',
-    openingHoursSpecification: {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      opens: '08:00',
-      closes: '18:00',
+    hasMap: sameAs[0],
+    areaServed: SERVICE_AREAS.map((area) => ({
+      '@type': 'Place',
+      name: area,
+      containedInPlace: {
+        '@type': 'State',
+        name: 'Tennessee',
+      },
+    })),
+    serviceType: [...SERVICE_TYPES],
+    knowsAbout: [...SERVICE_TYPES, 'Eco-friendly cleaning', 'Residential cleaning', 'Move-out cleaning'],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: CONTACT.phoneSchema,
+      email: CONTACT.email,
+      contactType: 'customer service',
+      areaServed: 'US-TN',
+      availableLanguage: 'English',
     },
+    priceRange: '$$',
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        opens: BUSINESS_HOURS.opens,
+        closes: BUSINESS_HOURS.closes,
+      },
+    ],
     ...(sameAs.length > 0 && { sameAs }),
   };
 

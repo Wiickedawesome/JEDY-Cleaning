@@ -6,7 +6,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import LocalBusinessSchema from './components/LocalBusinessSchema';
 import { Outfit } from 'next/font/google';
-import { CONTACT, SITE } from '@/lib/constants';
+import { CONTACT, SEO, SITE } from '@/lib/constants';
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -14,8 +14,16 @@ const outfit = Outfit({
   variable: '--font-outfit',
 });
 
+const verification: Metadata['verification'] = {
+  google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+  other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+    ? { 'msvalidate.01': process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION }
+    : undefined,
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
+  applicationName: SITE.name,
   title: {
     default: `${SITE.name} — House Cleaning Services in Knoxville, TN`,
     template: `%s | ${SITE.name}`,
@@ -39,6 +47,16 @@ export const metadata: Metadata = {
     'eco-friendly cleaning Knoxville',
     'JEDY Cleaning',
   ],
+  creator: SITE.nameFull,
+  publisher: SITE.nameFull,
+  category: 'Home services',
+  classification: 'Cleaning services',
+  formatDetection: {
+    address: false,
+    email: false,
+    telephone: false,
+  },
+  verification,
   openGraph: {
     title: `${SITE.name} — House Cleaning Services in Knoxville, TN`,
     description:
@@ -46,28 +64,39 @@ export const metadata: Metadata = {
     url: SITE.url,
     siteName: SITE.name,
     type: 'website',
+    locale: SEO.locale,
     images: [
       {
-        url: '/graphics/jedycleaning.webp',
-        width: 512,
-        height: 512,
-        alt: 'JEDY Cleaning — Professional House Cleaning in Knoxville, TN',
+        url: SEO.defaultOgImage,
+        width: SEO.defaultOgImageWidth,
+        height: SEO.defaultOgImageHeight,
+        alt: SEO.defaultOgImageAlt,
       },
     ],
   },
   twitter: {
-    card: 'summary_large_image',
+    card: 'summary',
     title: `${SITE.name} — House Cleaning in Knoxville, TN`,
     description:
       'Professional, trusted house cleaning in Knoxville, TN. Weekly, deep, and move-out cleaning. Get a free quote today.',
-    images: ['/graphics/jedycleaning.webp'],
+    images: [SEO.defaultOgImage],
   },
   icons: {
     icon: '/graphics/favicon-32x32.png',
     apple: '/graphics/apple-touch-icon.png',
   },
   manifest: '/site.webmanifest',
-  robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
   alternates: { canonical: SITE.url },
 };
 

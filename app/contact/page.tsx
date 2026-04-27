@@ -4,7 +4,7 @@ import { useState, useCallback } from 'react';
 import { PhoneIcon, MailIcon, MapPinIcon } from '../components/Icons';
 import FAQSection from '../components/FAQSection';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
-import { CONTACT, SITE } from '@/lib/constants';
+import { BUSINESS_HOURS, CONTACT, SERVICE_AREAS, SITE } from '@/lib/constants';
 
 declare global {
   interface WindowEventMap {
@@ -225,6 +225,46 @@ export default function ContactPage() {
                   referrerPolicy="no-referrer-when-downgrade"
                   title="JEDY Cleaning Services — Greater Knoxville Area"
                 ></iframe>
+              </div>
+
+              <div className="mt-8 grid sm:grid-cols-2 gap-4">
+                <div className="rounded-xl border border-brand-lavender bg-white p-6 shadow-sm">
+                  <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-mauve mb-2">
+                    Service Hours
+                  </p>
+                  <h3 className="text-xl font-bold text-gray-800 mb-1">{BUSINESS_HOURS.shortDays}</h3>
+                  <p className="text-gray-600">{BUSINESS_HOURS.display}</p>
+                </div>
+                <div className="rounded-xl border border-brand-lavender bg-white p-6 shadow-sm">
+                  <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-mauve mb-2">
+                    Why Clients Call
+                  </p>
+                  <ul className="space-y-2 text-gray-600">
+                    {[
+                      'Free, no-obligation quotes',
+                      'Fully insured and bonded',
+                      'Eco-friendly options available',
+                    ].map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <div className="mt-6 rounded-xl border border-brand-lavender bg-white p-6 shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-mauve mb-3">
+                  Areas We Serve
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {SERVICE_AREAS.map((area) => (
+                    <span
+                      key={area}
+                      className="rounded-full border border-brand-lavender bg-cream-50 px-3 py-1 text-sm font-medium text-gray-700"
+                    >
+                      {area}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
 

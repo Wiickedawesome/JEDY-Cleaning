@@ -20,12 +20,14 @@ describe('FAQSection', () => {
     expect(screen.getByText('Do you bring your own cleaning supplies?')).toBeInTheDocument();
     expect(screen.getByText('How do I get a free quote?')).toBeInTheDocument();
     expect(screen.getByText('Are you insured and bonded?')).toBeInTheDocument();
+    expect(screen.getByText('What are your business hours?')).toBeInTheDocument();
   });
 
   it('renders FAQ answers', () => {
     render(<FAQSection />);
     expect(screen.getByText(/Greater Knoxville, TN/)).toBeInTheDocument();
     expect(screen.getByText(/eco-friendly, pet-safe/)).toBeInTheDocument();
+    expect(screen.getByText(/Monday through Saturday/)).toBeInTheDocument();
   });
 
   it('includes FAQ schema.org structured data', () => {
@@ -35,7 +37,7 @@ describe('FAQSection', () => {
     
     const schemaData = JSON.parse(script?.textContent || '{}');
     expect(schemaData['@type']).toBe('FAQPage');
-    expect(schemaData.mainEntity).toHaveLength(5);
+    expect(schemaData.mainEntity).toHaveLength(6);
   });
 
   it('has correct accessibility attributes', () => {
@@ -46,6 +48,6 @@ describe('FAQSection', () => {
   it('renders expandable details elements', () => {
     render(<FAQSection />);
     const details = document.querySelectorAll('details');
-    expect(details).toHaveLength(5);
+    expect(details).toHaveLength(6);
   });
 });

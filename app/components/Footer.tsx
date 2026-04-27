@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { CONTACT, SITE } from '@/lib/constants';
+import { BUSINESS_HOURS, CONTACT, SERVICE_AREAS, SITE } from '@/lib/constants';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -62,10 +62,16 @@ export default function Footer() {
                 {CONTACT.email}
               </a>
             </p>
-            <p className="text-cream-100">
+            <p className="text-cream-100 mb-2">
               <a href={CONTACT.phoneHref} data-track-event="phone_click" data-track-label="footer_phone" data-track-category="contact" className="hover:text-brand-pink-light transition-colors">
                 {CONTACT.phone}
               </a>
+            </p>
+            <p className="text-cream-100 text-sm mb-2">
+              Hours: {BUSINESS_HOURS.shortDays}, {BUSINESS_HOURS.display}
+            </p>
+            <p className="text-cream-100 text-sm">
+              Serving {SERVICE_AREAS.slice(0, 4).join(', ')} and the Greater Knoxville area.
             </p>
           </div>
         </div>

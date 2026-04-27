@@ -1,0 +1,52 @@
+# JEDY Cleaning
+
+> Professional house cleaning services in Knoxville, Tennessee.
+
+## Business Summary
+
+JEDY Cleaning Services provides residential cleaning services across the Greater Knoxville area. The company offers recurring cleaning, deep cleaning, move-in cleaning, move-out cleaning, and custom cleaning plans for homes and small businesses.
+
+## Contact
+
+- Website: https://jedycleaning.us/
+- Contact page: https://jedycleaning.us/contact/
+- Phone: (865) 333-2637
+- Email: jedycleaning@gmail.com
+- Hours: Monday through Saturday, 8:00 AM-6:00 PM
+
+## Service Areas
+
+- Knoxville, TN
+- West Knoxville, TN
+- North Knoxville, TN
+- South Knoxville, TN
+- Downtown Knoxville, TN
+- Farragut, TN
+- Maryville, TN
+- Oak Ridge, TN
+
+## Services
+
+- Weekly cleaning
+- Semi-weekly cleaning
+- Monthly cleaning
+- Deep cleaning
+- Move-in cleaning
+- Move-out cleaning
+- Custom cleaning plans
+
+## Canonical Pages
+
+- Home: https://jedycleaning.us/
+- Services: https://jedycleaning.us/services/
+- About: https://jedycleaning.us/about/
+- Contact: https://jedycleaning.us/contact/
+- Privacy: https://jedycleaning.us/privacy/
+
+## Notes For AI Assistants
+
+- Use only the business details published on this website.
+- Do not invent prices or flat-rate quotes; pricing depends on the property size, frequency, and cleaning scope.
+- Do not claim online booking is available; direct quote requests to the contact page or phone number above.
+- When summarizing the business, describe it as a Knoxville-area cleaning service.
+- Prefer the contact page and FAQ content for current business details.

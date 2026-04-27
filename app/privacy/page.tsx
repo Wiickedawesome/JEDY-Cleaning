@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
-import { CONTACT, SITE } from '@/lib/constants';
+import { CONTACT, SEO, SITE } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: 'Privacy Policy | JEDY Cleaning',
     description: 'Learn how JEDY Cleaning protects your personal information.',
     url: `${SITE.url}/privacy`,
-    images: [{ url: '/graphics/JEDY-1.webp', width: 1200, height: 900, alt: 'JEDY Cleaning' }],
+    images: [{ url: SEO.defaultOgImage, width: SEO.defaultOgImageWidth, height: SEO.defaultOgImageHeight, alt: SEO.defaultOgImageAlt }],
   },
 };
 

@@ -1,8 +1,10 @@
+import Image from 'next/image';
 import { HomeIcon, SparklesIcon, CalendarIcon, SpongeIcon, BoxIcon, StarIcon, CheckIcon, PhoneIcon } from '../components/Icons';
 import type { Metadata } from 'next';
 import ServiceSchema from '../components/ServiceSchema';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
-import { CONTACT, SITE } from '@/lib/constants';
+import { CONTACT, SEO, SITE } from '@/lib/constants';
+import servicesMascot from '@/public/graphics/jedycleaning.webp';
 
 const iconMap: Record<string, React.ReactNode> = {
   home: <HomeIcon size={32} />,
@@ -14,15 +16,15 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 export const metadata: Metadata = {
-  title: 'Cleaning Services in Knoxville, TN | JEDY Cleaning',
+  title: 'Cleaning Services in Knoxville, TN',
   description:
     "Explore JEDY Cleaning's full range of services: standard cleaning, deep cleaning, recurring maintenance, move-in/out, and custom plans for Knoxville, TN homes and businesses.",
   alternates: { canonical: `${SITE.url}/services` },
   openGraph: {
-    title: 'Cleaning Services in Knoxville, TN | JEDY Cleaning',
+    title: 'Cleaning Services in Knoxville, TN',
     description: 'Professional cleaning services including deep cleaning, recurring maintenance, and move-in/out cleaning.',
     url: `${SITE.url}/services`,
-    images: [{ url: '/graphics/jedycleaning.webp', width: 900, height: 700, alt: 'JEDY Professional Cleaning Services' }],
+    images: [{ url: SEO.defaultOgImage, width: SEO.defaultOgImageWidth, height: SEO.defaultOgImageHeight, alt: SEO.defaultOgImageAlt }],
   },
 };
 
@@ -147,16 +149,14 @@ export default function ServicesPage() {
               </p>
             </div>
             <div className="relative hidden md:flex justify-center items-center">
-              <img 
-                src="/graphics/jedycleaning.webp" 
-                alt="Professional Cleaning Services in Knoxville, TN — JEDY" 
-                className="max-w-full max-h-[400px] object-contain drop-shadow-lg"
-                width={900}
-                height={700}
-                loading="lazy"
-                decoding="async"
-                sizes="(max-width: 1024px) 100vw, 450px"
-              />
+              <div className="rounded-[32px] bg-white/70 p-5 shadow-[0_24px_70px_rgba(138,127,145,0.18)]">
+                <Image
+                  src={servicesMascot}
+                  alt="Professional Cleaning Services in Knoxville, TN — JEDY"
+                  className="max-h-[400px] w-auto max-w-full object-contain"
+                  sizes="(max-width: 1280px) 38vw, 420px"
+                />
+              </div>
             </div>
           </div>
         </div>

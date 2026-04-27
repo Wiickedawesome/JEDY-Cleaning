@@ -1,15 +1,15 @@
-import { CONTACT, SITE } from '@/lib/constants';
+import { BUSINESS_HOURS, CONTACT, SERVICE_AREAS, SERVICE_TYPES, SITE } from '@/lib/constants';
 
-const faqs = [
+export const faqs = [
   {
     question: 'What areas do you serve?',
     answer:
-      'We serve Greater Knoxville, TN and surrounding communities including West Knoxville, North Knoxville, South Knoxville, Downtown Knoxville, Farragut, Maryville, and Oak Ridge.',
+      `We serve Greater Knoxville, TN and surrounding communities including ${SERVICE_AREAS.join(', ')}.`,
   },
   {
     question: 'What cleaning services do you offer?',
     answer:
-      'We offer weekly, semi-weekly, and monthly recurring cleaning, thorough deep cleaning, and move-in/move-out cleaning services — all tailored to your home or business.',
+      `We offer ${SERVICE_TYPES.join(', ')} tailored to your home or business.`,
   },
   {
     question: 'Do you bring your own cleaning supplies?',
@@ -26,11 +26,18 @@ const faqs = [
     answer:
       'Yes, JEDY Cleaning is fully insured and bonded, giving you complete peace of mind every time we clean your home or business.',
   },
+  {
+    question: 'What are your business hours?',
+    answer:
+      `Our regular business hours are ${BUSINESS_HOURS.days}, ${BUSINESS_HOURS.display}. If you send a quote request after hours, we will follow up as soon as possible.`,
+  },
 ];
 
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  '@id': `${SITE.url}/contact#faq`,
+  url: `${SITE.url}/contact#faq`,
   mainEntity: faqs.map((faq) => ({
     '@type': 'Question',
     name: faq.question,
