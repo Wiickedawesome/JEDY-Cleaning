@@ -63,14 +63,12 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="flex justify-center">
-              <div className="rounded-[32px] bg-white/70 p-4 shadow-[0_24px_70px_rgba(138,127,145,0.18)]">
-                <Image
-                  src={aboutMascot}
-                  alt="JEDY — Your Trusted House Cleaning Partner in Knoxville, TN"
-                  className="mx-auto h-auto max-h-[420px] w-auto max-w-full object-contain"
-                  sizes="(max-width: 768px) 80vw, 320px"
-                />
-              </div>
+              <Image
+                src={aboutMascot}
+                alt="JEDY — Your Trusted House Cleaning Partner in Knoxville, TN"
+                className="mx-auto h-auto max-h-[420px] w-auto max-w-full object-contain"
+                sizes="(max-width: 768px) 80vw, 320px"
+              />
             </div>
           </div>
         </div>

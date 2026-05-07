@@ -149,14 +149,12 @@ export default function ServicesPage() {
               </p>
             </div>
             <div className="relative hidden md:flex justify-center items-center">
-              <div className="rounded-[32px] bg-white/70 p-5 shadow-[0_24px_70px_rgba(138,127,145,0.18)]">
-                <Image
-                  src={servicesMascot}
-                  alt="Professional Cleaning Services in Knoxville, TN — JEDY"
-                  className="max-h-[400px] w-auto max-w-full object-contain"
-                  sizes="(max-width: 1280px) 38vw, 420px"
-                />
-              </div>
+              <Image
+                src={servicesMascot}
+                alt="Professional Cleaning Services in Knoxville, TN — JEDY"
+                className="max-h-[400px] w-auto max-w-full object-contain"
+                sizes="(max-width: 1280px) 38vw, 420px"
+              />
             </div>
           </div>
         </div>

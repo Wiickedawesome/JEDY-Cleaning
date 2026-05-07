@@ -74,15 +74,13 @@ export default function Home() {
             </div>
           </div>
           <div className="relative hidden md:flex justify-center items-center h-[480px]">
-            <div className="rounded-[40px] bg-white/70 p-6 shadow-[0_30px_90px_rgba(168,80,112,0.16)]">
-              <Image
-                src={heroMascot}
-                alt="Professional House Cleaning in Knoxville, TN — JEDY"
-                className="max-h-full w-auto max-w-full object-contain"
-                priority
-                sizes="(max-width: 1024px) 40vw, 520px"
-              />
-            </div>
+            <Image
+              src={heroMascot}
+              alt="Professional House Cleaning in Knoxville, TN — JEDY"
+              className="max-h-full w-auto max-w-full object-contain"
+              priority
+              sizes="(max-width: 1024px) 40vw, 520px"
+            />
           </div>
         </div>
       </section>
