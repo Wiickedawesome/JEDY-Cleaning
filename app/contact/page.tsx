@@ -29,6 +29,9 @@ const SERVICE_OPTIONS = [
 
 const REQUIRED_FIELDS = ['name', 'email', 'phone'] as const;
 
+/** Give up on a stalled provider response so the visitor always gets feedback. */
+const SUBMIT_TIMEOUT_MS = 12000;
+
 const serviceLabel = (value: string): string =>
   SERVICE_OPTIONS.find((option) => option.value === value)?.label ?? value;
 
@@ -107,10 +110,14 @@ export default function ContactPage() {
 
     setStatus('submitting');
 
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), SUBMIT_TIMEOUT_MS);
+
     try {
       const response = await fetch(`https://formsubmit.co/ajax/${CONTACT.email}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        signal: controller.signal,
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
@@ -140,10 +147,17 @@ export default function ContactPage() {
         setStatus('error');
         setTimeout(() => setStatus('idle'), 5000);
       }
-    } catch {
-      trackFormEvent('contact_form_error', 'contact_form_network_error');
+    } catch (error) {
+      const label =
+        error instanceof DOMException && error.name === 'AbortError'
+          ? 'contact_form_timeout'
+          : 'contact_form_network_error';
+      console.warn(`[contact form] ${label}`);
+      trackFormEvent('contact_form_error', label);
       setStatus('error');
       setTimeout(() => setStatus('idle'), 5000);
+    } finally {
+      clearTimeout(timeoutId);
     }
   };
 

@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import ContactPage from '../app/contact/page';
 
 const jsonResponse = (body: unknown, ok = true) =>
@@ -72,6 +72,32 @@ describe('ContactPage form', () => {
     submit();
 
     expect(await screen.findByText(/something went wrong/i)).toBeInTheDocument();
+  });
+
+  it('gives up and shows an error when the provider never responds', async () => {
+    jest.useFakeTimers();
+    // A fetch that only ever settles when its signal aborts, like a stalled request.
+    global.fetch = jest.fn(
+      (_url, init) =>
+        new Promise((_resolve, reject) => {
+          init?.signal?.addEventListener('abort', () =>
+            reject(new DOMException('Aborted', 'AbortError'))
+          );
+        })
+    ) as unknown as typeof fetch;
+
+    render(<ContactPage />);
+    fillValidForm();
+    submit();
+
+    expect(screen.getByRole('button', { name: /sending/i })).toBeDisabled();
+
+    await act(async () => {
+      jest.advanceTimersByTime(12000);
+    });
+
+    expect(screen.getByText(/something went wrong/i)).toBeInTheDocument();
+    jest.useRealTimers();
   });
 
   it('silently drops submissions that fill the honeypot', async () => {
