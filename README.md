@@ -13,7 +13,7 @@ The website combines modern development practices with a warm, charming aestheti
 - **React 19** - Latest React features
 - **TypeScript** - Type-safe development
 - **Tailwind CSS** - Utility-first styling with custom color palette
-- **Custom Design System** - Warm colors (cream, sage, terracotta)
+- **Custom Design System** - Warm colors (cream, pink, lavender, mauve)
 
 ### Development Tools
 - **ESLint** - Code quality
@@ -53,7 +53,13 @@ jedy-cleaning/
 │   ├── error.tsx           # Error boundary
 │   └── loading.tsx         # Loading state
 ├── __tests__/              # Jest test files
+├── lib/
+│   ├── constants.ts        # Business details, service areas, copy constants
+│   ├── contact.ts          # Contact-form delivery boundary (Web3Forms)
+│   ├── navigation.ts       # Active-nav path matching
+│   └── seo.ts              # Shared Open Graph / Twitter metadata
 ├── public/                 # Static assets
+├── docs/                   # Audit and remediation records
 ├── .github/workflows/      # CI/CD pipelines
 ├── jest.config.js          # Jest configuration
 ├── jest.setup.js           # Jest setup
@@ -120,6 +126,23 @@ npm test             # Run Jest tests
 - **Services** - Detailed service offerings
 - **About** - Company story and team
 - **Contact** - Contact form and information
+- **Privacy** - Privacy policy
+
+## ✉️ Contact Form
+
+Submissions are delivered by [Web3Forms](https://web3forms.com) from `lib/contact.ts`. Web3Forms is
+used instead of a server because the site is a static export with no backend.
+
+Behaviour contract:
+
+- Success requires HTTP 2xx **and** `success === true` in the response — nothing else is reported as sent.
+- Requests abort after 12 seconds, so a stalled provider cannot leave the form spinning.
+- If `NEXT_PUBLIC_WEB3FORMS_KEY` is missing, no request is made and the visitor sees the phone/email
+  fallback rather than a false confirmation.
+- Failures always show a banner with `tel:` and `mailto:` links so a lead is never lost.
+
+The free tier allows 250 submissions per month. Web3Forms rejects server-side (curl/Node) requests on
+that tier, so delivery can only be verified from a browser.
 
 ## 🔐 Environment Variables
 
@@ -153,15 +176,21 @@ CI runs type-check, lint, tests, and a production build on every push to `main` 
 - `__tests__/Header.test.tsx` - Navigation and mobile menu tests
 - `__tests__/Footer.test.tsx` - Footer links and content tests
 - `__tests__/FAQSection.test.tsx` - FAQ accordion behavior tests
+- `__tests__/ContactPage.test.tsx` - Form validation, honeypot, and failure fallbacks
+- `__tests__/contact.test.ts` - Delivery boundary: success, rejection, timeout, missing key
+- `__tests__/navigation.test.ts` - Active-nav matching with trailing slashes
+- `__tests__/sitemap.test.ts` - Sitemap and robots output
 
 ## 📊 Analytics & SEO
 
-- Google Analytics 4 installed
-- Meta tags optimization
-- Sitemap generation
-- Structured data (Schema.org)
-- Open Graph integration
-- Lead event tracking for phone clicks, email clicks, and form submissions
+- Google Analytics 4 (`G-ZNVLK51L9M`) loads through Google Tag Manager (`GTM-5R3V5QKN`)
+- Per-page titles, descriptions, canonicals, Open Graph, and Twitter cards via `lib/seo.ts`
+- Sitemap and robots generated as static routes with trailing-slash canonical URLs
+- Structured data: `CleaningService`, `Service`, `BreadcrumbList`, `FAQPage`
+- Lead events for phone clicks, email clicks, and form submissions (`data-track-*` attributes plus the
+  `jedy:quote-form-submit` custom event)
+- The Content-Security-Policy in `app/layout.tsx` must list any new analytics or form host in
+  `connect-src`; wildcards do not match bare hostnames.
 
 ## 🚢 Deployment
 
@@ -176,6 +205,11 @@ The website is deployed to GitHub Pages with automatic CI/CD via GitHub Actions.
 2. GitHub Actions builds the static export into the `out` directory
 3. The Pages workflow publishes that export to GitHub Pages
 4. DNS maps the custom domain to the published Pages site
+
+The build reads `NEXT_PUBLIC_WEB3FORMS_KEY` from a repository **variable**
+(Settings → Secrets and variables → Actions → Variables). Because `NEXT_PUBLIC_*` values are
+inlined at build time, a missing variable produces a working site whose form falls back to phone
+and email instead of submitting.
 
 **Deployment Status:** Check [GitHub Actions](https://github.com/Wiickedawesome/JEDY-Cleaning/actions)
 
