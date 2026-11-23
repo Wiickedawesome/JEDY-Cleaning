@@ -1,20 +1,24 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
-import { CONTACT, SEO, SITE } from '@/lib/constants';
+import { CONTACT, SITE } from '@/lib/constants';
+import { pageOpenGraph, pageTwitter } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
   description:
-    'Privacy Policy for JEDY Cleaning — learn how we collect, use, and protect your personal information when you use our cleaning services in Knoxville, TN.',
+    'Privacy Policy for JEDY Cleaning — how we collect, use, and protect the information you share through our Knoxville, TN cleaning website.',
   robots: { index: true, follow: true },
   alternates: { canonical: `${SITE.url}/privacy` },
-  openGraph: {
+  openGraph: pageOpenGraph({
     title: 'Privacy Policy | JEDY Cleaning',
-    description: 'Learn how JEDY Cleaning protects your personal information.',
+    description: 'How JEDY Cleaning collects, uses, and protects your information.',
     url: `${SITE.url}/privacy`,
-    images: [{ url: SEO.defaultOgImage, width: SEO.defaultOgImageWidth, height: SEO.defaultOgImageHeight, alt: SEO.defaultOgImageAlt }],
-  },
+  }),
+  twitter: pageTwitter({
+    title: 'Privacy Policy | JEDY Cleaning',
+    description: 'How JEDY Cleaning collects, uses, and protects your information.',
+  }),
 };
 
 export default function PrivacyPage() {
@@ -30,15 +34,16 @@ export default function PrivacyPage() {
         <h1 className="font-serif text-4xl md:text-5xl font-bold text-gray-800 mb-4">
           Privacy Policy
         </h1>
-        <p className="text-gray-500 mb-10 text-sm">Last updated: June 2025</p>
+        <p className="text-gray-500 mb-10 text-sm">Last updated: November 2026</p>
 
         <div className="prose prose-gray max-w-none space-y-8 text-gray-700 leading-relaxed">
           <section>
             <h2 className="font-serif text-2xl font-bold text-gray-800 mb-3">Information We Collect</h2>
             <p>
               When you contact us through our website contact form, we collect only the information you
-              voluntarily provide: your name, email address, phone number, and the message you send. We
-              do not collect any other personal data automatically beyond standard web server logs.
+              voluntarily provide: your name, email address, phone number, and the message you send. Our
+              website also uses analytics, described below, which records aggregated usage data rather
+              than information that identifies you personally.
             </p>
           </section>
 

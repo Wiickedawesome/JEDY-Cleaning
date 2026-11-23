@@ -87,8 +87,8 @@ npm run dev
 
 ```bash
 npm run dev          # Start development server
-npm run build        # Build for production
-npm run start        # Start production server
+npm run build        # Build the static export into out/
+npm run start        # Preview the built export on a local static server
 npm run lint         # Run ESLint
 npm run lint:fix     # Fix ESLint issues
 npm run format       # Format code with Prettier
@@ -101,18 +101,18 @@ npm test             # Run Jest tests
 ### Color Palette
 
 **Cream** - Warm, inviting background
-- cream-50: `#FFFBF5`
-- cream-100: `#FFF8F0`
+- cream-50: `#FAFBFA`
+- cream-100: `#F3F5F3`
 
 **Brand** - Warm, approachable accents
 - brand-pink: `#A85070`
-- brand-mauve: `#8A7F91` (WCAG 4.5:1 contrast)
+- brand-mauve: `#6B6173` (5.9:1 on white — meets WCAG AA)
 - brand-lavender: `#C3B6C9`
 
 ### Typography
 
-- **Headings**: Quiche Display (self-hosted, `public/fonts/`) — CSS variable `--font-quiche`
-- **Body**: Outfit (Google Fonts via `next/font/google`) — CSS variable `--font-outfit`
+- **Headings**: Quiche Display (self-hosted from `public/fonts/`, declared in `app/globals.css`)
+- **Body**: Outfit (Google Fonts via `next/font/google`)
 
 ## 📄 Pages
 
@@ -123,11 +123,10 @@ npm test             # Run Jest tests
 
 ## 🔐 Environment Variables
 
-Create a `.env.local` file:
+All site configuration lives in `lib/constants.ts`; environment variables are optional.
+Create a `.env.local` file only if you need search-engine verification meta tags:
 
 ```env
-NEXT_PUBLIC_SITE_URL=https://jedycleaning.us
-NEXT_PUBLIC_SITE_NAME=JEDY Cleaning
 NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=
 NEXT_PUBLIC_BING_SITE_VERIFICATION=
 ```
@@ -141,6 +140,8 @@ npm test              # Run all tests
 npm test -- --watch   # Run tests in watch mode
 npm test -- --coverage # Run with coverage report
 ```
+
+CI runs type-check, lint, tests, and a production build on every push to `main` or `Website`.
 
 **Test Files:**
 - `__tests__/Header.test.tsx` - Navigation and mobile menu tests

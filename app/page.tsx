@@ -1,34 +1,32 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { CONTACT, SEO, SITE } from '@/lib/constants';
+import { CONTACT, SITE } from '@/lib/constants';
+import { pageOpenGraph, pageTwitter } from '@/lib/seo';
 import { HomeIcon, SparklesIcon, BoxIcon, StarIcon, DiamondIcon, HandshakeIcon, LeafIcon, PhoneIcon, CheckIcon } from './components/Icons';
-import TestimonialCarouselWrapper from './components/TestimonialCarouselWrapper';
-import BreadcrumbSchema from './components/BreadcrumbSchema';
+import TestimonialCarousel from './components/TestimonialCarousel';
 import heroMascot from '@/public/graphics/JEDY-1.webp';
 
 export const metadata: Metadata = {
   title: 'Professional House Cleaning in Knoxville, TN | JEDY Cleaning',
   description:
-    `JEDY Cleaning offers professional residential and commercial cleaning services in Knoxville, TN and surrounding areas. Trusted, eco-friendly, and satisfaction guaranteed. Call ${CONTACT.phone} for a free quote.`,
+    `Professional house cleaning in Knoxville, TN — weekly, deep, and move-in/out cleaning. Free quotes. Call ${CONTACT.phone}.`,
   alternates: { canonical: SITE.url },
-  openGraph: {
+  openGraph: pageOpenGraph({
     title: 'Professional House Cleaning in Knoxville, TN | JEDY Cleaning',
     description:
-      'Trusted residential and commercial cleaning services in Knoxville, TN. Eco-friendly products. Call for a free quote.',
+      'Trusted residential and commercial cleaning in Knoxville, TN. Eco-friendly products. Call for a free quote.',
     url: SITE.url,
-    images: [{ url: SEO.defaultOgImage, width: SEO.defaultOgImageWidth, height: SEO.defaultOgImageHeight, alt: SEO.defaultOgImageAlt }],
-  },
+  }),
+  twitter: pageTwitter({
+    title: 'Professional House Cleaning in Knoxville, TN | JEDY Cleaning',
+    description: 'Trusted house cleaning in Knoxville, TN. Weekly, deep, and move-out cleaning. Get a free quote.',
+  }),
 };
 
 export default function Home() {
-  const breadcrumbs = [
-    { name: 'Home', url: `${SITE.url}/` },
-  ];
-
   return (
     <main className="flex-1">
-      <BreadcrumbSchema items={breadcrumbs} />
       <section className="relative min-h-[70vh] md:min-h-[80vh] bg-gradient-to-br from-brand-pink-light/20 via-cream-50 to-brand-pink-light/20 flex items-center px-4 overflow-hidden">
         <div className="absolute inset-0 pattern-dots opacity-10"></div>
 
@@ -188,7 +186,7 @@ export default function Home() {
       </section>
 
             {/* Testimonials */}
-      <TestimonialCarouselWrapper />
+      <TestimonialCarousel />
 
       <section className="py-20 bg-cream-50">
         <div className="max-w-6xl mx-auto px-4">

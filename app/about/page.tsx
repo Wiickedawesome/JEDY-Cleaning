@@ -1,21 +1,26 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { HeartIcon, HandshakeIcon, SparklesIcon, PhoneIcon, CheckIcon } from '../components/Icons';
 import type { Metadata } from 'next';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
-import { CONTACT, SEO, SITE } from '@/lib/constants';
+import { CONTACT, SITE } from '@/lib/constants';
+import { pageOpenGraph, pageTwitter } from '@/lib/seo';
 import aboutMascot from '@/public/graphics/Jedy.webp';
 
 export const metadata: Metadata = {
   title: 'About Our Cleaning Company in Knoxville, TN',
   description:
-    'Learn about JEDY Cleaning, a locally owned and operated cleaning service in Knoxville, TN. We serve West Knoxville, North Knoxville, Farragut, and surrounding areas with reliable, eco-friendly cleaning.',
+    'JEDY Cleaning is a locally owned house cleaning company serving Knoxville, Farragut, Maryville, and Oak Ridge, TN with reliable, eco-friendly service.',
   alternates: { canonical: `${SITE.url}/about` },
-  openGraph: {
+  openGraph: pageOpenGraph({
     title: 'About Our Cleaning Company in Knoxville, TN',
-    description: 'Learn about JEDY Cleaning, your trusted partner for professional cleaning in Knoxville, TN.',
+    description: 'JEDY Cleaning is your trusted partner for professional cleaning in Knoxville, TN.',
     url: `${SITE.url}/about`,
-    images: [{ url: SEO.defaultOgImage, width: SEO.defaultOgImageWidth, height: SEO.defaultOgImageHeight, alt: SEO.defaultOgImageAlt }],
-  },
+  }),
+  twitter: pageTwitter({
+    title: 'About JEDY Cleaning in Knoxville, TN',
+    description: 'Locally owned, eco-friendly house cleaning for Greater Knoxville.',
+  }),
 };
 
 export default function AboutPage() {
@@ -184,7 +189,7 @@ export default function AboutPage() {
                   <PhoneIcon size={20} />
                   Call {CONTACT.phone}
                 </a>
-                <a
+                <Link
                   href="/contact"
                   data-track-event="quote_click"
                   data-track-label="about_quote"
@@ -192,7 +197,7 @@ export default function AboutPage() {
                   className="inline-flex items-center justify-center gap-2 bg-white hover:bg-white/80 text-brand-mauve px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-2 border-brand-lavender"
                 >
                   Contact Us Today →
-                </a>
+                </Link>
               </div>
             </div>
             <div className="bg-white rounded-2xl shadow-warm p-8 border border-brand-lavender">

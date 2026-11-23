@@ -2,8 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CONTACT, SITE } from '@/lib/constants';
+import { isActivePath } from '@/lib/navigation';
 import { MenuIcon, CloseIcon } from './Icons';
 
 const navLinks = [
@@ -15,12 +16,32 @@ const navLinks = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
 
-  const isActive = (href: string) => pathname === href;
+  // `trailingSlash: true` makes usePathname() return '/about/', so match without the slash.
+  const isActive = (href: string) => isActivePath(pathname, href);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpen(false);
+    };
+    const handlePointerDown = (event: PointerEvent) => {
+      if (headerRef.current && !headerRef.current.contains(event.target as Node)) setOpen(false);
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('pointerdown', handlePointerDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('pointerdown', handlePointerDown);
+    };
+  }, [open]);
 
   return (
-    <header className="bg-white/95 backdrop-blur sticky top-0 z-50 border-b border-gray-200 shadow-sm">
+    <header ref={headerRef} className="bg-white/95 backdrop-blur sticky top-0 z-50 border-b border-gray-200 shadow-sm">
       <nav aria-label="Main navigation" className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
         <Link href="/" className="text-2xl font-serif font-bold text-brand-pink hover:text-brand-mauve transition-colors">
           {SITE.name}

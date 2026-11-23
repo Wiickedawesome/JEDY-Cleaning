@@ -19,7 +19,7 @@ describe('Footer', () => {
     render(<Footer />);
     expect(screen.getByText('Weekly Cleaning')).toBeInTheDocument();
     expect(screen.getByText('Deep Cleaning')).toBeInTheDocument();
-    expect(screen.getByText('Moving Services')).toBeInTheDocument();
+    expect(screen.getByText('Move In/Out')).toBeInTheDocument();
   });
 
   it('renders company links', () => {

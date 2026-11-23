@@ -1,9 +1,11 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { HomeIcon, SparklesIcon, CalendarIcon, SpongeIcon, BoxIcon, StarIcon, CheckIcon, PhoneIcon } from '../components/Icons';
 import type { Metadata } from 'next';
 import ServiceSchema from '../components/ServiceSchema';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
-import { CONTACT, SEO, SITE } from '@/lib/constants';
+import { CONTACT, SITE } from '@/lib/constants';
+import { pageOpenGraph, pageTwitter } from '@/lib/seo';
 import servicesMascot from '@/public/graphics/jedycleaning.webp';
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -18,19 +20,23 @@ const iconMap: Record<string, React.ReactNode> = {
 export const metadata: Metadata = {
   title: 'Cleaning Services in Knoxville, TN',
   description:
-    "Explore JEDY Cleaning's full range of services: standard cleaning, deep cleaning, recurring maintenance, move-in/out, and custom plans for Knoxville, TN homes and businesses.",
+    'House cleaning in Knoxville, TN: weekly, semi-weekly, monthly, deep, and move-in/out cleaning, plus custom plans.',
   alternates: { canonical: `${SITE.url}/services` },
-  openGraph: {
+  openGraph: pageOpenGraph({
     title: 'Cleaning Services in Knoxville, TN',
-    description: 'Professional cleaning services including deep cleaning, recurring maintenance, and move-in/out cleaning.',
+    description: 'Deep cleaning, recurring maintenance, and move-in/out cleaning tailored to your home.',
     url: `${SITE.url}/services`,
-    images: [{ url: SEO.defaultOgImage, width: SEO.defaultOgImageWidth, height: SEO.defaultOgImageHeight, alt: SEO.defaultOgImageAlt }],
-  },
+  }),
+  twitter: pageTwitter({
+    title: 'Cleaning Services in Knoxville, TN',
+    description: 'Weekly, deep, and move-in/out cleaning for Knoxville homes and businesses.',
+  }),
 };
 
 export default function ServicesPage() {
   const services = [
     {
+      id: 'weekly-cleaning',
       title: 'Weekly Cleaning',
       description: 'Regular weekly cleaning services to keep your home consistently fresh and spotless. Perfect for busy families and professionals.',
       features: [
@@ -41,10 +47,9 @@ export default function ServicesPage() {
       ],
       icon: 'home',
       iconColor: 'bg-brand-lavender/20 text-brand-mauve',
-      color: 'from-brand-pink-light/20 to-cream-50',
-      border: 'border-brand-lavender'
     },
     {
+      id: 'semi-weekly-cleaning',
       title: 'Semi-Weekly Cleaning',
       description: 'Bi-weekly cleaning services that maintain a clean and healthy living environment without the weekly commitment.',
       features: [
@@ -55,10 +60,9 @@ export default function ServicesPage() {
       ],
       icon: 'sparkles',
       iconColor: 'bg-brand-pink-light/30 text-brand-pink',
-      color: 'from-cream-50 to-brand-pink-light/20',
-      border: 'border-brand-lavender'
     },
     {
+      id: 'monthly-cleaning',
       title: 'Monthly Cleaning',
       description: 'Monthly deep maintenance to keep your space in great condition. Ideal for smaller homes or supplementing your own cleaning.',
       features: [
@@ -69,10 +73,9 @@ export default function ServicesPage() {
       ],
       icon: 'calendar',
       iconColor: 'bg-brand-lavender/20 text-brand-mauve',
-      color: 'from-cream-100 to-brand-pink-light/20',
-      border: 'border-brand-lavender'
     },
     {
+      id: 'deep-cleaning',
       title: 'Deep Cleaning',
       description: 'Intensive, top-to-bottom cleaning for those times when your home needs extra attention. Perfect for seasonal cleaning or special occasions.',
       features: [
@@ -83,10 +86,9 @@ export default function ServicesPage() {
       ],
       icon: 'sponge',
       iconColor: 'bg-brand-pink-light/30 text-brand-pink',
-      color: 'from-brand-pink-light/20 to-cream-50',
-      border: 'border-brand-lavender'
     },
     {
+      id: 'moving-services',
       title: 'Moving Services',
       description: 'Make your move stress-free with our specialized cleaning services. We handle move-in and move-out cleaning to ensure a fresh start.',
       features: [
@@ -97,10 +99,9 @@ export default function ServicesPage() {
       ],
       icon: 'box',
       iconColor: 'bg-brand-lavender/20 text-brand-mauve',
-      color: 'from-brand-pink-light/20 to-cream-50',
-      border: 'border-brand-lavender'
     },
     {
+      id: 'custom-cleaning',
       title: 'Custom Cleaning',
       description: 'We offer much more! Have specific cleaning needs? We create custom cleaning plans tailored to your unique requirements and schedule.',
       features: [
@@ -111,8 +112,7 @@ export default function ServicesPage() {
       ],
       icon: 'star',
       iconColor: 'bg-yellow-50 text-yellow-500',
-      color: 'from-cream-100 to-brand-pink-light/20',
-      border: 'border-brand-lavender'
+
     }
   ];
 
@@ -165,10 +165,11 @@ export default function ServicesPage() {
         <div className="absolute inset-0 pattern-grid"></div>
         <div className="relative max-w-6xl mx-auto px-4 z-10">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
+            {services.map((service) => (
               <div
-                key={index}
-                className="bg-white rounded-2xl border border-gray-100 shadow-md hover:shadow-lg p-8 transition-all duration-300 hover:-translate-y-1 group"
+                key={service.id}
+                id={service.id}
+                className="bg-white rounded-2xl border border-gray-100 shadow-md hover:shadow-lg p-8 transition-all duration-300 hover:-translate-y-1 group scroll-mt-24"
               >
                 <div className="relative z-10">
                   <div className={`icon-container-lg ${service.iconColor} mb-5 group-hover:scale-105 transition-transform duration-300`}>
@@ -217,7 +218,7 @@ export default function ServicesPage() {
                   <PhoneIcon size={20} />
                   Call {CONTACT.phone}
                 </a>
-                <a
+                <Link
                   href="/contact"
                   data-track-event="quote_click"
                   data-track-label="services_quote"
@@ -225,7 +226,7 @@ export default function ServicesPage() {
                   className="inline-flex items-center justify-center gap-2 bg-white hover:bg-white/80 text-brand-mauve px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-2 border-brand-lavender"
                 >
                   Get a Free Quote →
-                </a>
+                </Link>
               </div>
             </div>
             <div className="bg-white rounded-2xl shadow-warm p-8 border border-brand-lavender">

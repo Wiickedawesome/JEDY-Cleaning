@@ -1,19 +1,13 @@
 'use client';
 
-import { useEffect } from 'react';
 import { CONTACT } from '@/lib/constants';
 
 export default function Error({
-  error,
   reset,
 }: {
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  useEffect(() => {
-    // error is automatically reported by Next.js error boundary
-  }, [error]);
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-cream-50 px-4">
       <div className="text-center max-w-md">

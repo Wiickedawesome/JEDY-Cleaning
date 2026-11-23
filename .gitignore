@@ -8,6 +8,7 @@ build/
 dist/
 *.log
 *.pem
+*.tsbuildinfo
 .env
 .env.local
 .env.*.local

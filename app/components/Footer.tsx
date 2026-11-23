@@ -19,18 +19,18 @@ export default function Footer() {
             <h4 className="font-bold mb-4 text-brand-pink-light">Services</h4>
             <ul className="space-y-2 text-cream-100">
               <li>
-                <Link href="/services" className="hover:text-brand-pink-light transition-colors">
+                <Link href="/services/#weekly-cleaning" className="hover:text-brand-pink-light transition-colors">
                   Weekly Cleaning
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="hover:text-brand-pink-light transition-colors">
+                <Link href="/services/#deep-cleaning" className="hover:text-brand-pink-light transition-colors">
                   Deep Cleaning
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="hover:text-brand-pink-light transition-colors">
-                  Moving Services
+                <Link href="/services/#moving-services" className="hover:text-brand-pink-light transition-colors">
+                  Move In/Out
                 </Link>
               </li>
             </ul>

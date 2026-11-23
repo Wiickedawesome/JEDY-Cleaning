@@ -18,13 +18,37 @@ type FieldErrors = {
   phone?: string;
 };
 
+const SERVICE_OPTIONS = [
+  { value: 'weekly', label: 'Weekly Cleaning' },
+  { value: 'semi-weekly', label: 'Semi-Weekly Cleaning' },
+  { value: 'monthly', label: 'Monthly Cleaning' },
+  { value: 'deep', label: 'Deep Cleaning' },
+  { value: 'moving', label: 'Move In/Out Cleaning' },
+  { value: 'custom', label: 'Custom/Other' },
+] as const;
+
+const REQUIRED_FIELDS = ['name', 'email', 'phone'] as const;
+
+const serviceLabel = (value: string): string =>
+  SERVICE_OPTIONS.find((option) => option.value === value)?.label ?? value;
+
+const trackFormEvent = (eventName: string, label: string, value?: number): void => {
+  window.dispatchEvent(
+    new CustomEvent('jedy:quote-form-submit', {
+      detail: { eventName, label, value },
+    })
+  );
+};
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     service: 'weekly',
-    message: ''
+    message: '',
+    // Honeypot: hidden from visitors, filled by bots.
+    website: '',
   });
 
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -33,16 +57,19 @@ export default function ContactPage() {
 
   const validateField = useCallback((name: string, value: string): string | undefined => {
     switch (name) {
-      case 'name':
+      case 'name': {
         if (value.trim().length < 2) return 'Name must be at least 2 characters';
         break;
-      case 'email':
+      }
+      case 'email': {
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Please enter a valid email address';
         break;
-      case 'phone':
+      }
+      case 'phone': {
         const digits = value.replace(/\D/g, '');
         if (digits.length < 10) return 'Please enter a valid 10-digit phone number';
         break;
+      }
     }
     return undefined;
   }, []);
@@ -54,22 +81,30 @@ export default function ContactPage() {
     setFieldErrors(prev => ({ ...prev, [name]: error }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
+    // Bot trap: real visitors never fill this field, so pretend success without sending.
+    if (formData.website) {
+      setStatus('success');
+      return;
+    }
+
     // Validate all required fields before submitting
     const errors: FieldErrors = {};
-    (['name', 'email', 'phone'] as const).forEach(field => {
+    REQUIRED_FIELDS.forEach((field) => {
       const error = validateField(field, formData[field]);
       if (error) errors[field] = error;
     });
-    
+
     if (Object.keys(errors).length > 0) {
       setFieldErrors(errors);
       setTouched({ name: true, email: true, phone: true });
+      const firstInvalidField = REQUIRED_FIELDS.find((field) => errors[field]);
+      document.getElementById(firstInvalidField ?? 'name')?.focus();
       return;
     }
-    
+
     setStatus('submitting');
 
     try {
@@ -80,41 +115,33 @@ export default function ContactPage() {
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
-          service: formData.service,
+          service: serviceLabel(formData.service),
           message: formData.message || 'No additional details provided.',
-          _subject: `New JEDY Cleaning Inquiry - ${formData.service}`,
+          _subject: `New JEDY Cleaning Inquiry - ${serviceLabel(formData.service)}`,
           _template: 'table',
           _captcha: 'false',
+          // FormSubmit's own honeypot — drops the submission server-side too.
+          _honey: formData.website,
           _replyto: formData.email,
         }),
       });
 
       const data = await response.json();
-
-      if (data.success) {
-        window.dispatchEvent(
-          new CustomEvent('jedy:quote-form-submit', {
-            detail: { eventName: 'generate_lead', label: 'contact_form_success', value: 1 },
-          })
-        );
+      // FormSubmit returns success as a string, so compare explicitly and trust the HTTP status.
+      if (response.ok && String(data.success) === 'true') {
+        trackFormEvent('generate_lead', 'contact_form_success', 1);
         setStatus('success');
-        setFormData({ name: '', email: '', phone: '', service: 'weekly', message: '' });
+        setFormData({ name: '', email: '', phone: '', service: 'weekly', message: '', website: '' });
         setTimeout(() => setStatus('idle'), 5000);
       } else {
-        window.dispatchEvent(
-          new CustomEvent('jedy:quote-form-submit', {
-            detail: { eventName: 'contact_form_error', label: 'contact_form_response_error' },
-          })
-        );
+        // Surface the provider's explanation; a common cause is an unactivated address.
+        console.warn('[contact form] FormSubmit did not accept the submission:', data);
+        trackFormEvent('contact_form_error', 'contact_form_response_error');
         setStatus('error');
         setTimeout(() => setStatus('idle'), 5000);
       }
     } catch {
-      window.dispatchEvent(
-        new CustomEvent('jedy:quote-form-submit', {
-          detail: { eventName: 'contact_form_error', label: 'contact_form_network_error' },
-        })
-      );
+      trackFormEvent('contact_form_error', 'contact_form_network_error');
       setStatus('error');
       setTimeout(() => setStatus('idle'), 5000);
     }
@@ -178,7 +205,7 @@ export default function ContactPage() {
                     >
                       {CONTACT.phone}
                     </a>
-                    <p className="text-gray-500 mt-1">Call us anytime for a free quote!</p>
+                    <p className="text-gray-500 mt-1">Call us during business hours for a free quote!</p>
                   </div>
                 </div>
 
@@ -275,20 +302,49 @@ export default function ContactPage() {
               </h2>
 
               {status === 'success' && (
-                <div className="bg-brand-lavender/20 border border-brand-lavender text-brown-800 px-6 py-4 rounded-lg mb-6">
+                <div
+                  role="status"
+                  className="bg-brand-lavender/20 border border-brand-lavender text-brown-800 px-6 py-4 rounded-lg mb-6"
+                >
                   <p className="font-semibold">Thank you for your message!</p>
                   <p className="text-sm">We'll get back to you as soon as possible.</p>
                 </div>
               )}
 
               {status === 'error' && (
-                <div className="bg-red-50 border border-red-200 text-red-800 px-6 py-4 rounded-lg mb-6">
+                <div
+                  role="alert"
+                  className="bg-red-50 border border-red-200 text-red-800 px-6 py-4 rounded-lg mb-6"
+                >
                   <p className="font-semibold">Something went wrong.</p>
-                  <p className="text-sm">Please try again or call us at {CONTACT.phone}.</p>
+                  <p className="text-sm">
+                    Please try again, call us at{' '}
+                    <a href={CONTACT.phoneHref} className="underline font-semibold">
+                      {CONTACT.phone}
+                    </a>
+                    , or email{' '}
+                    <a href={`mailto:${CONTACT.email}`} className="underline font-semibold">
+                      {CONTACT.email}
+                    </a>
+                    .
+                  </p>
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+                {/* Honeypot: hidden from visitors and assistive tech, filled by bots. */}
+                <div className="hidden" aria-hidden="true">
+                  <label htmlFor="website">Website</label>
+                  <input
+                    type="text"
+                    id="website"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={formData.website}
+                    onChange={handleChange}
+                  />
+                </div>
                 <div>
                   <label htmlFor="name" className="block text-gray-800 font-semibold mb-2">
                     Full Name *
@@ -298,9 +354,11 @@ export default function ContactPage() {
                     id="name"
                     name="name"
                     required
+                    autoComplete="name"
                     value={formData.name}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    aria-invalid={Boolean(touched.name && fieldErrors.name)}
                     className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-mauve focus:border-transparent ${touched.name && fieldErrors.name ? 'border-red-500' : 'border-gray-300'}`}
                     placeholder="John Doe"
                     aria-describedby={fieldErrors.name ? 'name-error' : undefined}
@@ -319,9 +377,11 @@ export default function ContactPage() {
                     id="email"
                     name="email"
                     required
+                    autoComplete="email"
                     value={formData.email}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    aria-invalid={Boolean(touched.email && fieldErrors.email)}
                     className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-mauve focus:border-transparent ${touched.email && fieldErrors.email ? 'border-red-500' : 'border-gray-300'}`}
                     placeholder="john@example.com"
                     aria-describedby={fieldErrors.email ? 'email-error' : undefined}
@@ -340,9 +400,12 @@ export default function ContactPage() {
                     id="phone"
                     name="phone"
                     required
+                    autoComplete="tel"
+                    inputMode="tel"
                     value={formData.phone}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    aria-invalid={Boolean(touched.phone && fieldErrors.phone)}
                     className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-mauve focus:border-transparent ${touched.phone && fieldErrors.phone ? 'border-red-500' : 'border-gray-300'}`}
                     placeholder="(865) 123-4567"
                     aria-describedby={fieldErrors.phone ? 'phone-error' : undefined}
@@ -364,12 +427,11 @@ export default function ContactPage() {
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-mauve focus:border-transparent"
                   >
-                    <option value="weekly">Weekly Cleaning</option>
-                    <option value="semi-weekly">Semi-Weekly Cleaning</option>
-                    <option value="monthly">Monthly Cleaning</option>
-                    <option value="deep">Deep Cleaning</option>
-                    <option value="moving">Moving Services</option>
-                    <option value="custom">Custom/Other</option>
+                    {SERVICE_OPTIONS.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
                   </select>
                 </div>
 

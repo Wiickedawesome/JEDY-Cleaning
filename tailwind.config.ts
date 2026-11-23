@@ -38,7 +38,8 @@ const config: Config = {
           'rose': '#DB9EB8',
           'pink': '#A85070',
           'lavender': '#C3B6C9',
-          'mauve': '#8A7F91',
+          // Darkened from #8A7F91 so text and white-on-mauve both clear WCAG AA (4.5:1).
+          'mauve': '#6B6173',
         },
       },
       fontFamily: {

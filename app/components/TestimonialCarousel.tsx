@@ -88,6 +88,7 @@ export default function TestimonialCarousel() {
                 {[...Array(testimonials[current].rating)].map((_, i) => (
                   <StarIcon key={i} className="text-yellow-400" size={24} />
                 ))}
+                <span className="sr-only">Rated {testimonials[current].rating} out of 5</span>
               </div>
               <blockquote className="text-xl md:text-2xl text-gray-800 mb-6 font-serif italic">
                 &ldquo;{testimonials[current].quote}&rdquo;
