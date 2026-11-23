@@ -59,15 +59,15 @@ export default function PrivacyPage() {
           <section>
             <h2 className="font-serif text-2xl font-bold text-gray-800 mb-3">Contact Form</h2>
             <p>
-              Our contact form is processed by FormSubmit (formsubmit.co), a third-party form handling
+              Our contact form is processed by Web3Forms (web3forms.com), a third-party form handling
               service. Messages are delivered directly to our email. Please review{' '}
               <a
-                href="https://formsubmit.co/privacy"
+                href="https://web3forms.com/privacy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-brand-mauve underline hover:text-brand-pink"
               >
-                FormSubmit&apos;s Privacy Policy
+                Web3Forms&apos; Privacy Policy
               </a>{' '}
               for details on how they handle form submissions.
             </p>

@@ -5,6 +5,7 @@ import { PhoneIcon, MailIcon, MapPinIcon } from '../components/Icons';
 import FAQSection from '../components/FAQSection';
 import BreadcrumbSchema from '../components/BreadcrumbSchema';
 import { BUSINESS_HOURS, CONTACT, SERVICE_AREAS, SITE } from '@/lib/constants';
+import { submitLead, type LeadFailureReason } from '@/lib/contact';
 
 declare global {
   interface WindowEventMap {
@@ -29,8 +30,13 @@ const SERVICE_OPTIONS = [
 
 const REQUIRED_FIELDS = ['name', 'email', 'phone'] as const;
 
-/** Give up on a stalled provider response so the visitor always gets feedback. */
-const SUBMIT_TIMEOUT_MS = 12000;
+/** Analytics labels per failure mode. */
+const FAILURE_LABELS: Record<LeadFailureReason, string> = {
+  unconfigured: 'contact_form_unconfigured',
+  timeout: 'contact_form_timeout',
+  network: 'contact_form_network_error',
+  rejected: 'contact_form_response_error',
+};
 
 const serviceLabel = (value: string): string =>
   SERVICE_OPTIONS.find((option) => option.value === value)?.label ?? value;
@@ -110,55 +116,27 @@ export default function ContactPage() {
 
     setStatus('submitting');
 
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), SUBMIT_TIMEOUT_MS);
+    const result = await submitLead({
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      phone: formData.phone.trim(),
+      service: serviceLabel(formData.service),
+      message: formData.message.trim() || 'No additional details provided.',
+    });
 
-    try {
-      const response = await fetch(`https://formsubmit.co/ajax/${CONTACT.email}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        signal: controller.signal,
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          service: serviceLabel(formData.service),
-          message: formData.message || 'No additional details provided.',
-          _subject: `New JEDY Cleaning Inquiry - ${serviceLabel(formData.service)}`,
-          _template: 'table',
-          _captcha: 'false',
-          // FormSubmit's own honeypot — drops the submission server-side too.
-          _honey: formData.website,
-          _replyto: formData.email,
-        }),
-      });
-
-      const data = await response.json();
-      // FormSubmit returns success as a string, so compare explicitly and trust the HTTP status.
-      if (response.ok && String(data.success) === 'true') {
-        trackFormEvent('generate_lead', 'contact_form_success', 1);
-        setStatus('success');
-        setFormData({ name: '', email: '', phone: '', service: 'weekly', message: '', website: '' });
-        setTimeout(() => setStatus('idle'), 5000);
-      } else {
-        // Surface the provider's explanation; a common cause is an unactivated address.
-        console.warn('[contact form] FormSubmit did not accept the submission:', data);
-        trackFormEvent('contact_form_error', 'contact_form_response_error');
-        setStatus('error');
-        setTimeout(() => setStatus('idle'), 5000);
-      }
-    } catch (error) {
-      const label =
-        error instanceof DOMException && error.name === 'AbortError'
-          ? 'contact_form_timeout'
-          : 'contact_form_network_error';
-      console.warn(`[contact form] ${label}`);
-      trackFormEvent('contact_form_error', label);
-      setStatus('error');
+    if (result.ok) {
+      trackFormEvent('generate_lead', 'contact_form_success', 1);
+      setStatus('success');
+      setFormData({ name: '', email: '', phone: '', service: 'weekly', message: '', website: '' });
       setTimeout(() => setStatus('idle'), 5000);
-    } finally {
-      clearTimeout(timeoutId);
+      return;
     }
+
+    const label = FAILURE_LABELS[result.reason];
+    console.warn(`[contact form] ${label}`, result.detail ?? '');
+    trackFormEvent('contact_form_error', label);
+    setStatus('error');
+    setTimeout(() => setStatus('idle'), 5000);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {

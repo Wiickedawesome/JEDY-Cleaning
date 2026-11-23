@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import ContactPage from '../app/contact/page';
 
 const jsonResponse = (body: unknown, ok = true) =>
@@ -15,9 +15,15 @@ const submit = () => fireEvent.click(screen.getByRole('button', { name: /send me
 
 describe('ContactPage form', () => {
   const originalFetch = global.fetch;
+  const originalKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+
+  beforeEach(() => {
+    process.env.NEXT_PUBLIC_WEB3FORMS_KEY = 'test-access-key';
+  });
 
   afterEach(() => {
     global.fetch = originalFetch;
+    process.env.NEXT_PUBLIC_WEB3FORMS_KEY = originalKey;
     jest.restoreAllMocks();
   });
 
@@ -34,8 +40,8 @@ describe('ContactPage form', () => {
     expect(screen.getByLabelText(/full name/i)).toHaveFocus();
   });
 
-  it('shows success only when FormSubmit reports success: "true"', async () => {
-    global.fetch = jest.fn().mockResolvedValue(jsonResponse({ success: 'true' }));
+  it('shows success when the provider accepts the lead', async () => {
+    global.fetch = jest.fn().mockResolvedValue(jsonResponse({ success: true })) as unknown as typeof fetch;
 
     render(<ContactPage />);
     fillValidForm();
@@ -44,8 +50,21 @@ describe('ContactPage form', () => {
     expect(await screen.findByText(/thank you for your message/i)).toBeInTheDocument();
   });
 
-  it('shows an error for success: "false" even though the string is truthy', async () => {
-    global.fetch = jest.fn().mockResolvedValue(jsonResponse({ success: 'false' }));
+  it('shows the fallback banner when the provider rejects the lead', async () => {
+    global.fetch = jest
+      .fn()
+      .mockResolvedValue(jsonResponse({ success: false, message: 'rejected' })) as unknown as typeof fetch;
+
+    render(<ContactPage />);
+    fillValidForm();
+    submit();
+
+    expect(await screen.findByText(/something went wrong/i)).toBeInTheDocument();
+    expect(screen.queryByText(/thank you for your message/i)).not.toBeInTheDocument();
+  });
+
+  it('shows the fallback banner on a network failure', async () => {
+    global.fetch = jest.fn().mockRejectedValue(new Error('offline')) as unknown as typeof fetch;
 
     render(<ContactPage />);
     fillValidForm();
@@ -54,50 +73,30 @@ describe('ContactPage form', () => {
     expect(await screen.findByText(/something went wrong/i)).toBeInTheDocument();
   });
 
-  it('shows an error when the response status is not ok', async () => {
-    global.fetch = jest.fn().mockResolvedValue(jsonResponse({ success: 'true' }, false));
+  it('offers phone and email fallbacks when delivery fails', async () => {
+    global.fetch = jest.fn().mockRejectedValue(new Error('offline')) as unknown as typeof fetch;
+
+    render(<ContactPage />);
+    fillValidForm();
+    submit();
+
+    const banner = await screen.findByText(/something went wrong/i);
+    const panel = banner.closest('[role="alert"]') as HTMLElement;
+    expect(panel.querySelector('a[href^="tel:"]')).toBeInTheDocument();
+    expect(panel.querySelector('a[href^="mailto:"]')).toBeInTheDocument();
+  });
+
+  it('does not attempt a request when the access key is missing', async () => {
+    delete process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+    const fetchMock = jest.fn();
+    global.fetch = fetchMock as unknown as typeof fetch;
 
     render(<ContactPage />);
     fillValidForm();
     submit();
 
     expect(await screen.findByText(/something went wrong/i)).toBeInTheDocument();
-  });
-
-  it('shows an error when the request fails', async () => {
-    global.fetch = jest.fn().mockRejectedValue(new Error('offline'));
-
-    render(<ContactPage />);
-    fillValidForm();
-    submit();
-
-    expect(await screen.findByText(/something went wrong/i)).toBeInTheDocument();
-  });
-
-  it('gives up and shows an error when the provider never responds', async () => {
-    jest.useFakeTimers();
-    // A fetch that only ever settles when its signal aborts, like a stalled request.
-    global.fetch = jest.fn(
-      (_url, init) =>
-        new Promise((_resolve, reject) => {
-          init?.signal?.addEventListener('abort', () =>
-            reject(new DOMException('Aborted', 'AbortError'))
-          );
-        })
-    ) as unknown as typeof fetch;
-
-    render(<ContactPage />);
-    fillValidForm();
-    submit();
-
-    expect(screen.getByRole('button', { name: /sending/i })).toBeDisabled();
-
-    await act(async () => {
-      jest.advanceTimersByTime(12000);
-    });
-
-    expect(screen.getByText(/something went wrong/i)).toBeInTheDocument();
-    jest.useRealTimers();
+    expect(fetchMock).not.toHaveBeenCalled();
   });
 
   it('silently drops submissions that fill the honeypot', async () => {

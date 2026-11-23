@@ -129,7 +129,13 @@ Create a `.env.local` file only if you need search-engine verification meta tags
 ```env
 NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=
 NEXT_PUBLIC_BING_SITE_VERIFICATION=
+NEXT_PUBLIC_WEB3FORMS_KEY=
 ```
+
+`NEXT_PUBLIC_WEB3FORMS_KEY` is public by design (it is inlined into the bundle) and only
+identifies the destination inbox. It must be present at **build** time — in CI it comes from a
+repository variable, not a local file. With no key, the form skips the network call and shows
+the phone/email fallback instead of submitting.
 
 ## 🧪 Testing
 
